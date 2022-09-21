@@ -14,16 +14,11 @@
           >
             <span class="navbar-toggler-icon"></span>
           </button>
-          <a class="navbar-brand" routerLink="/home"> Product Name </a>
+          <a class="navbar-brand" routerLink="/home"> Presort Services </a>
 
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
               <li class="nav-item divider-vertical d-none d-lg-block"></li>
-
-              <li class="nav-item">
-                <a class="nav-link" routerLink="/item1">Item 1</a>
-              </li>
-
               <li class="nav-item dropdown">
                 <a
                   class="nav-link dropdown-toggle"
@@ -33,83 +28,36 @@
                   data-toggle="dropdown"
                   aria-haspopup="true"
                   aria-expanded="false"
-                  >Menu 1</a
+                  >Financials</a
                 >
-                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                  <a class="dropdown-item" routerLink="">Menu Item 1</a>
-                  <a class="dropdown-item" routerLink="">Menu Item 2</a>
-                  <a class="dropdown-item" routerLink="">Menu Item 3</a>
-                </div>
-              </li>
-
-              <li class="nav-item dropdown">
-                <a
-                  class="nav-link dropdown-toggle"
-                  href="#"
-                  role="button"
-                  data-toggle="dropdown"
-                  aria-haspopup="true"
-                  aria-expanded="false"
-                  >Menu 2</a
-                >
-                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                  <a class="dropdown-item" routerLink="">Menu Item 1</a>
-                  <a class="dropdown-item" routerLink="">Menu Item 2</a>
-                  <a class="dropdown-item" routerLink="">Menu Item 3</a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink" style="min-width: 300px">
+                  <a class="dropdown-item" routerLink="">Deposit Account Balances</a>
+                  <a class="dropdown-item" routerLink="">Transactions and Invoices</a>
                 </div>
               </li>
             </ul>
 
             <ul class="navbar-nav navbar-right" [ngClass]="{ 'search-active': searchActive }">
-              <li class="nav-item">
-                <!-- when search icon is clicked, search UI is displayed and the other menus are hidden -->
-                <a
-                  #searchLink
-                  class="nav-link d-none d-sm-block"
-                  aria-label="Search"
-                  href=""
-                  (click)="toggleSearch($event)"
-                >
-                  <i class="pbi-icon-outline pbi-search d-none d-lg-inline" aria-hidden="true"></i>
-                </a>
 
-                <div class="nav-link d-sm-none">
-                  <div class="form-group d-lg-none">
-                    <div class="input-group input-group-sm">
-                      <label for="search-input-xs" class="sr-only">Search</label>
-                      <div class="input-group-prepend">
-                        <span class="input-group-text" id="basic-addon1">
-                          <i class="pbi-icon-mini pbi-search"></i>
-                        </span>
-                      </div>
-                      <input id="search-input-xs" class="form-control" type="search" placeholder="Search" />
-                    </div>
-                  </div>
-                </div>
-              </li>
-
-              <!-- Apps menu -->
+              <!-- Shutterfly-->
               <li class="nav-item dropdown">
-                <a
-                  href="#"
-                  class="nav-link dropdown-toggle"
-                  data-toggle="dropdown"
-                  aria-labelledby="app-offscreen"
-                  aria-haspopup="true"
-                  aria-expanded="false"
-                >
-                  <i class="pbi-icon-outline pbi-apps d-none d-lg-inline" aria-hidden="true"></i>
-
-                  <span class="d-lg-none" id="app-offscreen">
-                    <i class="pbi-icon-mini pbi-grid-4" aria-hidden="true"></i>&nbsp;Applications
+                <a class="nav-link dropdown-toggle"
+                   href="#"
+                   role="button"
+                   data-toggle="dropdown"
+                   aria-haspopup="true"
+                   aria-expanded="false">
+                  <span class="d-lg-none" id="account-switcher">
+                    <i class="pbi-icon-mini pbi-account-switcher pr-0" aria-hidden="true"></i>&nbsp;
                   </span>
+                  <i class="pbi-icon-outline pbi-account-switcher d-none d-lg-inline d-sm-block pr-2" aria-hidden="true"></i>
+                  Shutterfly
                 </a>
-                <div class="dropdown-menu" role="menu">
-                  <div class="section-head hidden-xs">Your Apps</div>
-                  <a class="dropdown-item" href="">App 1</a>
-                  <a class="dropdown-item" href="">App 2</a>
-                  <a class="dropdown-item" href="">App 3</a>
-                  <a class="dropdown-item disabled" aria-disabled="true" href="">App 4</a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                  <div class="section-head d-none d-sm-block pt-1 pb-2">Shutterfly</div>
+                  <a class="dropdown-item" routerLink="">Shutterfly Business Solutions</a>
+                  <a class="dropdown-item" routerLink="">Shutterfly Lifetouch</a>
+                  <a class="dropdown-item" routerLink="">Shutterfly Transactional</a>
                 </div>
               </li>
 
@@ -124,69 +72,10 @@
                   aria-haspopup="true"
                 >
                   <i class="pbi-icon-outline pbi-help-circle d-none d-lg-inline" aria-hidden="true"></i>
-
                   <span class="d-lg-none" id="help-offscreen">
                     <i class="pbi-icon-mini pbi-help-circle" aria-hidden="true"></i>&nbsp;Support
                   </span>
                 </a>
-
-                <div class="dropdown-menu" role="menu">
-                  <div class="section-head hidden-xs">Support</div>
-                  <input
-                    type="text"
-                    class="form-control form-control-sm dropdown-search-item"
-                    placeholder="Search"
-                    aria-label="Search"
-                  />
-                  <a class="dropdown-item" href="">Support Topic 1</a>
-                  <a class="dropdown-item" href="">Support Topic 2</a>
-                  <a class="dropdown-item" href="">See All Support Topics</a>
-                  <div class="divider" role="separator"></div>
-                  <a class="dropdown-item" href="">
-                    <i class="pbi-icon-mini pbi-chat-conversation" aria-hidden="true"></i> Chat
-                    <span ng-if="patterns.offline">Offline</span>
-                  </a>
-                  <a class="dropdown-item" href=""> <i class="pbi-icon-mini pbi-mail" aria-hidden="true"></i> Email</a>
-                  <a class="dropdown-item" href="tel:1-800-555-45678">
-                    <i class="pbi-icon-mini pbi-phone" aria-hidden="true"></i> 1-800-555-45678</a
-                  >
-                  <div class="divider" role="separator"></div>
-                  <a class="dropdown-item" href="">
-                    <i class="pbi-icon-mini pbi-download" aria-hidden="true"></i> Printer/Scale Drivers</a
-                  >
-                </div>
-              </li>
-
-              <!-- settings menu -->
-              <li class="nav-item dropdown">
-                <a
-                  href=""
-                  class="nav-link dropdown-toggle"
-                  data-toggle="dropdown"
-                  aria-labelledby="settings-offscreen"
-                  aria-expanded="false"
-                  aria-haspopup="true"
-                >
-                  <i class="pbi-icon-outline pbi-settings d-none d-lg-inline" aria-hidden="true"></i>
-
-                  <span class="d-lg-none" id="settings-offscreen">
-                    <i class="pbi-icon-mini pbi-settings" aria-hidden="true"></i>&nbsp;Settings
-                  </span>
-                </a>
-                <div class="dropdown-menu" role="menu">
-                  <div class="section-head">Application Settings</div>
-                  <a class="dropdown-item" href="">Carriers</a>
-                  <a class="dropdown-item" href="">Cost Accounts</a>
-                  <a class="dropdown-item" href="">Postage Payment Methods</a>
-                  <a class="dropdown-item" href="">Users</a>
-                  <div class="section-head hidden-xs">Personal Preferences</div>
-
-                  <a class="dropdown-item" href="">Label Options</a>
-                  <a class="dropdown-item" href="">Automatic Emails</a>
-                  <a class="dropdown-item" href="">Presets</a>
-                  <a class="dropdown-item" href="">Return Label</a>
-                  <a class="dropdown-item" href="">Preferences</a>
-                </div>
               </li>
 
               <!-- User menu -->
@@ -199,22 +88,16 @@
                   aria-expanded="false"
                 >
                   <div class="d-none d-lg-block header-user-lockup">
-                    <div class="header-username">Melanie Daniels</div>
+                    <div class="header-username">Jane Doe</div>
                   </div>
 
                   <span class="d-lg-none" id="username-offscreen">
-                    <i class="pbi-icon-mini pbi-user-circle" aria-hidden="true"></i>&nbsp;Melanie Daniels
+                    <i class="pbi-icon-mini pbi-user-circle" aria-hidden="true"></i>&nbsp;Jane Doe
                   </span>
                 </a>
 
                 <div class="dropdown-menu" role="menu">
-                  <a class="dropdown-item" href=""
-                    >Profile <br /><span class="menu-text-small">Email, Passwords</span></a
-                  >
-                  <a class="dropdown-item" href=""
-                    >Your Account <br /><span class="menu-text-small">Financials, Usage, Products, Support</span></a
-                  >
-                  <div class="divider" role="separator"></div>
+                  <a class="dropdown-item" href="">Profile Settings</a>
                   <a class="dropdown-item" href="">Sign Out</a>
                 </div>
               </li>
