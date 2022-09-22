@@ -1,0 +1,59 @@
+@use 'variables';
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+  .card-container {
+    color: variables.$green;
+    padding: 15px;
+    max-width: 600px;
+    min-height: 350px;
+    background: variables.$white;
+    border: 1px solid variables.$border;
+    box-shadow: 1px 0 8px rgba(113, 113, 113, 0.1);
+    border-radius: 6px;
+
+    .card-container-title {
+      margin: 0;
+      display: flex;
+      justify-content: space-between;
+      padding-bottom: 10px;
+    }
+
+    .card-btn {
+      background: none;
+      border: none;
+      color: variables.$blue;
+    }
+
+    h4 {
+      padding-bottom: 5px;
+    }
+
+    .card-table {
+      padding: 5px 0 5px 0;
+      border: 1px variables.$border;
+      border-style: solid none solid none;
+    }
+
+    .table-element {
+      display: flex;
+      justify-content: space-between;
+      padding-bottom: 5px;
+    }
+
+    .table-element-center {
+      padding-left: 80px;
+      flex: 50%;
+    }
+
+    .table-element-num {
+      color: variables.$blue;
+    }
+
+    .card-container-footer {
+      padding-top: 5px;
+    }
+  }

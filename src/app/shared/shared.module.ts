@@ -5,16 +5,18 @@ import { RouterModule } from '@angular/router';
 import { FooterComponent } from '@app/shared/footer/footer.component';
 import { HeaderComponent } from '@app/shared/header/header.component';
 import { WelcomeBannerComponent } from '@app/shared/welcome-banner/welcome-banner.component';
+import { CardComponent } from '@app/shared/card/card.component';
 import { PbdsHeaderShadowModule } from 'pb-design-system/header-shadow';
 import { PbdsPageTitleModule } from 'pb-design-system/page-title';
 
 @NgModule({
   imports: [CommonModule, FormsModule, ReactiveFormsModule, RouterModule, PbdsHeaderShadowModule, PbdsPageTitleModule],
-  declarations: [HeaderComponent, FooterComponent, WelcomeBannerComponent],
+  declarations: [HeaderComponent, FooterComponent, WelcomeBannerComponent, CardComponent],
   exports: [
     HeaderComponent,
     FooterComponent,
     WelcomeBannerComponent,
+    CardComponent,
     FormsModule,
     ReactiveFormsModule,
     CommonModule,
