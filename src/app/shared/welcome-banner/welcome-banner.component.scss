@@ -1,0 +1,30 @@
+.bg-image {
+  padding-top: 20px;
+  position: relative;
+  background: url(~assets/images/welcome.png);
+  background-size: cover;
+
+  &:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background: linear-gradient(90deg,var(--grad_start) 0%,var(--grad_mid) 50%,var(--grad_end) 100%);
+    opacity: 0.6;
+  }
+
+  .bg-text-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 280px;
+  }
+
+  .bg-text {
+    padding-top: 30px;
+    color: white;
+    z-index: 1;
+  }
+}
