@@ -2,6 +2,8 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SharedModule } from '@app/shared/shared.module';
+import { TransactionsModule } from '@app/transactions/transactions.module';
+// import { NgbdNavBasicModule } from '@app/transactions/tabs/tabs.module';
 import { LoadingBarHttpClientModule } from '@ngx-loading-bar/http-client';
 import { LoadingBarRouterModule } from '@ngx-loading-bar/router';
 import { AppRoutingModule } from './app-routing.module';
@@ -15,6 +17,7 @@ import { AppComponent } from './app.component';
     LoadingBarRouterModule,
     AppRoutingModule,
     SharedModule,
+    TransactionsModule,
     BrowserAnimationsModule,
   ],
   providers: [],
