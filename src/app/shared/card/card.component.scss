@@ -1,0 +1,106 @@
+@use 'variables';
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+  .card-container {
+    color: variables.$green;
+    padding: 15px;
+    max-width: 680px;
+    min-height: 382px;
+    background: variables.$white;
+    border: 1px solid variables.$border;
+    box-shadow: 1px 0 8px rgba(113, 113, 113, 0.1);
+    border-radius: 6px;
+
+    .card-container-title {
+      margin: 0;
+      display: flex;
+      justify-content: space-between;
+      padding-bottom: 10px;
+    }
+
+    .card-btn {
+      background: none;
+      border: none;
+      color: variables.$blue;
+    }
+
+    .card-btn-big {
+      padding: 10px;
+      background: none;
+      border: 1px solid variables.$green;
+      border-radius: 3px;
+      color: variables.$green;
+
+      &:hover {
+        border: 2px solid variables.$green;
+        transition: .1s ease-in-out;
+      }
+    }
+
+    i {
+      padding-left: 7px;
+    }
+
+    h4 {
+      padding-bottom: 5px;
+    }
+
+    .card-table {
+      padding: 5px 0 5px 0;
+      border: 1px variables.$border;
+      border-style: solid none solid none;
+      max-width: 650px;
+    }
+
+    .table-element {
+      display: flex;
+      justify-content: space-between;
+      padding-bottom: 5px;
+    }
+
+    .table-element-center {
+      padding-left: 80px;
+      flex: 50%;
+    }
+
+    .table-element-num {
+      color: variables.$blue;
+      flex: 10%;
+    }
+
+    .card-container-footer {
+      padding-top: 5px;
+    }
+
+    .container-right {
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+    }
+
+    .table-element-sum {
+      color: variables.$white;
+      background-color: variables.$red;
+      border-radius: 16.5px;
+      padding: 3px;
+      min-width: 70px;
+      max-height: 25px;
+      text-align: center;
+    }
+
+    .table-element-date {
+      flex: 10%;
+    }
+
+    .table-element-program {
+      flex: 25%;
+    }
+
+    .hidden {
+      display: none;
+    }
+  }

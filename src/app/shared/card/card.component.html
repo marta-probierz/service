@@ -1,0 +1,92 @@
+<div class="card-container">
+
+    <div class="card-container-title">
+        <h3>{{title}}</h3>
+        <button class="card-btn">{{view}}</button>
+    </div>
+
+
+    <div [class.hidden]="hideTitle()" class="card-container-title">
+        <div>
+            <h4>{{title2}}<i class="pbi-icon-outline pbi-alert-circle" aria-hidden="true"></i></h4>
+            <h2>${{total}}</h2>
+        </div>
+        <div class="container-right">
+            <button class="card-btn-big">Payment Instructions<i class="pbi-icon-outline pbi-link-external" aria-hidden="true"></i></button>
+            <p>Paying online? <button class="card-btn">Pay on Your Account</button></p>
+        </div>
+    </div>
+
+
+    <div class="card-container-content">
+        <h4>{{tableName}}</h4>
+        <div class="card-table" [class.hidden]="hideTable()">
+            <div class="table-element">
+                <p class="table-element-num">00-37288-1</p>
+                <p class="table-element-center">Revolving</p>
+                <p>-$456.92</p>
+            </div>
+            <div class="table-element">
+                <p class="table-element-num">00-37295-2</p>
+                <p class="table-element-center">Long Term</p>
+                <p>$108.87</p>
+            </div>
+            <div class="table-element">
+                <p class="table-element-num">00-37310-5</p>
+                <p class="table-element-center">W2 deposit account</p>
+                <p>$205.09</p>
+            </div>
+            <div class="table-element">
+                <p class="table-element-num">00-37310-7</p>
+                <p class="table-element-center">MAJORS Deposit Account</p>
+                <p>$435.14</p>
+            </div>
+            <div class="table-element">
+                <p class="table-element-num">00-37310-9</p>
+                <p class="table-element-center">VAR Deposit Account</p>
+                <p>$871.15</p>
+            </div>
+            <div class="table-element">
+                <p></p>
+                <p></p>
+                <button class="card-btn">+{{more}} more</button>
+            </div>
+        </div>
+
+
+
+        <div class="card-table" [class.hidden]="hideTitle()" >
+            <div class="table-element">
+                <p class="table-element-date">Mar 6, 2021</p>
+                <p class="table-element-num">1003865507</p>
+                <p class="table-element-program">494 PBMS Postage Discount Program</p>
+                <p class="table-element-program">Shutterfly Business Solutions</p>
+                <p class="table-element-sum">$897.63</p>
+            </div>
+            <div class="table-element">
+                <p class="table-element-date">Mar 6, 2021</p>
+                <p class="table-element-num">1003865508</p>
+                <p class="table-element-program">538 PBMS Postage Discount Program Parcel</p>
+                <p class="table-element-program">Shutterfly Lifetouch</p>
+                <p class="table-element-sum">$108.87</p>
+            </div>
+            <div class="table-element">
+                <p class="table-element-date">Mar 6, 2021</p>
+                <p class="table-element-num">1003865508</p>
+                <p class="table-element-program">26 PBMS Postage Discount Program MM</p>
+                <p class="table-element-program">Shutterfly Transactional</p>
+                <p class="table-element-sum">$205.09</p>
+            </div>
+            <div class="table-element">
+                <p></p>
+                <p></p>
+                <p></p>
+                <p></p>
+                <button class="card-btn">+{{more}} more</button>
+            </div>
+        </div>
+    </div>
+    <div class="card-container-footer">
+        <p>{{footer}}</p>
+    </div>
+</div>

@@ -1,11 +1,32 @@
 <app-welcome-banner name="Jane"></app-welcome-banner>
 
+<div class="d-flex justify-content-around pt-7 flex-lg-row flex-md-column">
+  <app-card
+          title="Deposit Account Balances"
+          view="View All"
+          tableName="Deposit Accounts in Ascending Order"
+          more=1
+          footer="Please review balance information to ensure sufficient funds are present for incoming mail. Contact your Client Relationship Manager with any concerns or questions.">
+  </app-card>
+
+  <app-card
+          title="Invoices"
+          view="View All"
+          title2="Total Amount Due"
+          total=1,431.66
+          tableName="Past Due Invoices"
+          more=2
+          footer="Contact your Client Relationship Manager with any concerns or questions about paying your invoices.">
+  </app-card>
+</div>
+
 <!--  mt-7 class on container, unless the first element inside is an H2 -->
 <div class="container mt-7">
   <div class="row">
     <div class="col">
       <!-- if you have an H2 as the first element, remove the mt-7 from the container -->
 <!--       <h2>Rest of Your Content</h2>-->
+
       <p>
         Lorem, ipsum dolor sit amet consectetur adipisicing elit. Recusandae eaque adipisci, illo minus inventore
         possimus amet non blanditiis, quibusdam perspiciatis sunt, veritatis ex a explicabo praesentium. Laudantium
