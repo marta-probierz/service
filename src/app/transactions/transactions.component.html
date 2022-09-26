@@ -1,0 +1,135 @@
+<pbds-page-title ttl="Transactions and Invoices" layout="container-fluid"></pbds-page-title>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col">
+            <div class="d-flex pb-3 justify-content-between">
+                <div>
+                    <h2>Ajax Subliminals</h2>
+                    <h5>Account: 0018315093</h5>
+                </div>
+                <div class="d-flex flex-column justify-content-end">
+                    <button class="btn btn-secondary">Payment Instructions<i class="pbi-icon-outline pbi-link-external pl-2" aria-hidden="true"></i></button>
+                    <p class="pt-1">Paying online? <button class="bg-transparent border-0 text-primary">Pay on Your Account</button></p>
+                </div>
+            </div>
+
+            <ul ngbNav #nav="ngbNav" class="nav-tabs pt-2">
+
+<!--                Pending Transactions-->
+                <li [ngbNavItem]="1">
+                    <a ngbNavLink>Pending Transactions</a>
+                    <ng-template ngbNavContent>
+
+                        <h5>Expected Invoice Date</h5>
+                        <h4>Jun 5, 2021</h4>
+                        <h5>Please review pending transactions and notify Pitney Bowes Presort Services of discrepancies by <b>Jun 7, 2021.</b></h5>
+
+                        <div class="toolbar">
+                            <div class="toolbar-left">
+                                <button class="btn btn-secondary" type="button">
+                                    <i class="pbi-icon-mini pbi-download" aria-hidden="true"></i> Download .csv
+                                </button>
+                            </div>
+
+                            <div class="toolbar-right">
+                                <div ngbDropdown class="d-inline-block">
+                                    <button type="button" class="btn btn-sm btn-outline-primary" id="locationsJobsMenu" ngbDropdownToggle>
+                                        <i class="pbi-icon-mini pbi-filter pr-1"></i> Locations and Jobs
+                                    </button>
+                                    <div ngbDropdownMenu aria-labelledby="locationsJobsMenu">
+                                        <a class="dropdown-item">Show All</a>
+                                        <div class="dropdown-divider"></div>
+                                        <ng-container>
+                                            <a class="dropdown-item">Locations and Jobs</a>
+                                        </ng-container>
+                                    </div>
+                                </div>
+
+                                <div class="toolbar-divider">&nbsp;</div>
+
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text" id="basic-addon4">
+                                            <i class="pbi-icon-mini pbi-search" aria-hidden="true"></i>
+                                        </span>
+                                    </div>
+                                    <input
+                                            type="text"
+                                            class="form-control"
+                                            placeholder="Search"
+                                            aria-label="Search"
+                                    />
+                                </div>
+                            </div>
+                        </div>
+
+                        <p-table [value]="transactions"
+                            [paginator]="true"
+                            [rows]="10"
+                            [showCurrentPageReport]="true"
+                            currentPageReportTemplate="Pending transactions are subject to change."
+                            [rowsPerPageOptions]="[25, 35, 45, 55]"
+                            [globalFilterFields]="['jobID', 'location', 'account', 'billToAcct', 'pendingAmountDue', 'lastActivityDate']"
+                            (onFilter)="onFilter()"
+                            class="p-datatable-striped"
+                        >
+                            <ng-template pTemplate="header">
+                                <tr>
+                                    <th style="width: 2.25em" scope="col">
+                                        <p-tableHeaderCheckbox aria-label="Select all rows"></p-tableHeaderCheckbox>
+                                    </th>
+                                    <th *ngFor="let col of cols">
+                                        {{ col.header }}
+                                        <i *ngIf="col.icon" class="pbi-icon-outline pbi-alert-circle pr-1" aria-hidden="true"></i>
+                                        <p-sortIcon [field]="col.field" class="pr-1"></p-sortIcon>
+                                    </th>
+                                </tr>
+                            </ng-template>
+
+
+                            <ng-template pTemplate="body" let-transaction let-columns="cols">
+                                <tr [pSelectableRow]="transaction">
+                                    <td>
+                                        <p-tableCheckbox [value]="transaction" aria-label="Select row"></p-tableCheckbox>
+                                    </td>
+                                    <td *ngFor="let col of cols">
+                                        {{ transaction[col.field] }}
+                                    </td>
+                                </tr>
+                            </ng-template>
+                        </p-table>
+                    </ng-template>
+                </li>
+
+<!--                Invoices-->
+                <li [ngbNavItem]="2">
+                    <a ngbNavLink>Invoices</a>
+                    <ng-template ngbNavContent>
+                        <p>Exercitation +1 labore velit, blog sartorial PBR leggings next level wes anderson artisan four loko
+                            farm-to-table craft beer twee. Qui photo booth letterpress, commodo enim craft beer mlkshk aliquip jean shorts
+                            ullamco ad vinyl cillum PBR. Homo nostrud organic, assumenda labore aesthetic magna delectus mollit. Keytar
+                            helvetica VHS salvia yr, vero magna velit sapiente labore stumptown. Vegan fanny pack odio cillum wes anderson
+                            8-bit, sustainable jean shorts beard ut DIY ethical culpa terry richardson biodiesel. Art party scenester
+                            stumptown, tumblr butcher vero sint qui sapiente accusamus tattooed echo park.</p>
+                    </ng-template>
+                </li>
+
+
+<!--                Invoice Summaries by Date-->
+                <li [ngbNavItem]="3">
+                    <a ngbNavLink>Invoice Summaries by Date</a>
+                    <ng-template ngbNavContent>
+                        <p>Sed commodo, leo at suscipit dictum, quam est porttitor sapien, eget sodales nibh elit id diam. Nulla facilisi.
+                            Donec egestas ligula vitae odio interdum aliquet. Duis lectus turpis, luctus eget tincidunt eu, congue et odio.
+                            Duis pharetra et nisl at faucibus. Quisque luctus pulvinar arcu, et molestie lectus ultrices et. Sed diam urna,
+                            egestas ut ipsum vel, volutpat volutpat neque. Praesent fringilla tortor arcu. Vivamus faucibus nisl enim, nec
+                            tristique ipsum euismod facilisis. Morbi ut bibendum est, eu tincidunt odio. Orci varius natoque penatibus et
+                            magnis dis parturient montes, nascetur ridiculus mus. Mauris aliquet odio ac lorem aliquet ultricies in eget
+                            neque. Phasellus nec tortor vel tellus pulvinar feugiat.</p>
+                    </ng-template>
+                </li>
+            </ul>
+            <div [ngbNavOutlet]="nav" class="mt-2"></div>
+        </div>
+    </div>
+</div>
