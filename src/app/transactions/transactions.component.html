@@ -4,7 +4,7 @@
         <div class="col">
             <div class="d-flex pb-3 justify-content-between">
                 <div>
-                    <h2>Shutterfly</h2>
+                    <h2>Ajax Subliminals</h2>
                     <h5>Account: 0018315093</h5>
                 </div>
                 <div class="d-flex flex-column justify-content-end">
@@ -19,10 +19,10 @@
                 <li [ngbNavItem]="1">
                     <a ngbNavLink>Pending Transactions</a>
                     <ng-template ngbNavContent>
+
                         <h5>Expected Invoice Date</h5>
                         <h4>Jun 5, 2021</h4>
                         <h5>Please review pending transactions and notify Pitney Bowes Presort Services of discrepancies by <b>Jun 7, 2021.</b></h5>
-
 
                         <div class="toolbar">
                             <div class="toolbar-left">
@@ -34,13 +34,13 @@
                             <div class="toolbar-right">
                                 <div ngbDropdown class="d-inline-block">
                                     <button type="button" class="btn btn-sm btn-outline-primary" id="locationsJobsMenu" ngbDropdownToggle>
-                                        <i class="pbi-icon-mini pbi-filter"></i> Locations and Jobs
+                                        <i class="pbi-icon-mini pbi-filter pr-1"></i> Locations and Jobs
                                     </button>
                                     <div ngbDropdownMenu aria-labelledby="locationsJobsMenu">
                                         <a class="dropdown-item">Show All</a>
                                         <div class="dropdown-divider"></div>
                                         <ng-container>
-                                            <a class="dropdown-item">{{ locationsJobs }}</a>
+                                            <a class="dropdown-item">Locations and Jobs</a>
                                         </ng-container>
                                     </div>
                                 </div>
@@ -63,15 +63,13 @@
                             </div>
                         </div>
 
-
-
-                        <p-table
+                        <p-table [value]="transactions"
                             [paginator]="true"
                             [rows]="10"
                             [showCurrentPageReport]="true"
                             currentPageReportTemplate="Pending transactions are subject to change."
                             [rowsPerPageOptions]="[25, 35, 45, 55]"
-                            [globalFilterFields]="['jobID', 'account', 'bill', 'pad', 'lad']"
+                            [globalFilterFields]="['jobID', 'location', 'account', 'billToAcct', 'pendingAmountDue', 'lastActivityDate']"
                             (onFilter)="onFilter()"
                             class="p-datatable-striped"
                         >
@@ -80,43 +78,25 @@
                                     <th style="width: 2.25em" scope="col">
                                         <p-tableHeaderCheckbox aria-label="Select all rows"></p-tableHeaderCheckbox>
                                     </th>
-
-                                    <th>Job ID<p-sortIcon field="jobID"></p-sortIcon></th>
-
-                                    <div ngbDropdown placement="top-end">
-                                        <th id="location" ngbDropdownToggle>
-                                            Location <i class="pbi-icon-outline pbi-alert-circle" aria-hidden="true"></i>
-                                        </th>
-                                        <div ngbDropdownMenu aria-labelledby="location">
-                                            <a class="dropdown-item">Show All</a>
-                                            <ng-container>
-                                                <a class="dropdown-item">{{ location }}</a>
-                                            </ng-container>
-                                        </div>
-                                    </div>
-
-
-
-                                    <th>Account<p-sortIcon field="account"></p-sortIcon></th>
-                                    <th>Bill to ACCT<p-sortIcon field="bill"></p-sortIcon></th>
-                                    <th>Pending Amount DUE<p-sortIcon field="pad"></p-sortIcon></th>
-                                    <th>LAST ACTIVITY DATE<p-sortIcon field="lad"></p-sortIcon></th>
-<!--                                    <th *ngFor="let col of cols" [pSortableColumn]="col.field" scope="col">-->
-<!--                                        {{ col.header }}-->
-<!--                                        <p-sortIcon [field]="col.field"></p-sortIcon>-->
-<!--                                    </th>-->
+                                    <th *ngFor="let col of cols">
+                                        {{ col.header }}
+                                        <i *ngIf="col.icon" class="pbi-icon-outline pbi-alert-circle pr-1" aria-hidden="true"></i>
+                                        <p-sortIcon [field]="col.field" class="pr-1"></p-sortIcon>
+                                    </th>
                                 </tr>
                             </ng-template>
 
-<!--                            <ng-template pTemplate="body" let-rowData let-columns="cols">-->
-<!--                                <tr [pSelectableRow]="rowData">-->
-<!--                                    <td>-->
-<!--                                        <p-tableCheckbox [value]="rowData" aria-label="Select row"></p-tableCheckbox>-->
-<!--                                    </td>-->
-<!--                                    <td *ngFor="let col of cols">{{ rowData[col.field] }}</td>-->
-<!--                                </tr>-->
-<!--                            </ng-template>-->
 
+                            <ng-template pTemplate="body" let-transaction let-columns="cols">
+                                <tr [pSelectableRow]="transaction">
+                                    <td>
+                                        <p-tableCheckbox [value]="transaction" aria-label="Select row"></p-tableCheckbox>
+                                    </td>
+                                    <td *ngFor="let col of cols">
+                                        {{ transaction[col.field] }}
+                                    </td>
+                                </tr>
+                            </ng-template>
                         </p-table>
                     </ng-template>
                 </li>
