@@ -1,0 +1,114 @@
+<app-header></app-header>
+<div class="pt-7 bg-light container-fluid">
+        <a class="pt-7" type="button" routerLink="/transactions">
+        <i class="pbi-icon-mini pbi-minimal-left" aria-hidden="true"></i> Back to Pending Transactions
+        </a>
+        <h1 class="pb-5">Pending Transaction Detail</h1>
+</div>
+
+<div class="container-fluid">
+        <div class="row">
+                <div class="col">
+                        <div class="d-flex justify-content-between">
+                                <div>
+                                        <h2>Ajax Subliminals</h2>
+                                        <h5>Account: 0018315093</h5>
+                                        <div class="pt-2">
+                                                <h5>Mail Class: First</h5>
+                                                <h5>Mail Type: Letter</h5>
+                                                <h5>Affix: 0.0000</h5>
+                                        </div>
+                                </div>
+                                <div class="d-flex border border-primary justify-content-between m-7 p-3 bg-light" style="width: 568px;">
+                                       <div>
+                                               <h6>Expected Invoice Date</h6>
+                                               <h6>Location</h6>
+                                               <h6>Bill to Acct</h6>
+                                               <h6><b>Pending Amount Due</b></h6>
+                                       </div>
+                                        <div>
+                                                <h6>Jun 10, 2021</h6>
+                                                <h6>CHA</h6>
+                                                <h6>16804770</h6>
+                                                <h6><b>$40.70</b></h6>
+                                        </div>
+                                </div>
+                        </div>
+                        <h4>Job ID: 38 Dell Postcards</h4>
+
+                        <div class="toolbar">
+                                <div class="toolbar-left">
+                                        <button class="btn btn-secondary" type="button">
+                                                <i class="pbi-icon-mini pbi-download" aria-hidden="true"></i> Download
+                                        </button>
+                                </div>
+
+                                <div class="toolbar-right">
+                                        <span class="mr-7">
+                                                <button class="btn btn-secondary" type="button">
+                                                        All Dates
+                                                </button>
+                                        </span>
+                                        <button class="btn btn-secondary" type="button">
+                                                <i class="pbi-icon-mini pbi-calendar" aria-hidden="true"></i>
+                                        </button>
+
+                                        <div class="toolbar-divider">&nbsp;</div>
+
+                                        <div class="input-group">
+                                                <div class="input-group-prepend">
+                                        <span class="input-group-text" id="basic-addon4">
+                                            <i class="pbi-icon-mini pbi-search" aria-hidden="true"></i>
+                                        </span>
+                                                </div>
+                                                <input
+                                                        type="text"
+                                                        class="form-control"
+                                                        placeholder="Search"
+                                                        aria-label="Search"
+                                                />
+                                        </div>
+                                </div>
+                        </div>
+
+                        <p-table responsiveLayout="scroll"
+                                 [paginator]="false"
+                                 [rows]="10"
+                                 [showCurrentPageReport]="false"
+                                 [globalFilterFields]="['date', 'sortCode', 'resource', 'qty', 'rate', 'fee', 'postage', 'adjFee', 'adjPostage']"
+                                 class="p-datatable-striped"
+                        >
+                                <ng-template pTemplate="header">
+                                        <tr>
+                                                <th>Activity Date</th>
+                                                <th>Sort Code</th>
+                                                <th>Resource</th>
+                                                <th>Qty</th>
+                                                <th>Rate</th>
+                                                <th>Fee</th>
+                                                <th>Postage</th>
+                                                <th>Adj Fee</th>
+                                                <th>Adj Postage</th>
+<!--                                                <th *ngFor="let col of cols">-->
+<!--                                                        {{ col.header }}-->
+<!--                                                        <i *ngIf="col.icon" class="pbi-icon-outline pbi-alert-circle pr-1" aria-hidden="true"></i>-->
+<!--                                                        <p-sortIcon [field]="col.field" class="pr-1"></p-sortIcon>-->
+<!--                                                </th>-->
+                                        </tr>
+                                </ng-template>
+
+
+<!--                                <ng-template pTemplate="body" let-transaction let-columns="cols">-->
+<!--                                        <tr [pSelectableRow]="transaction">-->
+<!--                                                <td>-->
+<!--                                                        <p-tableCheckbox [value]="transaction" aria-label="Select row"></p-tableCheckbox>-->
+<!--                                                </td>-->
+<!--                                                <td *ngFor="let col of cols">-->
+<!--                                                        {{ transaction[col.field] }}-->
+<!--                                                </td>-->
+<!--                                        </tr>-->
+<!--                                </ng-template>-->
+                        </p-table>
+                </div>
+        </div>
+</div>

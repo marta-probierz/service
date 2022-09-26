@@ -7,7 +7,45 @@
       "account": "Shutterfly Business Solutions",
       "billToAcct": "16804770",
       "pendingAmountDue": "$58.08",
-      "lastActivityDate": "Apr 1, 2021"
+      "lastActivityDate": "Apr 1, 2021",
+      "detail": [
+        {
+          "id": 1,
+          "date": "Apr 1, 2021",
+          "sortCode": "879Allangels",
+          "resource": "Postage Affixed by Meter",
+          "qty": "74",
+          "rate": "$0.000900",
+          "fee": "$0.00",
+          "postage": "$0.67",
+          "adjFee": "$0.00",
+          "adjPostage": "$0.00"
+        },
+        {
+          "id": 2,
+          "date": "Apr 4, 2021",
+          "sortCode": "793Acme",
+          "resource": "Move Update Service",
+          "qty": "11,346",
+          "rate": "$0.000000",
+          "fee": "$0.00",
+          "postage": "$0.00",
+          "adjFee": "$0.00",
+          "adjPostage": "$0.00"
+        },
+        {
+          "id": 3,
+          "date": "Apr 4, 2021",
+          "sortCode": "793Acme",
+          "resource": "Machine Presort",
+          "qty": "11,346",
+          "rate": "$0.000000",
+          "fee": "$0.00",
+          "postage": "$0.00",
+          "adjFee": "$0.00",
+          "adjPostage": "$0.00"
+        }
+      ]
     },
     {
       "id": 2,
