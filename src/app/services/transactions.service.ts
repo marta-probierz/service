@@ -10,4 +10,7 @@ export class TransactionsService {
   getTransactions() {
     return this.http.get(this.apiUrl);
   }
+  // getTransactionsByID(id: number) {
+  //   return this.http.get(`${this.apiUrl}/${id}`);
+  // }
 }

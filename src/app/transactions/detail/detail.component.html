@@ -36,6 +36,12 @@
                         </div>
                         <h4>Job ID: 38 Dell Postcards</h4>
 
+<!--                        <ng-container *ngFor="let transactions of transactionsDetail">-->
+<!--                                <p *ngFor="let item of transactions.detail">-->
+<!--                                        {{ item }}-->
+<!--                                </p>-->
+<!--                        </ng-container>-->
+
                         <div class="toolbar">
                                 <div class="toolbar-left">
                                         <button class="btn btn-secondary" type="button">
@@ -72,6 +78,7 @@
                         </div>
 
                         <p-table responsiveLayout="scroll"
+                                 [value]="transactionsDetail"
                                  [paginator]="false"
                                  [rows]="10"
                                  [showCurrentPageReport]="false"
@@ -80,34 +87,39 @@
                         >
                                 <ng-template pTemplate="header">
                                         <tr>
-                                                <th>Activity Date</th>
-                                                <th>Sort Code</th>
-                                                <th>Resource</th>
-                                                <th>Qty</th>
-                                                <th>Rate</th>
-                                                <th>Fee</th>
-                                                <th>Postage</th>
-                                                <th>Adj Fee</th>
-                                                <th>Adj Postage</th>
-<!--                                                <th *ngFor="let col of cols">-->
-<!--                                                        {{ col.header }}-->
-<!--                                                        <i *ngIf="col.icon" class="pbi-icon-outline pbi-alert-circle pr-1" aria-hidden="true"></i>-->
-<!--                                                        <p-sortIcon [field]="col.field" class="pr-1"></p-sortIcon>-->
-<!--                                                </th>-->
+                                                <th *ngFor="let col of cols">
+                                                        {{ col.header }}
+                                                        <p-sortIcon *ngIf="col.icon" class="pr-1"></p-sortIcon>
+                                                </th>
                                         </tr>
                                 </ng-template>
 
 
-<!--                                <ng-template pTemplate="body" let-transaction let-columns="cols">-->
-<!--                                        <tr [pSelectableRow]="transaction">-->
-<!--                                                <td>-->
-<!--                                                        <p-tableCheckbox [value]="transaction" aria-label="Select row"></p-tableCheckbox>-->
-<!--                                                </td>-->
+                                <ng-template pTemplate="body" let-transactionsDetail let-columns="cols">
+
+<!--                    <ng-container *ngFor="let transactions of transactionsDetail">-->
+<!--                          <p *ngFor="let item of transactions.detail">-->
+<!--                                 {{ item }}-->
+<!--                          </p>-->
+<!--                    </ng-container>-->
+
+
+<!--                                        <tr [pSelectableRow]="transactionsDetail">-->
 <!--                                                <td *ngFor="let col of cols">-->
-<!--                                                        {{ transaction[col.field] }}-->
+<!--                                                        {{ transactionsDetail[col.field] }}-->
 <!--                                                </td>-->
 <!--                                        </tr>-->
-<!--                                </ng-template>-->
+                                </ng-template>
+
+<!--                                                        <ng-container *ngFor="let customer of transactionsDetail">-->
+<!--                                                                <td *ngFor="let item of customer.detail">-->
+<!--                                                                        {{ item.sortCode }}-->
+<!--                                                                </td>-->
+<!--                                                                </ng-container>-->
+
+<!--                                <h3 *ngFor="let item of transactionsDetail[0].detail">-->
+<!--                                        {{ item }}-->
+<!--                                </h3>-->
                         </p-table>
                 </div>
         </div>
