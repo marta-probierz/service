@@ -125,7 +125,21 @@
       "account": "Shutterfly Lifetouch",
       "billToAcct": "16804770",
       "pendingAmountDue": "$103.55",
-      "lastActivityDate": "Apr 1, 2021"
+      "lastActivityDate": "Apr 1, 2021",
+      "detail": [
+        {
+          "id": 1,
+          "date": "Apr 1, 2021",
+          "sortCode": "879Allangels",
+          "resource": "Postage Affixed by Meter",
+          "qty": "74",
+          "rate": "$0.000900",
+          "fee": "$0.00",
+          "postage": "$0.67",
+          "adjFee": "$0.00",
+          "adjPostage": "$0.00"
+        }
+      ]
     },
     {
       "id": 4,
@@ -134,7 +148,21 @@
       "account": "Shutterfly Transactional",
       "billToAcct": "16804770",
       "pendingAmountDue": "$64.02",
-      "lastActivityDate": "Apr 1, 2021"
+      "lastActivityDate": "Apr 1, 2021",
+      "detail": [
+        {
+          "id": 1,
+          "date": "Apr 1, 2021",
+          "sortCode": "879Allangels",
+          "resource": "Postage Affixed by Meter",
+          "qty": "74",
+          "rate": "$0.000900",
+          "fee": "$0.00",
+          "postage": "$0.67",
+          "adjFee": "$0.00",
+          "adjPostage": "$0.00"
+        }
+      ]
     }
   ]
 }

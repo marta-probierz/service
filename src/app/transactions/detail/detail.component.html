@@ -1,4 +1,3 @@
-<app-header></app-header>
 <div class="pt-7 bg-light container-fluid">
         <a class="pt-7" type="button" routerLink="/transactions">
         <i class="pbi-icon-mini pbi-minimal-left" aria-hidden="true"></i> Back to Pending Transactions
@@ -35,13 +34,6 @@
                                 </div>
                         </div>
                         <h4>Job ID: 38 Dell Postcards</h4>
-
-<!--                        <ng-container *ngFor="let transactions of transactionsDetail">-->
-<!--                                <p *ngFor="let item of transactions.detail">-->
-<!--                                        {{ item }}-->
-<!--                                </p>-->
-<!--                        </ng-container>-->
-
                         <div class="toolbar">
                                 <div class="toolbar-left">
                                         <button class="btn btn-secondary" type="button">
@@ -78,7 +70,12 @@
                         </div>
 
                         <p-table responsiveLayout="scroll"
+
+
                                  [value]="transactionsDetail"
+
+
+
                                  [paginator]="false"
                                  [rows]="10"
                                  [showCurrentPageReport]="false"
@@ -94,14 +91,46 @@
                                         </tr>
                                 </ng-template>
 
-
                                 <ng-template pTemplate="body" let-transactionsDetail let-columns="cols">
+                                        <tr [pSelectableRow]="transactionsDetail">
+                                                <td *ngFor="let col of cols">
+                                                        {{ transactionsDetail[col.field] }}
+                                                </td>
+                                        </tr>
+                                </ng-template>
 
-<!--                    <ng-container *ngFor="let transactions of transactionsDetail">-->
-<!--                          <p *ngFor="let item of transactions.detail">-->
-<!--                                 {{ item }}-->
-<!--                          </p>-->
-<!--                    </ng-container>-->
+<!--                                <ng-template pTemplate="body">-->
+<!--                                        <tr>-->
+<!--                                                <td>{{details.date}}</td>-->
+<!--                                                <td>{{transactionsDetail.sortCode}}</td>-->
+<!--                                                <td>{{transactionsDetail.resource}}</td>-->
+<!--                                                <td>{{transactionsDetail.qty}}</td>-->
+<!--                                                <td>{{transactionsDetail.rate}}</td>-->
+<!--                                                <td>{{transactionsDetail.fee}}</td>-->
+<!--                                                <td>{{transactionsDetail.postage}}</td>-->
+<!--                                                <td>{{transactionsDetail.adjFee}}</td>-->
+<!--                                                <td>{{transactionsDetail.adjPostage}}</td>-->
+<!--                                        </tr>-->
+<!--                                </ng-template>-->
+
+                                <ng-template pTemplate="footer">
+                                        <tr>
+                                                <td colspan="5"><b>Total</b></td>
+                                                <td><b>$15.33</b></td>
+                                                <td><b>$25.37</b></td>
+                                                <td><b>$0.00</b></td>
+                                                <td><b>$0.00</b></td>
+                                        </tr>
+                                </ng-template>
+
+
+<!--                                <ng-template pTemplate="body" let-transactionsDetail let-columns="cols">-->
+
+<!--&lt;!&ndash;                    <ng-container *ngFor="let transactions of transactionsDetail">&ndash;&gt;-->
+<!--&lt;!&ndash;                          <p *ngFor="let item of transactions.detail">&ndash;&gt;-->
+<!--&lt;!&ndash;                                 {{ item }}&ndash;&gt;-->
+<!--&lt;!&ndash;                          </p>&ndash;&gt;-->
+<!--&lt;!&ndash;                    </ng-container>&ndash;&gt;-->
 
 
 <!--                                        <tr [pSelectableRow]="transactionsDetail">-->
@@ -109,7 +138,7 @@
 <!--                                                        {{ transactionsDetail[col.field] }}-->
 <!--                                                </td>-->
 <!--                                        </tr>-->
-                                </ng-template>
+<!--                                </ng-template>-->
 
 <!--                                                        <ng-container *ngFor="let customer of transactionsDetail">-->
 <!--                                                                <td *ngFor="let item of customer.detail">-->

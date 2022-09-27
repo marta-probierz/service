@@ -20,10 +20,6 @@ const routes: Routes = [
     loadChildren: () => import('./transactions/transactions.module').then((m) => m.TransactionsModule),
   },
   {
-    path: 'transactions/:id',
-    component: DetailComponent,
-  },
-  {
     path: '',
     redirectTo: '/home',
     pathMatch: 'full',

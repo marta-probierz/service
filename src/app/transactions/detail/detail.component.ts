@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 
 import { TransactionsService } from '@app/services/transactions.service';
 import { Detail } from '@app/transactions/detail/Detail';
+import {ActivatedRoute} from '@angular/router';
+import {Transactions} from '@app/transactions/Transactions';
 
 
 @Component({
@@ -9,12 +11,20 @@ import { Detail } from '@app/transactions/detail/Detail';
   templateUrl: './detail.component.html'
 })
 export class DetailComponent implements OnInit {
-  transactionsDetail: Detail[] = [];
+  transactionsDetail: Detail;
   cols: any[];
+  id: string;
 
-  constructor(private transactionsService: TransactionsService) { }
+  constructor(private transactionsService: TransactionsService, private route: ActivatedRoute) {
+    this.route.params.subscribe((param) => {
+      this.id = param.id;
+    });
+  }
   ngOnInit() {
-    this.transactionsService.getTransactions().subscribe((detail: Detail[]) => (this.transactionsDetail = detail));
+    this.transactionsService.getTransactions().subscribe((detail: Detail[]) => {
+      this.transactionsDetail = detail.find((item: any) => item.id === parseInt(this.id, 10));
+      console.log(this.transactionsDetail);
+    });
 
     this.cols = [
       { field: 'date', header: 'Activity Date', icon: true },
