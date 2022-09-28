@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { TransactionsService } from '@app/services/transactions.service';
 import { Detail } from '@app/transactions/detail/Detail';
 import {ActivatedRoute} from '@angular/router';
-import {Transactions} from '@app/transactions/Transactions';
+import { Transaction } from '@app/transactions/Transaction';
 
 
 @Component({
@@ -14,6 +14,7 @@ export class DetailComponent implements OnInit {
   transactionsDetail: Detail;
   cols: any[];
   id: string;
+  totalFee;
 
   constructor(private transactionsService: TransactionsService, private route: ActivatedRoute) {
     this.route.params.subscribe((param) => {
@@ -21,8 +22,8 @@ export class DetailComponent implements OnInit {
     });
   }
   ngOnInit() {
-    this.transactionsService.getTransactions().subscribe((detail: Detail[]) => {
-      this.transactionsDetail = detail.find((item: any) => item.id === parseInt(this.id, 10));
+    this.transactionsService.getTransactions().subscribe((transactions: Transaction[]) => {
+      this.transactionsDetail = transactions.find((item: Transaction) => item.id === parseInt(this.id, 10))?.detail;
       console.log(this.transactionsDetail);
     });
 
@@ -37,5 +38,7 @@ export class DetailComponent implements OnInit {
       { field: 'adjFee', header: 'Adj Fee', icon: true },
       { field: 'adjPostage', header: 'Adj Postage', icon: true }
     ];
+
+    // this.totalFee = this.transactionsDetail.map(item => item.fee).reduce((acc, amount) => acc + amount, 0);
   }
 }

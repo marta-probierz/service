@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 
-import { Transactions } from '@app/transactions/Transactions';
+import { Transaction } from '@app/transactions/Transaction';
 import { TransactionsService } from '@app/services/transactions.service';
 
 @Component({
@@ -9,12 +9,12 @@ import { TransactionsService } from '@app/services/transactions.service';
 })
 export class TransactionsComponent implements OnInit {
     @Input() account: number;
-    transactions: Transactions[] = [];
+    transactions: Transaction[] = [];
     cols: any[];
     constructor(private transactionsService: TransactionsService) {}
 
     ngOnInit(): void {
-        this.transactionsService.getTransactions().subscribe((transactions: Transactions[]) => (this.transactions = transactions));
+        this.transactionsService.getTransactions().subscribe((transactions: Transaction[]) => (this.transactions = transactions));
 
         this.cols = [
             { field: 'jobID', header: 'Job ID', icon: false },

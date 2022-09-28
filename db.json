@@ -15,11 +15,11 @@
           "sortCode": "879Allangels",
           "resource": "Postage Affixed by Meter",
           "qty": "74",
-          "rate": "$0.000900",
-          "fee": "$0.00",
-          "postage": "$0.67",
-          "adjFee": "$0.00",
-          "adjPostage": "$0.00"
+          "rate": "0.000900",
+          "fee": "0",
+          "postage": "0.67",
+          "adjFee": "0.00",
+          "adjPostage": "0.00"
         },
         {
           "id": 2,
@@ -27,11 +27,11 @@
           "sortCode": "793Acme",
           "resource": "Move Update Service",
           "qty": "11,346",
-          "rate": "$0.000000",
-          "fee": "$0.00",
-          "postage": "$0.00",
-          "adjFee": "$0.00",
-          "adjPostage": "$0.00"
+          "rate": "0.000000",
+          "fee": "0",
+          "postage": "0.00",
+          "adjFee": "0.00",
+          "adjPostage": "0.00"
         },
         {
           "id": 3,
@@ -39,11 +39,11 @@
           "sortCode": "793Acme",
           "resource": "Machine Presort",
           "qty": "11,346",
-          "rate": "$0.000000",
-          "fee": "$0.00",
-          "postage": "$0.00",
-          "adjFee": "$0.00",
-          "adjPostage": "$0.00"
+          "rate": "0.000000",
+          "fee": "0",
+          "postage": "0.00",
+          "adjFee": "0.00",
+          "adjPostage": "0.00"
         }
       ]
     },
@@ -62,11 +62,11 @@
           "sortCode": "879Allangels",
           "resource": "Postage Affixed by Meter",
           "qty": "74",
-          "rate": "$0.000900",
-          "fee": "$0.00",
-          "postage": "$0.67",
-          "adjFee": "$0.00",
-          "adjPostage": "$0.00"
+          "rate": "0.000900",
+          "fee": "0.00",
+          "postage": "0.67",
+          "adjFee": "0.00",
+          "adjPostage": "0.00"
         },
         {
           "id": 2,
@@ -74,11 +74,11 @@
           "sortCode": "793Acme",
           "resource": "Move Update Service",
           "qty": "11,346",
-          "rate": "$0.000000",
-          "fee": "$0.00",
-          "postage": "$0.00",
-          "adjFee": "$0.00",
-          "adjPostage": "$0.00"
+          "rate": "0.000000",
+          "fee": "0.00",
+          "postage": "0.00",
+          "adjFee": "0.00",
+          "adjPostage": "0.00"
         },
         {
           "id": 3,
@@ -86,11 +86,11 @@
           "sortCode": "793Acme",
           "resource": "Machine Presort",
           "qty": "11,346",
-          "rate": "$0.000000",
-          "fee": "$0.00",
-          "postage": "$0.00",
-          "adjFee": "$0.00",
-          "adjPostage": "$0.00"
+          "rate": "0.000000",
+          "fee": "0.00",
+          "postage": "0.00",
+          "adjFee": "0.00",
+          "adjPostage": "0.00"
         },
         {
           "id": 4,
@@ -98,11 +98,11 @@
           "sortCode": "793Acme",
           "resource": "Machine Presort",
           "qty": "11,346",
-          "rate": "$0.000000",
-          "fee": "$0.00",
-          "postage": "$0.00",
-          "adjFee": "$0.00",
-          "adjPostage": "$0.00"
+          "rate": "0.000000",
+          "fee": "0.00",
+          "postage": "0.00",
+          "adjFee": "0.00",
+          "adjPostage": "0.00"
         },
         {
           "id": 5,
@@ -110,11 +110,11 @@
           "sortCode": "793Acme",
           "resource": "Machine Presort",
           "qty": "11,346",
-          "rate": "$0.000000",
-          "fee": "$0.00",
-          "postage": "$0.00",
-          "adjFee": "$0.00",
-          "adjPostage": "$0.00"
+          "rate": "0.000000",
+          "fee": "0.00",
+          "postage": "0.00",
+          "adjFee": "0.00",
+          "adjPostage": "0.00"
         }
       ]
     },
@@ -133,11 +133,11 @@
           "sortCode": "879Allangels",
           "resource": "Postage Affixed by Meter",
           "qty": "74",
-          "rate": "$0.000900",
-          "fee": "$0.00",
-          "postage": "$0.67",
-          "adjFee": "$0.00",
-          "adjPostage": "$0.00"
+          "rate": "0.000900",
+          "fee": "0.00",
+          "postage": "0.67",
+          "adjFee": "0.00",
+          "adjPostage": "0.00"
         }
       ]
     },
@@ -156,11 +156,11 @@
           "sortCode": "879Allangels",
           "resource": "Postage Affixed by Meter",
           "qty": "74",
-          "rate": "$0.000900",
-          "fee": "$0.00",
-          "postage": "$0.67",
-          "adjFee": "$0.00",
-          "adjPostage": "$0.00"
+          "rate": "0.000900",
+          "fee": "0.00",
+          "postage": "0.67",
+          "adjFee": "0.00",
+          "adjPostage": "0.00"
         }
       ]
     }
