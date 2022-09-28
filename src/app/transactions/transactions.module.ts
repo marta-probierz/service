@@ -5,11 +5,12 @@ import { HttpClientModule } from '@angular/common/http';
 
 import { SharedModule } from '@app/shared/shared.module';
 import { TransactionsComponent } from './transactions.component';
-import {TransactionsRoutingModule} from './transactions-routing.module';
+import { TransactionsRoutingModule } from './transactions-routing.module';
+import { DetailComponent } from './detail/detail.component';
 
 @NgModule({
     imports: [TransactionsRoutingModule, SharedModule, NgbModule, TableModule, HttpClientModule],
-    declarations: [TransactionsComponent],
+    declarations: [TransactionsComponent, DetailComponent],
     exports: [],
 })
 export class TransactionsModule {}
