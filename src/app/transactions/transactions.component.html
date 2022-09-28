@@ -92,14 +92,25 @@
                                         <p-tableCheckbox [value]="transaction" aria-label="Select row"></p-tableCheckbox>
                                     </td>
                                     <td *ngFor="let col of cols">
-                                        <ng-container *ngIf="col.field !== 'jobID'; else routerLink">
-                                            {{ transaction[col.field] }}
-                                        </ng-container>
+
+                                        <ng-container *ngIf="col.field === 'jobID'; then routerLink"></ng-container>
+                                        <ng-container *ngIf="col.field === 'pendingAmountDue'; then currency;"></ng-container>
+                                        <ng-container *ngIf="col.field !== 'pendingAmountDue' && col.field !== 'jobID'; then all"></ng-container>
+
                                         <ng-template #routerLink>
                                             <a [routerLink]="['/transactions', transaction.id]">
                                                 {{ transaction[col.field] }}
                                             </a>
                                         </ng-template>
+
+                                        <ng-template #currency>
+                                            {{ transaction[col.field] | currency }}
+                                        </ng-template>
+
+                                        <ng-template #all>
+                                            {{ transaction[col.field] }}
+                                        </ng-template>
+
                                     </td>
                                 </tr>
                             </ng-template>

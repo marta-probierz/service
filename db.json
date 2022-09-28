@@ -5,8 +5,8 @@
       "jobID": "38 Dell Postcards",
       "location": "CHA",
       "account": "Shutterfly Business Solutions",
-      "billToAcct": "16804770",
-      "pendingAmountDue": "$58.08",
+      "billToAcct": 16804770,
+      "pendingAmountDue": 58.08,
       "lastActivityDate": "Apr 1, 2021",
       "detail": [
         {
@@ -14,36 +14,36 @@
           "date": "Apr 1, 2021",
           "sortCode": "879Allangels",
           "resource": "Postage Affixed by Meter",
-          "qty": "74",
-          "rate": "0.000900",
-          "fee": "0",
-          "postage": "0.67",
-          "adjFee": "0.00",
-          "adjPostage": "0.00"
+          "qty": 74,
+          "rate": 0.000900,
+          "fee": 0.5,
+          "postage": 5,
+          "adjFee": 0,
+          "adjPostage": 1.2
         },
         {
           "id": 2,
           "date": "Apr 4, 2021",
           "sortCode": "793Acme",
           "resource": "Move Update Service",
-          "qty": "11,346",
-          "rate": "0.000000",
-          "fee": "0",
-          "postage": "0.00",
-          "adjFee": "0.00",
-          "adjPostage": "0.00"
+          "qty": 11.346,
+          "rate": 0.000000,
+          "fee": 10.8,
+          "postage": 1.2,
+          "adjFee": 0,
+          "adjPostage": 0
         },
         {
           "id": 3,
           "date": "Apr 4, 2021",
           "sortCode": "793Acme",
           "resource": "Machine Presort",
-          "qty": "11,346",
-          "rate": "0.000000",
-          "fee": "0",
-          "postage": "0.00",
-          "adjFee": "0.00",
-          "adjPostage": "0.00"
+          "qty": 11.346,
+          "rate": 0.000000,
+          "fee": 0,
+          "postage": 1,
+          "adjFee": 0.5,
+          "adjPostage": 9
         }
       ]
     },
@@ -52,8 +52,8 @@
       "jobID": "44 Permit Letter JIFFY LUBE",
       "location": "CHA",
       "account": "Shutterfly Business Solutions",
-      "billToAcct": "16804770",
-      "pendingAmountDue": "$389.30",
+      "billToAcct": 16804770,
+      "pendingAmountDue": 389.30,
       "lastActivityDate": "Apr 1, 2021",
       "detail": [
         {
@@ -61,60 +61,60 @@
           "date": "Apr 1, 2021",
           "sortCode": "879Allangels",
           "resource": "Postage Affixed by Meter",
-          "qty": "74",
-          "rate": "0.000900",
-          "fee": "0.00",
-          "postage": "0.67",
-          "adjFee": "0.00",
-          "adjPostage": "0.00"
+          "qty": 74,
+          "rate": 0.000900,
+          "fee": 0,
+          "postage": 0.67,
+          "adjFee": 0,
+          "adjPostage": 0.2
         },
         {
           "id": 2,
           "date": "Apr 4, 2021",
           "sortCode": "793Acme",
           "resource": "Move Update Service",
-          "qty": "11,346",
-          "rate": "0.000000",
-          "fee": "0.00",
-          "postage": "0.00",
-          "adjFee": "0.00",
-          "adjPostage": "0.00"
+          "qty": 11.346,
+          "rate": 0.000000,
+          "fee": 1.2,
+          "postage": 1,
+          "adjFee": 18,
+          "adjPostage": 3.9
         },
         {
           "id": 3,
           "date": "Apr 4, 2021",
           "sortCode": "793Acme",
           "resource": "Machine Presort",
-          "qty": "11,346",
-          "rate": "0.000000",
-          "fee": "0.00",
-          "postage": "0.00",
-          "adjFee": "0.00",
-          "adjPostage": "0.00"
+          "qty": 11.346,
+          "rate": 0.000000,
+          "fee": 0.8,
+          "postage": 2,
+          "adjFee": 0,
+          "adjPostage": 0.11
         },
         {
           "id": 4,
           "date": "Apr 4, 2021",
           "sortCode": "793Acme",
           "resource": "Machine Presort",
-          "qty": "11,346",
-          "rate": "0.000000",
-          "fee": "0.00",
-          "postage": "0.00",
-          "adjFee": "0.00",
-          "adjPostage": "0.00"
+          "qty": 11.346,
+          "rate": 0.000000,
+          "fee": 4,
+          "postage": 2,
+          "adjFee": 0.7,
+          "adjPostage": 5
         },
         {
           "id": 5,
           "date": "Apr 4, 2021",
           "sortCode": "793Acme",
           "resource": "Machine Presort",
-          "qty": "11,346",
-          "rate": "0.000000",
-          "fee": "0.00",
-          "postage": "0.00",
-          "adjFee": "0.00",
-          "adjPostage": "0.00"
+          "qty": 11.346,
+          "rate": 0.000000,
+          "fee": 2.25,
+          "postage": 1,
+          "adjFee": 3.4,
+          "adjPostage": 0
         }
       ]
     },
@@ -123,8 +123,8 @@
       "jobID": "260 Shutterfly - Lifetouch permit",
       "location": "DUN",
       "account": "Shutterfly Lifetouch",
-      "billToAcct": "16804770",
-      "pendingAmountDue": "$103.55",
+      "billToAcct": 16804770,
+      "pendingAmountDue": 103.55,
       "lastActivityDate": "Apr 1, 2021",
       "detail": [
         {
@@ -132,12 +132,12 @@
           "date": "Apr 1, 2021",
           "sortCode": "879Allangels",
           "resource": "Postage Affixed by Meter",
-          "qty": "74",
-          "rate": "0.000900",
-          "fee": "0.00",
-          "postage": "0.67",
-          "adjFee": "0.00",
-          "adjPostage": "0.00"
+          "qty": 74,
+          "rate": 0.000900,
+          "fee": 1.2,
+          "postage": 0.67,
+          "adjFee": 0,
+          "adjPostage": 5.6
         }
       ]
     },
@@ -146,8 +146,8 @@
       "jobID": "185 1st Clss Permit 1oz \"IEX Mailing\"",
       "location": "MSP",
       "account": "Shutterfly Transactional",
-      "billToAcct": "16804770",
-      "pendingAmountDue": "$64.02",
+      "billToAcct": 16804770,
+      "pendingAmountDue": 64.02,
       "lastActivityDate": "Apr 1, 2021",
       "detail": [
         {
@@ -155,12 +155,12 @@
           "date": "Apr 1, 2021",
           "sortCode": "879Allangels",
           "resource": "Postage Affixed by Meter",
-          "qty": "74",
-          "rate": "0.000900",
-          "fee": "0.00",
-          "postage": "0.67",
-          "adjFee": "0.00",
-          "adjPostage": "0.00"
+          "qty": 74,
+          "rate": 0.000900,
+          "fee": 1,
+          "postage": 0.99,
+          "adjFee": 8.6,
+          "adjPostage": 4
         }
       ]
     }

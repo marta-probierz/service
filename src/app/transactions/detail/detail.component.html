@@ -29,17 +29,11 @@
                                                 <h6>Jun 10, 2021</h6>
                                                 <h6>CHA</h6>
                                                 <h6>16804770</h6>
-                                                <h6><b>$40.70</b></h6>
+                                                <h6><b>{{ total | currency }}</b></h6>
                                         </div>
                                 </div>
                         </div>
                         <h4>Job ID: 38 Dell Postcards</h4>
-
-
-<!--                        <div *ngFor="let i of transactionsDetail">-->
-<!--                                <p>{{ sum(i.fee) }}</p>-->
-<!--                        </div>-->
-
 
                         <div class="toolbar">
                                 <div class="toolbar-left">
@@ -111,9 +105,9 @@
                                         <tr>
                                                 <td colspan="5"><b>Total</b></td>
                                                 <td><b>{{ totalFee | currency }}</b></td>
-                                                <td><b>$0.00</b></td>
-                                                <td><b>$0.00</b></td>
-                                                <td><b>$0.00</b></td>
+                                                <td><b>{{ totalPostage | currency }}</b></td>
+                                                <td><b>{{ totalAdjFee | currency }}</b></td>
+                                                <td><b>{{ totalAdjPostage | currency }}</b></td>
                                         </tr>
                                 </ng-template>
                         </p-table>

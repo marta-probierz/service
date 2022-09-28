@@ -3,10 +3,10 @@ export interface Detail {
     date: string;
     sortCode: string;
     resource: string;
-    qty: string;
-    rate: string;
-    fee: string;
-    postage: string;
-    adjFee: string;
-    adjPostage: string;
+    qty: number;
+    rate: number;
+    fee: number;
+    postage: number;
+    adjFee: number;
+    adjPostage: number;
 }

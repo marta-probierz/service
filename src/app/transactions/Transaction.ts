@@ -5,8 +5,8 @@ export interface Transaction {
     jobID: string;
     location: string;
     account: string;
-    billToAcct: string;
-    pendingAmountDue: string;
+    billToAcct: number;
+    pendingAmountDue: number;
     lastActivityDate: string;
-    detail: Detail;
+    detail: Detail[];
 };
