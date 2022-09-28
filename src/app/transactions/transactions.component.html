@@ -15,7 +15,7 @@
 
             <ul ngbNav #nav="ngbNav" class="nav-tabs pt-2">
 
-<!--                Pending Transactions-->
+                <!-- Pending Transactions -->
                 <li [ngbNavItem]="1">
                     <a ngbNavLink>Pending Transactions</a>
                     <ng-template ngbNavContent>
@@ -79,7 +79,7 @@
                                     </th>
                                     <th *ngFor="let col of cols">
                                         {{ col.header }}
-                                        <i *ngIf="col.icon" class="pbi-icon-outline pbi-alert-circle pr-1" aria-hidden="true"></i>
+                                        <i *ngIf="col.icon" class="pbi-icon-outline pbi-alert-circle pr-1" aria-hidden="true" type="button" data-toggle="modal" data-target="#locationsModal"></i>
                                         <p-sortIcon [field]="col.field" class="pr-1"></p-sortIcon>
                                     </th>
                                 </tr>
@@ -124,7 +124,7 @@
                     </ng-template>
                 </li>
 
-<!--                Invoices-->
+                <!-- Invoices -->
                 <li [ngbNavItem]="2">
                     <a ngbNavLink>Invoices</a>
                     <ng-template ngbNavContent>
@@ -138,7 +138,7 @@
                 </li>
 
 
-<!--                Invoice Summaries by Date-->
+            <!-- Invoice Summaries by Date -->
                 <li [ngbNavItem]="3">
                     <a ngbNavLink>Invoice Summaries by Date</a>
                     <ng-template ngbNavContent>
@@ -153,6 +153,47 @@
                 </li>
             </ul>
             <div [ngbNavOutlet]="nav" class="mt-2"></div>
+
+
+            <!-- Modal -->
+            <div class="modal fade" id="locationsModal" tabindex="-1" role="dialog" aria-labelledby="locationsModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-lg" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h1 class="modal-title" id="locationsModalLabel">Presort Services Locations</h1>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <p-table
+                                    [value]="locations"
+                                    [paginator]="false"
+                                    [showCurrentPageReport]="false"
+                                    [globalFilterFields]="['acronym', 'name', 'location']"
+                            >
+                                <ng-template pTemplate="header">
+                                    <tr>
+                                        <th *ngFor="let col of locationsCols" [style.width]="col.width">
+                                            {{ col.header }}
+                                        </th>
+                                    </tr>
+                                </ng-template>
+                                <ng-template pTemplate="body" let-locations let-columns="locationsCols">
+                                    <tr [pSelectableRow]="locations">
+                                        <td *ngFor="let col of locationsCols">
+                                            {{ locations[col.field] }}
+                                        </td>
+                                    </tr>
+                                </ng-template>
+                            </p-table>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-primary" data-dismiss="modal">OK</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
         </div>
     </div>
 </div>
