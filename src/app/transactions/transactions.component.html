@@ -79,7 +79,7 @@
                                     </th>
                                     <th *ngFor="let col of cols">
                                         {{ col.header }}
-                                        <i *ngIf="col.icon" (click)="open(content)" class="pbi-icon-outline pbi-alert-circle pr-1" aria-hidden="true" type="button"></i>
+                                        <i *ngIf="col.icon" (click)="openModal()" class="pbi-icon-outline pbi-alert-circle pr-1" aria-hidden="true" type="button"></i>
                                         <p-sortIcon [field]="col.field" class="pr-1"></p-sortIcon>
                                     </th>
                                 </tr>
@@ -153,10 +153,6 @@
                 </li>
             </ul>
             <div [ngbNavOutlet]="nav" class="mt-2"></div>
-
-<!--            test modal -->
-            <app-locations-modal #content></app-locations-modal>
-            <button class="btn btn-lg btn-primary" (click)="open(content)">Open modal</button>
         </div>
     </div>
 </div>

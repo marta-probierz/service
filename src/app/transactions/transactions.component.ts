@@ -1,25 +1,24 @@
-import { Component, OnInit, Input, ViewChild, AfterViewInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
 import { Transaction } from '@app/transactions/Transaction';
 import { TransactionsService } from '@app/services/transactions.service';
 import { LocationsModalComponent } from '@app/shared/locations-modal/locations-modal.component';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
     selector: 'app-transactions',
     templateUrl: './transactions.component.html',
 })
-export class TransactionsComponent implements OnInit, AfterViewInit {
+export class TransactionsComponent implements OnInit {
     @Input() account: number;
     transactions: Transaction[] = [];
     cols: any[];
-    @ViewChild(LocationsModalComponent) child;
-    open;
-    constructor(private transactionsService: TransactionsService) {}
 
-    ngAfterViewInit() {
-        this.open = this.child.open;
+    constructor(private transactionsService: TransactionsService, private modalService: NgbModal) {}
+
+    openModal() {
+        this.modalService.open(LocationsModalComponent, { size: 'lg' });
     }
-
     ngOnInit(): void {
         this.transactionsService.getTransactions().subscribe((transactions: Transaction[]) => (this.transactions = transactions));
 

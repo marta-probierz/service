@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
+import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 
 import { LocationsService } from '@app/services/locations.service';
 import { Location } from '@app/shared/locations-modal/Location';
@@ -14,7 +14,7 @@ export class LocationsModalComponent implements OnInit {
   locations: Location[] = [];
   locationsCols: any[];
 
-  constructor(private locationsService: LocationsService, private modalService: NgbModal) { }
+  constructor(private locationsService: LocationsService, public activeModal: NgbActiveModal) { }
 
   ngOnInit(): void {
     this.locationsService.getLocations().subscribe((locations: Location[]) => (this.locations = locations));
@@ -23,22 +23,5 @@ export class LocationsModalComponent implements OnInit {
       { field: 'name', header: 'Name', width: '45%' },
       { field: 'location', header: 'Location', width: '35%' }
     ];
-  }
-  open(content) {
-    this.modalService.open(content, { ariaLabelledBy: 'modal-basic-title' }).result.then((result) => {
-      this.closeResult = `Closed with: ${result}`;
-    }, (reason) => {
-      this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
-    });
-  }
-
-  private getDismissReason(reason: any): string {
-    if (reason === ModalDismissReasons.ESC) {
-      return 'by pressing ESC';
-    } else if (reason === ModalDismissReasons.BACKDROP_CLICK) {
-      return 'by clicking on a backdrop';
-    } else {
-      return `with: ${reason}`;
-    }
   }
 }
