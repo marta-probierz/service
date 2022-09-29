@@ -65,22 +65,26 @@
                                                         class="form-control"
                                                         placeholder="Search"
                                                         aria-label="Search"
+                                                        (input)="dt.filterGlobal($event.target.value, 'contains')"
                                                 />
                                         </div>
                                 </div>
                         </div>
 
-                        <p-table responsiveLayout="scroll"
+                        <p-table #dt responsiveLayout="scroll"
                                  [value]="transactionsDetail"
                                  [paginator]="false"
                                  [rows]="10"
                                  [showCurrentPageReport]="false"
+                                 [filterDelay]="0"
+                                 (sortFunction)="customSort($event)"
+                                 [customSort]="true"
                                  [globalFilterFields]="['date', 'sortCode', 'resource', 'qty', 'rate', 'fee', 'postage', 'adjFee', 'adjPostage']"
                                  class="p-datatable-striped"
                         >
                                 <ng-template pTemplate="header">
                                         <tr>
-                                                <th *ngFor="let col of cols">
+                                                <th *ngFor="let col of cols" [pSortableColumn]="col.field" scope="col">
                                                         {{ col.header }}
                                                         <p-sortIcon *ngIf="col.icon" class="pr-1"></p-sortIcon>
                                                 </th>
@@ -108,6 +112,11 @@
                                                 <td><b>{{ totalPostage | currency }}</b></td>
                                                 <td><b>{{ totalAdjFee | currency }}</b></td>
                                                 <td><b>{{ totalAdjPostage | currency }}</b></td>
+                                        </tr>
+                                </ng-template>
+                                <ng-template pTemplate="emptymessage">
+                                        <tr>
+                                                <td colspan="5">No result found</td>
                                         </tr>
                                 </ng-template>
                         </p-table>

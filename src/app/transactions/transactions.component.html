@@ -56,6 +56,7 @@
                                     <input
                                             type="text"
                                             class="form-control"
+                                            (input)="dt.filterGlobal($event.target.value, 'contains')"
                                             placeholder="Search"
                                             aria-label="Search"
                                     />
@@ -63,13 +64,15 @@
                             </div>
                         </div>
 
-                        <p-table [value]="transactions"
+                        <p-table #dt [value]="transactions"
                             [paginator]="true"
                             [rows]="10"
                             [showCurrentPageReport]="false"
                             [rowsPerPageOptions]="[25, 35, 45, 55]"
                             [globalFilterFields]="['jobID', 'location', 'account', 'billToAcct', 'pendingAmountDue', 'lastActivityDate']"
-                            (onFilter)="onFilter()"
+                                 [filterDelay]="0"
+                                 (sortFunction)="customSort($event)"
+                                 [customSort]="true"
                             class="p-datatable-striped"
                         >
                             <ng-template pTemplate="header">
@@ -77,10 +80,10 @@
                                     <th style="width: 2.25em" scope="col">
                                         <p-tableHeaderCheckbox aria-label="Select all rows"></p-tableHeaderCheckbox>
                                     </th>
-                                    <th *ngFor="let col of cols">
+                                    <th *ngFor="let col of cols" [pSortableColumn]="col.field" scope="col">
                                         {{ col.header }}
                                         <i *ngIf="col.icon" (click)="openModal()" class="pbi-icon-outline pbi-alert-circle pr-1" aria-hidden="true" type="button"></i>
-                                        <p-sortIcon [field]="col.field" class="pr-1"></p-sortIcon>
+                                        <p-sortIcon pSortableColumn="col.header" [field]="col.field" class="pr-1"></p-sortIcon>
                                     </th>
                                 </tr>
                             </ng-template>
@@ -120,6 +123,13 @@
                                     <td colspan="7">Pending transactions are subject to change.</td>
                                 </tr>
                             </ng-template>
+
+                            <ng-template pTemplate="emptymessage">
+                                <tr>
+                                    <td colspan="5">No result found</td>
+                                </tr>
+                            </ng-template>
+
                         </p-table>
                     </ng-template>
                 </li>
