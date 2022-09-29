@@ -3,4 +3,4 @@ export interface Location {
     acronym: string;
     name: string;
     location: string;
-};
+}
