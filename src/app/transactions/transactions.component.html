@@ -15,7 +15,7 @@
 
             <ul ngbNav #nav="ngbNav" class="nav-tabs pt-2">
 
-<!--                Pending Transactions-->
+                <!-- Pending Transactions -->
                 <li [ngbNavItem]="1">
                     <a ngbNavLink>Pending Transactions</a>
                     <ng-template ngbNavContent>
@@ -79,7 +79,7 @@
                                     </th>
                                     <th *ngFor="let col of cols">
                                         {{ col.header }}
-                                        <i *ngIf="col.icon" class="pbi-icon-outline pbi-alert-circle pr-1" aria-hidden="true"></i>
+                                        <i *ngIf="col.icon" (click)="openModal()" class="pbi-icon-outline pbi-alert-circle pr-1" aria-hidden="true" type="button"></i>
                                         <p-sortIcon [field]="col.field" class="pr-1"></p-sortIcon>
                                     </th>
                                 </tr>
@@ -124,7 +124,7 @@
                     </ng-template>
                 </li>
 
-<!--                Invoices-->
+                <!-- Invoices -->
                 <li [ngbNavItem]="2">
                     <a ngbNavLink>Invoices</a>
                     <ng-template ngbNavContent>
@@ -138,7 +138,7 @@
                 </li>
 
 
-<!--                Invoice Summaries by Date-->
+            <!-- Invoice Summaries by Date -->
                 <li [ngbNavItem]="3">
                     <a ngbNavLink>Invoice Summaries by Date</a>
                     <ng-template ngbNavContent>

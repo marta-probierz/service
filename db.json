@@ -164,5 +164,85 @@
         }
       ]
     }
+  ],
+  "locations": [
+    {
+      "id": 1,
+      "acronym": "ATL",
+      "name": "Georgia",
+      "location": "Atlanta, GA"
+    },
+    {
+      "id": 2,
+      "acronym": "AUS",
+      "name": "Austin",
+      "location": "Austin, TX"
+    },
+    {
+      "id": 3,
+      "acronym": "CED",
+      "name": "Iowa",
+      "location": "Cedar Rapids, IA"
+    },
+    {
+      "id": 4,
+      "acronym": "CHA",
+      "name": "Carolinas",
+      "location": "Charlotte, NC"
+    },
+    {
+      "id": 5,
+      "acronym": "CHI",
+      "name": "Chicago",
+      "location": "Aurora, IL"
+    },
+    {
+      "id": 6,
+      "acronym": "CIN",
+      "name": "Cincinnati",
+      "location": "Cincinnati, OH"
+    },
+    {
+      "id": 7,
+      "acronym": "CLE",
+      "name": "Cleveland",
+      "location": "Cleveland, OH"
+    },
+    {
+      "id": 8,
+      "acronym": "COL",
+      "name": "Columbus",
+      "location": "Grove City, OH"
+    },
+    {
+      "id": 9,
+      "acronym": "CORP",
+      "name": "Corporate",
+      "location": "Omaha, NE"
+    },
+    {
+      "id": 10,
+      "acronym": "DEN",
+      "name": "Colorado",
+      "location": "Denver, CO"
+    },
+    {
+      "id": 11,
+      "acronym": "DET",
+      "name": "Michigan",
+      "location": "Romulus, MI"
+    },
+    {
+      "id": 12,
+      "acronym": "DFW",
+      "name": "Dallas/Ft. Worth",
+      "location": "Grand Prairie, TX"
+    },
+    {
+      "id": 13,
+      "acronym": "DF2",
+      "name": "Dallas/Ft. Worth Standard Class",
+      "location": "Arlington, TX"
+    }
   ]
 }

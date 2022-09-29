@@ -2,6 +2,8 @@ import { Component, OnInit, Input } from '@angular/core';
 
 import { Transaction } from '@app/transactions/Transaction';
 import { TransactionsService } from '@app/services/transactions.service';
+import { LocationsModalComponent } from '@app/shared/locations-modal/locations-modal.component';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
     selector: 'app-transactions',
@@ -11,8 +13,12 @@ export class TransactionsComponent implements OnInit {
     @Input() account: number;
     transactions: Transaction[] = [];
     cols: any[];
-    constructor(private transactionsService: TransactionsService) {}
 
+    constructor(private transactionsService: TransactionsService, private modalService: NgbModal) {}
+
+    openModal() {
+        this.modalService.open(LocationsModalComponent, { size: 'lg' });
+    }
     ngOnInit(): void {
         this.transactionsService.getTransactions().subscribe((transactions: Transaction[]) => (this.transactions = transactions));
 
