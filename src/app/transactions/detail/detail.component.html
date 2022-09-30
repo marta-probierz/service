@@ -43,16 +43,51 @@
                                 </div>
 
                                 <div class="toolbar-right">
-                                        <span class="mr-7">
-                                                <button class="btn btn-secondary" type="button">
-                                                        All Dates
-                                                </button>
-                                        </span>
-                                        <button class="btn btn-secondary" type="button">
-                                                <i class="pbi-icon-mini pbi-calendar" aria-hidden="true"></i>
-                                        </button>
+                                        <div class="toolbar-divider">&nbsp;</div>
+                                        <form class="row row-cols-sm-auto">
+                                                <div class="col-12">
+
+                                                        <div class="input-group">
+                                                                <input
+                                                                        id="targetDate"
+                                                                        name="targetDate"
+                                                                        class="form-control"
+                                                                        placeholder="yyyy-mm-dd"
+                                                                        name="dp"
+                                                                        [(ngModel)]="model"
+                                                                        ngbDatepicker
+                                                                        #d="ngbDatepicker"
+                                                                        (dateSelect)="onDateSelect($event)"
+                                                                        (input)="dt.filterGlobal(selectedDate, 'contains')"
+                                                                >
+
+                                                                <i class="pbi-icon-mini pbi-calendar"
+                                                                   style="padding-top: 10px"
+                                                                   aria-hidden="true"
+                                                                   (click)="d.toggle()"
+                                                                   type="button"
+                                                                   (change)="dt.filterGlobal(selectedDate, 'contains')"
+                                                                ></i>
+                                                        </div>
+                                                </div>
+                                        </form>
 
                                         <div class="toolbar-divider">&nbsp;</div>
+
+<!--                                        <div class="input-group">-->
+<!--                                                <input-->
+<!--                                                        class="form-control"-->
+<!--                                                        placeholder="yyyy-mm-dd"-->
+<!--                                                        name="dp"-->
+<!--                                                        [(ngModel)]="model"-->
+<!--                                                        ngbDatepicker-->
+<!--                                                        #d="ngbDatepicker"-->
+<!--                                                        type="date"-->
+<!--                                                        #input-->
+<!--                                                        (input)="dt.filterGlobal(input.value, 'contains')"-->
+
+<!--                                                >-->
+<!--                                        </div>-->
 
                                         <div class="input-group">
                                                 <div class="input-group-prepend">
@@ -70,6 +105,9 @@
                                         </div>
                                 </div>
                         </div>
+
+                        <h1>Wybrana data: {{ selectedDate }}</h1>
+
 
                         <p-table #dt responsiveLayout="scroll"
                                  [value]="transactionsDetail"
@@ -89,6 +127,15 @@
                                                         <p-sortIcon *ngIf="col.icon" class="pr-1"></p-sortIcon>
                                                 </th>
                                         </tr>
+
+<!--                                        <tr>-->
+<!--                                                <th *ngFor="let col of cols">-->
+<!--                                                        <p-columnFilter type="text"-->
+<!--                                                                        [field]="col.field"-->
+<!--                                                        ></p-columnFilter>-->
+<!--                                                </th>-->
+<!--                                        </tr>-->
+
                                 </ng-template>
 
 
@@ -96,11 +143,26 @@
                                 <ng-template pTemplate="body" let-transactionsDetail let-columns="cols">
                                         <tr [pSelectableRow]="transactionsDetail">
                                                 <td *ngFor="let col of cols">
-                                                        <ng-container *ngIf="col.field !== 'fee' && col.field !== 'postage' && col.field !== 'adjFee' && col.field !== 'adjPostage'; else currency">
-                                                                {{ transactionsDetail[col.field] }}
-                                                        </ng-container>
+
+                                                        <ng-container *ngIf="col.field === 'date'; then date"></ng-container>
+                                                        <ng-container *ngIf="col.field === 'rate'; then rate"></ng-container>
+                                                        <ng-container *ngIf="col.field === 'fee'; then currency;"></ng-container>
+                                                        <ng-container *ngIf="col.field === 'postage'; then currency;"></ng-container>
+                                                        <ng-container *ngIf="col.field === 'adjFee'; then currency;"></ng-container>
+                                                        <ng-container *ngIf="col.field === 'adjPostage'; then currency;"></ng-container>
+                                                        <ng-container *ngIf="col.field !== 'date' && col.field !== 'rate' && col.field !== 'fee' && col.field !== 'postage' && col.field !== 'adjFee' && col.field !== 'adjPostage'; then all"></ng-container>
+
+                                                        <ng-template #date>
+                                                                {{ transactionsDetail[col.field] | date }}
+                                                        </ng-template>
+                                                        <ng-template #rate>
+                                                                ${{ transactionsDetail[col.field] | number: '1.6-6' }}
+                                                        </ng-template>
                                                         <ng-template #currency>
                                                                 {{ transactionsDetail[col.field] | currency }}
+                                                        </ng-template>
+                                                        <ng-template #all>
+                                                                {{ transactionsDetail[col.field] }}
                                                         </ng-template>
                                                 </td>
                                         </tr>

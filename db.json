@@ -7,11 +7,11 @@
       "account": "Shutterfly Business Solutions",
       "billToAcct": 16804770,
       "pendingAmountDue": 58.08,
-      "lastActivityDate": "Apr 1, 2021",
+      "lastActivityDate": "2021-4-1",
       "detail": [
         {
           "id": 1,
-          "date": "Apr 1, 2021",
+          "date": "2022-9-29",
           "sortCode": "879Allangels",
           "resource": "Postage Affixed by Meter",
           "qty": 74,
@@ -23,7 +23,7 @@
         },
         {
           "id": 2,
-          "date": "Apr 4, 2021",
+          "date": "2021-4-1",
           "sortCode": "793Acme",
           "resource": "Move Update Service",
           "qty": 11.346,
@@ -35,7 +35,7 @@
         },
         {
           "id": 3,
-          "date": "Apr 4, 2021",
+          "date": "2021-4-1",
           "sortCode": "793Acme",
           "resource": "Machine Presort",
           "qty": 11.346,
@@ -54,11 +54,11 @@
       "account": "Shutterfly Business Solutions",
       "billToAcct": 16804770,
       "pendingAmountDue": 389.30,
-      "lastActivityDate": "Apr 1, 2021",
+      "lastActivityDate": "2022-9-29",
       "detail": [
         {
           "id": 1,
-          "date": "Apr 1, 2021",
+          "date": "2022-9-29",
           "sortCode": "879Allangels",
           "resource": "Postage Affixed by Meter",
           "qty": 74,
@@ -70,7 +70,7 @@
         },
         {
           "id": 2,
-          "date": "Apr 4, 2021",
+          "date": "2022-9-28",
           "sortCode": "793Acme",
           "resource": "Move Update Service",
           "qty": 11.346,
@@ -82,7 +82,7 @@
         },
         {
           "id": 3,
-          "date": "Apr 4, 2021",
+          "date": "2022-9-29",
           "sortCode": "793Acme",
           "resource": "Machine Presort",
           "qty": 11.346,
@@ -94,7 +94,7 @@
         },
         {
           "id": 4,
-          "date": "Apr 4, 2021",
+          "date": "2022-9-29",
           "sortCode": "793Acme",
           "resource": "Machine Presort",
           "qty": 11.346,
@@ -106,7 +106,7 @@
         },
         {
           "id": 5,
-          "date": "Apr 4, 2021",
+          "date": "2022-9-29",
           "sortCode": "793Acme",
           "resource": "Machine Presort",
           "qty": 11.346,
@@ -125,11 +125,11 @@
       "account": "Shutterfly Lifetouch",
       "billToAcct": 16804770,
       "pendingAmountDue": 103.55,
-      "lastActivityDate": "Apr 1, 2021",
+      "lastActivityDate": "2022-9-27",
       "detail": [
         {
           "id": 1,
-          "date": "Apr 1, 2021",
+          "date": "2022-9-29",
           "sortCode": "879Allangels",
           "resource": "Postage Affixed by Meter",
           "qty": 74,
@@ -148,11 +148,11 @@
       "account": "Shutterfly Transactional",
       "billToAcct": 16804770,
       "pendingAmountDue": 64.02,
-      "lastActivityDate": "Apr 1, 2021",
+      "lastActivityDate": "2022-9-29",
       "detail": [
         {
           "id": 1,
-          "date": "Apr 1, 2021",
+          "date": "2022-9-29",
           "sortCode": "879Allangels",
           "resource": "Postage Affixed by Meter",
           "qty": 74,
