@@ -1,9 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { SortEvent } from 'primeng/api';
+import { NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';
+import { FilterService } from 'primeng/api';
 
 import { TransactionsService } from '@app/services/transactions.service';
 import { Detail } from '@app/transactions/detail/Detail';
-import {ActivatedRoute} from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { Transaction } from '@app/transactions/Transaction';
 
 
@@ -20,8 +22,10 @@ export class DetailComponent implements OnInit {
   totalAdjFee: number;
   totalAdjPostage: number;
   total: number;
+  model: NgbDateStruct;
+  selectedDate: string;
 
-  constructor(private transactionsService: TransactionsService, private route: ActivatedRoute) {
+  constructor(private transactionsService: TransactionsService, private route: ActivatedRoute, private filterService: FilterService) {
     this.route.params.subscribe((param) => {
       this.id = param.id;
     });
@@ -47,6 +51,22 @@ export class DetailComponent implements OnInit {
       { field: 'adjFee', header: 'Adj Fee', icon: true },
       { field: 'adjPostage', header: 'Adj Postage', icon: true }
     ];
+
+    // const equals = 'custom-equals';
+    //
+    // this.filterService.register(
+    //     equals, (value, filter): boolean => {
+    //       if (filter === undefined || filter === null || filter.trim() === '') {
+    //         return true;
+    //       }
+    //
+    //       if (value === undefined || value === null) {
+    //         return false;
+    //       }
+    //
+    //       return value.toString() === filter.toString();
+    //     }
+    // );
   }
   customSort(event: SortEvent) {
     event.data.sort((data1, data2) => {
@@ -61,5 +81,9 @@ export class DetailComponent implements OnInit {
 
       return (event.order * result);
     });
+  }
+  onDateSelect(date) {
+    this.selectedDate = date.year + '-' + date.month + '-' + date.day;
+    // console.log(this.filterService.filters.equals(this.selectedDate, '2022-9-29'));
   }
 }

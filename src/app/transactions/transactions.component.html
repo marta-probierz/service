@@ -98,7 +98,8 @@
 
                                         <ng-container *ngIf="col.field === 'jobID'; then routerLink"></ng-container>
                                         <ng-container *ngIf="col.field === 'pendingAmountDue'; then currency;"></ng-container>
-                                        <ng-container *ngIf="col.field !== 'pendingAmountDue' && col.field !== 'jobID'; then all"></ng-container>
+                                        <ng-container *ngIf="col.field === 'lastActivityDate'; then date;"></ng-container>
+                                        <ng-container *ngIf="col.field !== 'pendingAmountDue' && col.field !== 'jobID' && col.field !== 'lastActivityDate'; then all"></ng-container>
 
                                         <ng-template #routerLink>
                                             <a [routerLink]="['/transactions', transaction.id]">
@@ -108,6 +109,10 @@
 
                                         <ng-template #currency>
                                             {{ transaction[col.field] | currency }}
+                                        </ng-template>
+
+                                        <ng-template #date>
+                                            {{ transaction[col.field] | date }}
                                         </ng-template>
 
                                         <ng-template #all>
