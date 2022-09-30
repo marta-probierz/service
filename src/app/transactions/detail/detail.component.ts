@@ -1,7 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { SortEvent } from 'primeng/api';
-import { NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';
+import { NgbDateStruct, NgbDate, NgbCalendar, NgbDateParserFormatter } from '@ng-bootstrap/ng-bootstrap';
 import { FilterService } from 'primeng/api';
+import { Table } from 'primeng/table';
+import * as moment from 'moment';
 
 import { TransactionsService } from '@app/services/transactions.service';
 import { Detail } from '@app/transactions/detail/Detail';
@@ -14,6 +16,7 @@ import { Transaction } from '@app/transactions/Transaction';
   templateUrl: './detail.component.html'
 })
 export class DetailComponent implements OnInit {
+  @ViewChild('dt', { static: true }) dt: Table;
   transactionsDetail: Detail[];
   cols: any[];
   id: string;
@@ -24,10 +27,18 @@ export class DetailComponent implements OnInit {
   total: number;
   model: NgbDateStruct;
   selectedDate: string;
+  hoveredDate: NgbDate | null = null;
+  fromDate: NgbDate | null;
+  toDate: NgbDate | null;
+  selectedDateFrom: string;
+  selectedDateTo: string;
+  allDates: string[] = [];
 
-  constructor(private transactionsService: TransactionsService, private route: ActivatedRoute, private filterService: FilterService) {
+  constructor(private transactionsService: TransactionsService, private route: ActivatedRoute, private filterService: FilterService, private calendar: NgbCalendar, public formatter: NgbDateParserFormatter) {
     this.route.params.subscribe((param) => {
       this.id = param.id;
+      this.fromDate = calendar.getToday();
+      this.toDate = calendar.getNext(calendar.getToday(), 'd', 10);
     });
   }
   ngOnInit() {
@@ -52,10 +63,8 @@ export class DetailComponent implements OnInit {
       { field: 'adjPostage', header: 'Adj Postage', icon: true }
     ];
 
-    // const equals = 'custom-equals';
-    //
     // this.filterService.register(
-    //     equals, (value, filter): boolean => {
+    //     'contains', (value, filter): boolean => {
     //       if (filter === undefined || filter === null || filter.trim() === '') {
     //         return true;
     //       }
@@ -65,6 +74,22 @@ export class DetailComponent implements OnInit {
     //       }
     //
     //       return value.toString() === filter.toString();
+
+
+          // if (this.selectedDateFrom === value && this.selectedDateTo === undefined) {
+          //   return true;
+          // }
+          //
+          // if (this.selectedDateFrom === value || this.selectedDateTo === value) {
+          //   return true;
+          // }
+          //
+          // if (this.selectedDateFrom !== undefined && this.selectedDateTo !== undefined &&
+          //     moment(this.selectedDateFrom).isAfter(value) && moment(this.selectedDateTo).isBefore(value)) {
+          //   return true;
+          // }
+          //
+          // return false;
     //     }
     // );
   }
@@ -84,6 +109,54 @@ export class DetailComponent implements OnInit {
   }
   onDateSelect(date) {
     this.selectedDate = date.year + '-' + date.month + '-' + date.day;
-    // console.log(this.filterService.filters.equals(this.selectedDate, '2022-9-29'));
+    this.dt.filterGlobal(this.selectedDate, 'contains');
+  }
+
+  onDateSelection(date: NgbDate) {
+    if (!this.fromDate && !this.toDate) {
+      this.fromDate = date;
+    } else if (this.fromDate && !this.toDate && date && date.after(this.fromDate)) {
+      this.toDate = date;
+    } else {
+      this.toDate = null;
+      this.fromDate = date;
+    }
+    this.selectedDateFrom = this.fromDate.year + '-' + this.fromDate.month + '-' + this.fromDate.day;
+    if (this.toDate !== null) {
+      this.selectedDateTo = this.toDate.year + '-' + this.toDate.month + '-' + this.toDate.day;
+    }
+    // console.log(this.selectedDateFrom);
+    // console.log(this.selectedDateTo);
+      // while (moment(this.selectedDateFrom) <= moment(this.selectedDateTo)) {
+      //   this.allDates.push(this.selectedDateFrom);
+      //   this.selectedDateFrom = moment(this.selectedDateFrom).add(1, 'days').format('YYYY-MM-DD');
+      // }
+      // console.log(this.allDates);
+
+    // this.dt.filterGlobal(this.allDates, 'in');
+
+    // this.dt.filterGlobal((this.selectedDateFrom, this.selectedDateTo), 'contains');
+    // this.filterService.filters.in(this.dt, [this.selectedDateFrom, this.selectedDateTo]);
+
+    // console.log(this.filterService.filters.in(this.dt, this.allDates));
+  }
+
+  isHovered(date: NgbDate) {
+    return this.fromDate && !this.toDate && this.hoveredDate && date.after(this.fromDate) &&
+        date.before(this.hoveredDate);
+  }
+
+  isInside(date: NgbDate) {
+    return this.toDate && date.after(this.fromDate) && date.before(this.toDate);
+  }
+
+  isRange(date: NgbDate) {
+    return date.equals(this.fromDate) || (this.toDate && date.equals(this.toDate)) || this.isInside(date) ||
+        this.isHovered(date);
+  }
+
+  validateInput(currentValue: NgbDate | null, input: string): NgbDate | null {
+    const parsed = this.formatter.parse(input);
+    return parsed && this.calendar.isValid(NgbDate.from(parsed)) ? NgbDate.from(parsed) : currentValue;
   }
 }

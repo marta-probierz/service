@@ -42,15 +42,15 @@
                                         </button>
                                 </div>
 
+
+<!-- ngbDatepicker -->
                                 <div class="toolbar-right">
                                         <div class="toolbar-divider">&nbsp;</div>
                                         <form class="row row-cols-sm-auto">
                                                 <div class="col-12">
-
                                                         <div class="input-group">
                                                                 <input
                                                                         id="targetDate"
-                                                                        name="targetDate"
                                                                         class="form-control"
                                                                         placeholder="yyyy-mm-dd"
                                                                         name="dp"
@@ -58,37 +58,72 @@
                                                                         ngbDatepicker
                                                                         #d="ngbDatepicker"
                                                                         (dateSelect)="onDateSelect($event)"
-                                                                        (input)="dt.filterGlobal(selectedDate, 'contains')"
                                                                 >
-
                                                                 <i class="pbi-icon-mini pbi-calendar"
                                                                    style="padding-top: 10px"
                                                                    aria-hidden="true"
                                                                    (click)="d.toggle()"
                                                                    type="button"
-                                                                   (change)="dt.filterGlobal(selectedDate, 'contains')"
                                                                 ></i>
                                                         </div>
                                                 </div>
                                         </form>
-
                                         <div class="toolbar-divider">&nbsp;</div>
 
-<!--                                        <div class="input-group">-->
-<!--                                                <input-->
-<!--                                                        class="form-control"-->
-<!--                                                        placeholder="yyyy-mm-dd"-->
-<!--                                                        name="dp"-->
-<!--                                                        [(ngModel)]="model"-->
-<!--                                                        ngbDatepicker-->
-<!--                                                        #d="ngbDatepicker"-->
-<!--                                                        type="date"-->
-<!--                                                        #input-->
-<!--                                                        (input)="dt.filterGlobal(input.value, 'contains')"-->
 
-<!--                                                >-->
-<!--                                        </div>-->
+<!-- ngbDatepicker Range selection -->
+                                        <form class="row row-cols-sm-auto">
+                                                <div class="col-12">
+                                                        <div class="dp-hidden position-absolute">
+                                                                <div class="input-group">
+                                                                        <input name="datepicker"
+                                                                               class="form-control"
+                                                                               ngbDatepicker
+                                                                               #datepicker="ngbDatepicker"
+                                                                               [autoClose]="'outside'"
+                                                                               (dateSelect)="onDateSelection($event)"
+                                                                               [displayMonths]="1"
+                                                                               [dayTemplate]="t"
+                                                                               outsideDays="hidden"
+                                                                               [startDate]="fromDate!"
+                                                                               tabindex="-1">
+                                                                        <ng-template #t let-date let-focused="focused">
+                                                                              <span class="custom-day"
+                                                                                    [class.focused]="focused"
+                                                                                    [class.range]="isRange(date)"
+                                                                                    [class.faded]="isHovered(date) || isInside(date)"
+                                                                                    (mouseenter)="hoveredDate = date"
+                                                                                    (mouseleave)="hoveredDate = null">
+                                                                                {{ date.day }}
+                                                                              </span>
+                                                                        </ng-template>
+                                                                </div>
+                                                        </div>
 
+                                                        <div class="d-flex">
+                                                                <div class="input-group">
+                                                                        <input #dpFromDate
+                                                                               style="width: 100px"
+                                                                               class="form-control" placeholder="yyyy-mm-dd"
+                                                                               name="dpFromDate"
+                                                                               [value]="formatter.format(fromDate)"
+                                                                               (input)="fromDate = validateInput(fromDate, dpFromDate.value)">
+                                                                </div>
+                                                                <div class="input-group">
+                                                                        <input #dpToDate
+                                                                               style="width: 100px"
+                                                                               class="form-control" placeholder="yyyy-mm-dd"
+                                                                               name="dpToDate"
+                                                                               [value]="formatter.format(toDate)"
+                                                                               (input)="toDate = validateInput(toDate, dpToDate.value)">
+                                                                        <i class="pbi-icon-mini pbi-calendar" style="padding-top: 10px" aria-hidden="true" (click)="datepicker.toggle()" type="button"></i>
+                                                                </div>
+                                                        </div>
+                                                </div>
+                                        </form>
+                                        <div class="toolbar-divider">&nbsp;</div>
+
+<!-- Global Search -->
                                         <div class="input-group">
                                                 <div class="input-group-prepend">
                                         <span class="input-group-text" id="basic-addon4">
@@ -105,9 +140,6 @@
                                         </div>
                                 </div>
                         </div>
-
-                        <h1>Wybrana data: {{ selectedDate }}</h1>
-
 
                         <p-table #dt responsiveLayout="scroll"
                                  [value]="transactionsDetail"
@@ -127,18 +159,7 @@
                                                         <p-sortIcon *ngIf="col.icon" class="pr-1"></p-sortIcon>
                                                 </th>
                                         </tr>
-
-<!--                                        <tr>-->
-<!--                                                <th *ngFor="let col of cols">-->
-<!--                                                        <p-columnFilter type="text"-->
-<!--                                                                        [field]="col.field"-->
-<!--                                                        ></p-columnFilter>-->
-<!--                                                </th>-->
-<!--                                        </tr>-->
-
                                 </ng-template>
-
-
 
                                 <ng-template pTemplate="body" let-transactionsDetail let-columns="cols">
                                         <tr [pSelectableRow]="transactionsDetail">
