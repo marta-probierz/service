@@ -5,7 +5,7 @@
             <div class="d-flex pb-3 justify-content-between">
                 <div>
                     <h2>Ajax Subliminals</h2>
-                    <h5>Account: 0018315093</h5>
+                    <h5>Account: 0018315093</h5>
                 </div>
                 <div class="d-flex flex-column justify-content-end">
                     <button class="btn btn-secondary">Payment Instructions<i class="pbi-icon-outline pbi-link-external pl-2" aria-hidden="true"></i></button>
@@ -37,10 +37,14 @@
                                         <i class="pbi-icon-mini pbi-filter pr-1"></i> Locations and Jobs
                                     </button>
                                     <div ngbDropdownMenu aria-labelledby="locationsJobsMenu">
-                                        <a class="dropdown-item">Show All</a>
+                                        <a class="dropdown-item" (click)="filterLocationPen('', d)">Show All</a>
                                         <div class="dropdown-divider"></div>
                                         <ng-container>
-                                            <a class="dropdown-item">Locations and Jobs</a>
+                                            <ng-container *ngFor="let location of locationsPen">
+                                                <a class="dropdown-item" (click)="filterLocationPen(location, d)">
+                                                    {{ location }}
+                                                </a>
+                                            </ng-container>
                                         </ng-container>
                                     </div>
                                 </div>
@@ -66,7 +70,7 @@
 
                         <p-table #dt [value]="transactions"
                             [paginator]="true"
-                            [rows]="10"
+                            [rows]="25"
                             [showCurrentPageReport]="false"
                             [rowsPerPageOptions]="[25, 35, 45, 55]"
                             [globalFilterFields]="['jobID', 'location', 'account', 'billToAcct', 'pendingAmountDue', 'lastActivityDate']"
@@ -143,12 +147,183 @@
                 <li [ngbNavItem]="2">
                     <a ngbNavLink>Invoices</a>
                     <ng-template ngbNavContent>
-                        <p>Exercitation +1 labore velit, blog sartorial PBR leggings next level wes anderson artisan four loko
-                            farm-to-table craft beer twee. Qui photo booth letterpress, commodo enim craft beer mlkshk aliquip jean shorts
-                            ullamco ad vinyl cillum PBR. Homo nostrud organic, assumenda labore aesthetic magna delectus mollit. Keytar
-                            helvetica VHS salvia yr, vero magna velit sapiente labore stumptown. Vegan fanny pack odio cillum wes anderson
-                            8-bit, sustainable jean shorts beard ut DIY ethical culpa terry richardson biodiesel. Art party scenester
-                            stumptown, tumblr butcher vero sint qui sapiente accusamus tattooed echo park.</p>
+                        <h5>Total Amount Due <i class="pbi-icon-outline pbi-alert-circle pl-1" aria-hidden="true" type="button"></i></h5>
+                        <h4 class="pb-3">{{ totalAmountDue | currency }}</h4>
+
+                        <div class="toolbar">
+                            <div class="toolbar-left">
+                                <button class="btn btn-secondary" type="button">
+                                    <i class="pbi-icon-mini pbi-download" aria-hidden="true"></i> Download .csv
+                                </button>
+                            </div>
+
+                            <div class="toolbar-right">
+                                <div ngbDropdown class="d-inline-block">
+                                    <button type="button" class="btn btn-sm btn-outline-primary" id="locationsMenu" ngbDropdownToggle>
+                                        <i class="pbi-icon-mini pbi-filter pr-1"></i> Locations and Jobs
+                                    </button>
+                                    <div ngbDropdownMenu aria-labelledby="locationsMenu">
+                                        <a class="dropdown-item" (click)="filterLocationInv('', d)">Show All</a>
+                                        <div class="dropdown-divider"></div>
+                                        <ng-container>
+                                            <ng-container *ngFor="let location of locations">
+                                                <a class="dropdown-item" (click)="filterLocationInv(location, d)">
+                                                    {{ location }}
+                                                </a>
+                                            </ng-container>
+                                        </ng-container>
+                                    </div>
+                                </div>
+
+                                <div ngbDropdown class="d-inline-block pl-2">
+                                    <button type="button" class="btn btn-sm btn-outline-primary" id="status" ngbDropdownToggle>
+                                        <i class="pbi-icon-mini pbi-filter pr-1"></i> Status
+                                    </button>
+                                    <div ngbDropdownMenu aria-labelledby="status">
+                                        <a class="dropdown-item" (click)="filterStatus('', d)">Show All</a>
+                                        <div class="dropdown-divider"></div>
+                                        <ng-container *ngFor="let status of statuses">
+                                            <a class="dropdown-item" (click)="filterStatus(status, d)">
+                                                <span class="pt-1 pb-1 pl-2 pr-2 text-white"
+                                                      style="border-radius: 16.5px"
+                                                      [ngStyle]="{'background-color': status === 'Past Due' ? 'red' : (status === 'Paid' ? 'green' : 'orange') }"
+                                                >
+                                                    {{ status }}
+                                                </span>
+                                            </a>
+                                        </ng-container>
+                                    </div>
+                                </div>
+
+                                <div class="toolbar-divider">&nbsp;</div>
+
+
+                                <!-- ngbDatepicker Range selection -->
+                                <form class="row row-cols-sm-auto">
+                                    <div class="col-12">
+                                        <div class="dp-hidden position-absolute">
+                                            <div class="input-group">
+                                                <input name="datepicker"
+                                                       class="form-control"
+                                                       ngbDatepicker
+                                                       #datepicker="ngbDatepicker"
+                                                       [autoClose]="'outside'"
+                                                       (dateSelect)="onDateSelection($event, d)"
+                                                       [displayMonths]="1"
+                                                       [dayTemplate]="t"
+                                                       outsideDays="hidden"
+                                                       [startDate]="fromDate!"
+                                                       tabindex="-1">
+                                                <ng-template #t let-date let-focused="focused">
+                                                    <span class="custom-day"
+                                                          [class.focused]="focused"
+                                                          [class.range]="isRange(date)"
+                                                          [class.faded]="isHovered(date) || isInside(date)"
+                                                          (mouseenter)="hoveredDate = date"
+                                                          (mouseleave)="hoveredDate = null">
+                                                        {{ date.day }}
+                                                    </span>
+                                                </ng-template>
+                                            </div>
+                                        </div>
+
+                                        <div class="d-flex">
+<!--                                            <div class="input-group">-->
+<!--                                                <input #dpFromDate-->
+<!--                                                       style="width: 100px"-->
+<!--                                                       class="form-control" placeholder="yyyy-mm-dd"-->
+<!--                                                       name="dpFromDate"-->
+<!--                                                       [value]="formatter.format(fromDate)"-->
+<!--                                                       (input)="fromDate = validateInput(fromDate, dpFromDate.value)">-->
+<!--                                            </div>-->
+                                            <div class="input-group">
+                                                <input #dpToDate
+                                                       style="width: 100px"
+                                                       class="form-control" placeholder="yyyy-mm-dd"
+                                                       name="dpToDate"
+                                                       [value]="formatter.format(toDate)"
+                                                       (input)="toDate = validateInput(toDate, dpToDate.value)">
+                                                <i class="pbi-icon-mini pbi-calendar" style="padding-top: 10px" aria-hidden="true" (click)="datepicker.toggle()" type="button"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+
+                                <div class="toolbar-divider">&nbsp;</div>
+
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text" id="basic-addon4">
+                                            <i class="pbi-icon-mini pbi-search" aria-hidden="true"></i>
+                                        </span>
+                                    </div>
+                                    <input
+                                            type="text"
+                                            class="form-control"
+                                            (input)="d.filterGlobal($event.target.value, 'contains')"
+                                            placeholder="Search"
+                                            aria-label="Search"
+                                    />
+                                </div>
+                            </div>
+                        </div>
+
+                        <p-table #d
+                                 responsiveLayout="scroll"
+                                 [value]="invoices"
+                                 [paginator]="true"
+                                 [rows]="25"
+                                 [showCurrentPageReport]="false"
+                                 [rowsPerPageOptions]="[25, 35, 45, 55]"
+                                 [globalFilterFields]="['invoiceDate', 'invoice', 'jobID', 'location', 'account', 'billToAcct', 'paymentDueDate', 'amountDue', 'status']"
+                                 [filterDelay]="0"
+                                 (sortFunction)="customSort($event)"
+                                 [customSort]="true"
+                                 class="p-datatable-striped"
+                        >
+                            <ng-template pTemplate="header">
+                                <tr>
+                                    <th style="width: 2.25em" scope="col">
+                                        <p-tableHeaderCheckbox aria-label="Select all rows"></p-tableHeaderCheckbox>
+                                    </th>
+                                    <th *ngFor="let col of invoicesCols" [pSortableColumn]="col.field" scope="col">
+                                        {{ col.header }}
+                                        <i *ngIf="col.icon" (click)="openModal()" class="pbi-icon-outline pbi-alert-circle pr-1" aria-hidden="true" type="button"></i>
+                                        <p-sortIcon pSortableColumn="col.header" [field]="col.field" class="pr-1"></p-sortIcon>
+                                    </th>
+                                </tr>
+                            </ng-template>
+
+
+                            <ng-template pTemplate="body" let-invoices let-columns="cols">
+                                <tr [pSelectableRow]="invoices">
+                                    <td><p-tableCheckbox [value]="invoices" aria-label="Select row"></p-tableCheckbox></td>
+                                    <td>{{ invoices.invoiceDate | date }}</td>
+                                    <td><a [routerLink]="['/transactions']">{{ invoices.invoice }}</a></td>
+                                    <td>{{ invoices.jobID }}</td>
+                                    <td>{{ invoices.location }}</td>
+                                    <td>{{ invoices.account }}</td>
+                                    <td>{{ invoices.billToAcct }}</td>
+                                    <td>{{ invoices.paymentDueDate | date }}</td>
+                                    <td>{{ invoices.amountDue | currency }}</td>
+                                    <td>
+                                        <span class="pt-1 pb-1 pl-2 pr-2 text-white"
+                                              style="border-radius: 16.5px"
+                                              [ngStyle]="{'background-color': invoices.status === 'Past Due' ? 'red' : (invoices.status === 'Paid' ? 'green' : 'orange') }"
+                                        >
+                                            {{ invoices.status }}
+                                        </span>
+                                    </td>
+                                </tr>
+                            </ng-template>
+
+                            <ng-template pTemplate="emptymessage">
+                                <tr>
+                                    <td colspan="5">No result found</td>
+                                </tr>
+                            </ng-template>
+
+                        </p-table>
                     </ng-template>
                 </li>
 
