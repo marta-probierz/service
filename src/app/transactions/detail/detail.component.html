@@ -42,18 +42,88 @@
                                         </button>
                                 </div>
 
-                                <div class="toolbar-right">
-                                        <span class="mr-7">
-                                                <button class="btn btn-secondary" type="button">
-                                                        All Dates
-                                                </button>
-                                        </span>
-                                        <button class="btn btn-secondary" type="button">
-                                                <i class="pbi-icon-mini pbi-calendar" aria-hidden="true"></i>
-                                        </button>
 
+<!-- ngbDatepicker -->
+                                <div class="toolbar-right">
+                                        <div class="toolbar-divider">&nbsp;</div>
+                                        <form class="row row-cols-sm-auto">
+                                                <div class="col-12">
+                                                        <div class="input-group">
+                                                                <input
+                                                                        id="targetDate"
+                                                                        class="form-control"
+                                                                        placeholder="yyyy-mm-dd"
+                                                                        name="dp"
+                                                                        [(ngModel)]="model"
+                                                                        ngbDatepicker
+                                                                        #d="ngbDatepicker"
+                                                                        (dateSelect)="onDateSelect($event)"
+                                                                >
+                                                                <i class="pbi-icon-mini pbi-calendar"
+                                                                   style="padding-top: 10px"
+                                                                   aria-hidden="true"
+                                                                   (click)="d.toggle()"
+                                                                   type="button"
+                                                                ></i>
+                                                        </div>
+                                                </div>
+                                        </form>
                                         <div class="toolbar-divider">&nbsp;</div>
 
+
+<!-- ngbDatepicker Range selection -->
+                                        <form class="row row-cols-sm-auto">
+                                                <div class="col-12">
+                                                        <div class="dp-hidden position-absolute">
+                                                                <div class="input-group">
+                                                                        <input name="datepicker"
+                                                                               class="form-control"
+                                                                               ngbDatepicker
+                                                                               #datepicker="ngbDatepicker"
+                                                                               [autoClose]="'outside'"
+                                                                               (dateSelect)="onDateSelection($event)"
+                                                                               [displayMonths]="1"
+                                                                               [dayTemplate]="t"
+                                                                               outsideDays="hidden"
+                                                                               [startDate]="fromDate!"
+                                                                               tabindex="-1">
+                                                                        <ng-template #t let-date let-focused="focused">
+                                                                              <span class="custom-day"
+                                                                                    [class.focused]="focused"
+                                                                                    [class.range]="isRange(date)"
+                                                                                    [class.faded]="isHovered(date) || isInside(date)"
+                                                                                    (mouseenter)="hoveredDate = date"
+                                                                                    (mouseleave)="hoveredDate = null">
+                                                                                {{ date.day }}
+                                                                              </span>
+                                                                        </ng-template>
+                                                                </div>
+                                                        </div>
+
+                                                        <div class="d-flex">
+                                                                <div class="input-group">
+                                                                        <input #dpFromDate
+                                                                               style="width: 100px"
+                                                                               class="form-control" placeholder="yyyy-mm-dd"
+                                                                               name="dpFromDate"
+                                                                               [value]="formatter.format(fromDate)"
+                                                                               (input)="fromDate = validateInput(fromDate, dpFromDate.value)">
+                                                                </div>
+                                                                <div class="input-group">
+                                                                        <input #dpToDate
+                                                                               style="width: 100px"
+                                                                               class="form-control" placeholder="yyyy-mm-dd"
+                                                                               name="dpToDate"
+                                                                               [value]="formatter.format(toDate)"
+                                                                               (input)="toDate = validateInput(toDate, dpToDate.value)">
+                                                                        <i class="pbi-icon-mini pbi-calendar" style="padding-top: 10px" aria-hidden="true" (click)="datepicker.toggle()" type="button"></i>
+                                                                </div>
+                                                        </div>
+                                                </div>
+                                        </form>
+                                        <div class="toolbar-divider">&nbsp;</div>
+
+<!-- Global Search -->
                                         <div class="input-group">
                                                 <div class="input-group-prepend">
                                         <span class="input-group-text" id="basic-addon4">
@@ -65,38 +135,55 @@
                                                         class="form-control"
                                                         placeholder="Search"
                                                         aria-label="Search"
+                                                        (input)="dt.filterGlobal($event.target.value, 'contains')"
                                                 />
                                         </div>
                                 </div>
                         </div>
 
-                        <p-table responsiveLayout="scroll"
+                        <p-table #dt responsiveLayout="scroll"
                                  [value]="transactionsDetail"
                                  [paginator]="false"
                                  [rows]="10"
                                  [showCurrentPageReport]="false"
+                                 [filterDelay]="0"
+                                 (sortFunction)="customSort($event)"
+                                 [customSort]="true"
                                  [globalFilterFields]="['date', 'sortCode', 'resource', 'qty', 'rate', 'fee', 'postage', 'adjFee', 'adjPostage']"
                                  class="p-datatable-striped"
                         >
                                 <ng-template pTemplate="header">
                                         <tr>
-                                                <th *ngFor="let col of cols">
+                                                <th *ngFor="let col of cols" [pSortableColumn]="col.field" scope="col">
                                                         {{ col.header }}
                                                         <p-sortIcon *ngIf="col.icon" class="pr-1"></p-sortIcon>
                                                 </th>
                                         </tr>
                                 </ng-template>
 
-
-
                                 <ng-template pTemplate="body" let-transactionsDetail let-columns="cols">
                                         <tr [pSelectableRow]="transactionsDetail">
                                                 <td *ngFor="let col of cols">
-                                                        <ng-container *ngIf="col.field !== 'fee' && col.field !== 'postage' && col.field !== 'adjFee' && col.field !== 'adjPostage'; else currency">
-                                                                {{ transactionsDetail[col.field] }}
-                                                        </ng-container>
+
+                                                        <ng-container *ngIf="col.field === 'date'; then date"></ng-container>
+                                                        <ng-container *ngIf="col.field === 'rate'; then rate"></ng-container>
+                                                        <ng-container *ngIf="col.field === 'fee'; then currency;"></ng-container>
+                                                        <ng-container *ngIf="col.field === 'postage'; then currency;"></ng-container>
+                                                        <ng-container *ngIf="col.field === 'adjFee'; then currency;"></ng-container>
+                                                        <ng-container *ngIf="col.field === 'adjPostage'; then currency;"></ng-container>
+                                                        <ng-container *ngIf="col.field !== 'date' && col.field !== 'rate' && col.field !== 'fee' && col.field !== 'postage' && col.field !== 'adjFee' && col.field !== 'adjPostage'; then all"></ng-container>
+
+                                                        <ng-template #date>
+                                                                {{ transactionsDetail[col.field] | date }}
+                                                        </ng-template>
+                                                        <ng-template #rate>
+                                                                ${{ transactionsDetail[col.field] | number: '1.6-6' }}
+                                                        </ng-template>
                                                         <ng-template #currency>
                                                                 {{ transactionsDetail[col.field] | currency }}
+                                                        </ng-template>
+                                                        <ng-template #all>
+                                                                {{ transactionsDetail[col.field] }}
                                                         </ng-template>
                                                 </td>
                                         </tr>
@@ -108,6 +195,11 @@
                                                 <td><b>{{ totalPostage | currency }}</b></td>
                                                 <td><b>{{ totalAdjFee | currency }}</b></td>
                                                 <td><b>{{ totalAdjPostage | currency }}</b></td>
+                                        </tr>
+                                </ng-template>
+                                <ng-template pTemplate="emptymessage">
+                                        <tr>
+                                                <td colspan="5">No result found</td>
                                         </tr>
                                 </ng-template>
                         </p-table>
