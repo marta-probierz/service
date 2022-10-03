@@ -3,7 +3,6 @@ import { SortEvent } from 'primeng/api';
 import { NgbDateStruct, NgbDate, NgbCalendar, NgbDateParserFormatter } from '@ng-bootstrap/ng-bootstrap';
 import { FilterService } from 'primeng/api';
 import { Table } from 'primeng/table';
-import * as moment from 'moment';
 
 import { TransactionsService } from '@app/services/transactions.service';
 import { Detail } from '@app/transactions/detail/Detail';
@@ -32,7 +31,6 @@ export class DetailComponent implements OnInit {
   toDate: NgbDate | null;
   selectedDateFrom: string;
   selectedDateTo: string;
-  allDates: string[] = [];
 
   constructor(private transactionsService: TransactionsService, private route: ActivatedRoute, private filterService: FilterService, private calendar: NgbCalendar, public formatter: NgbDateParserFormatter) {
     this.route.params.subscribe((param) => {
@@ -63,35 +61,16 @@ export class DetailComponent implements OnInit {
       { field: 'adjPostage', header: 'Adj Postage', icon: true }
     ];
 
-    // this.filterService.register(
-    //     'contains', (value, filter): boolean => {
-    //       if (filter === undefined || filter === null || filter.trim() === '') {
-    //         return true;
-    //       }
-    //
-    //       if (value === undefined || value === null) {
-    //         return false;
-    //       }
-    //
-    //       return value.toString() === filter.toString();
-
-
-          // if (this.selectedDateFrom === value && this.selectedDateTo === undefined) {
-          //   return true;
-          // }
-          //
-          // if (this.selectedDateFrom === value || this.selectedDateTo === value) {
-          //   return true;
-          // }
-          //
-          // if (this.selectedDateFrom !== undefined && this.selectedDateTo !== undefined &&
-          //     moment(this.selectedDateFrom).isAfter(value) && moment(this.selectedDateTo).isBefore(value)) {
-          //   return true;
-          // }
-          //
-          // return false;
-    //     }
-    // );
+    this.filterService.register(
+        'isBetween', (value, filter): boolean => {
+          if (filter === undefined || filter === null) {
+            return true;
+          }
+          if (value === undefined || value === null) {
+            return false;
+          }
+          return value >= filter[0] && value <= filter[1];
+        });
   }
   customSort(event: SortEvent) {
     event.data.sort((data1, data2) => {
@@ -125,20 +104,7 @@ export class DetailComponent implements OnInit {
     if (this.toDate !== null) {
       this.selectedDateTo = this.toDate.year + '-' + this.toDate.month + '-' + this.toDate.day;
     }
-    // console.log(this.selectedDateFrom);
-    // console.log(this.selectedDateTo);
-      // while (moment(this.selectedDateFrom) <= moment(this.selectedDateTo)) {
-      //   this.allDates.push(this.selectedDateFrom);
-      //   this.selectedDateFrom = moment(this.selectedDateFrom).add(1, 'days').format('YYYY-MM-DD');
-      // }
-      // console.log(this.allDates);
-
-    // this.dt.filterGlobal(this.allDates, 'in');
-
-    // this.dt.filterGlobal((this.selectedDateFrom, this.selectedDateTo), 'contains');
-    // this.filterService.filters.in(this.dt, [this.selectedDateFrom, this.selectedDateTo]);
-
-    // console.log(this.filterService.filters.in(this.dt, this.allDates));
+    this.dt.filter([this.selectedDateFrom, this.selectedDateTo], 'date', 'isBetween');
   }
 
   isHovered(date: NgbDate) {
