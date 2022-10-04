@@ -22,9 +22,7 @@ export class TransactionsComponent implements OnInit {
     cols: any[];
     invoices: Invoice[] = [];
     invoicesCols: any[];
-
     locationsPen: string[];
-
     model: NgbDateStruct;
     selectedDate: string;
     hoveredDate: NgbDate | null = null;
@@ -45,7 +43,10 @@ export class TransactionsComponent implements OnInit {
         this.modalService.open(LocationsModalComponent, { size: 'lg' });
     }
     ngOnInit(): void {
-        this.transactionsService.getTransactions().subscribe((transactions: Transaction[]) => (this.transactions = transactions));
+        this.transactionsService.getTransactions().subscribe((transactions: Transaction[]) => {
+            this.transactions = transactions;
+            this.locationsPen = [...new Set(this.transactions.map(i => i.location))];
+        });
         this.invoicesService.getInvoices().subscribe((invoices: Invoice[]) => {
            this.invoices = invoices;
             this.totalAmountDue = this.invoices.map(item => item.amountDue).reduce((acc, amount) => acc + amount, 0);
@@ -97,6 +98,16 @@ export class TransactionsComponent implements OnInit {
             else { result = (value1 < value2) ? -1 : (value1 > value2) ? 1 : 0; }
 
             return (event.order * result);
+        });
+    }
+
+    filterLocationPen(location, table) {
+        this.transactions.filter(i => {
+            if (i.location === location) {
+                table.filterGlobal(location, 'equals');
+            } else if (location === '') {
+                table.filterGlobal(location, 'not-equals');
+            }
         });
     }
 
