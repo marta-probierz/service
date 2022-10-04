@@ -1,5 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { Observable } from 'rxjs';
+
+import { StoreService } from '@app/services/store.service';
+
 
 @Component({
     selector: 'app-new-invoice',
@@ -17,12 +21,20 @@ export class NewInvoiceComponent implements OnInit {
         amountDue: new FormControl('', Validators.required),
         status: new FormControl('', Validators.required)
     });
+    locations: Observable<Object>;
 
-    constructor() {}
+    constructor(private storeService: StoreService) {}
 
-    ngOnInit() {}
+    ngOnInit() {
+        this.storeService.fetchInvoices();
+        this.storeService.fetchLocations();
+        this.locations = this.storeService.locations;
+    }
 
     onSubmit() {
-        console.log(this.newInvoiceForm.value);
+        this.storeService.postInvoice(this.newInvoiceForm.value).subscribe(() => {
+            this.storeService.fetchInvoices();
+            },
+            (err) => console.log(err));
     }
 }
