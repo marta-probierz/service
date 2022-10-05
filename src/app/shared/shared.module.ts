@@ -13,10 +13,11 @@ import { HeaderComponent } from '@app/shared/header/header.component';
 import { WelcomeBannerComponent } from '@app/shared/welcome-banner/welcome-banner.component';
 import { CardComponent } from '@app/shared/card/card.component';
 import { LocationsModalComponent } from './locations-modal/locations-modal.component';
+import { ToastsComponent } from '@app/shared/toast/toast.component';
 
 @NgModule({
   imports: [CommonModule, FormsModule, ReactiveFormsModule, RouterModule, PbdsHeaderShadowModule, PbdsPageTitleModule, TableModule, HttpClientModule, NgbModule],
-  declarations: [HeaderComponent, FooterComponent, WelcomeBannerComponent, CardComponent, LocationsModalComponent],
+  declarations: [HeaderComponent, FooterComponent, WelcomeBannerComponent, CardComponent, LocationsModalComponent, ToastsComponent],
   exports: [
     HeaderComponent,
     FooterComponent,
@@ -28,6 +29,7 @@ import { LocationsModalComponent } from './locations-modal/locations-modal.compo
     PbdsHeaderShadowModule,
     PbdsPageTitleModule,
     LocationsModalComponent,
+    ToastsComponent
   ],
 })
 export class SharedModule {}

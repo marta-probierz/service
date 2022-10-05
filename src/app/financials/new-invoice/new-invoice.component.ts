@@ -21,7 +21,7 @@ export class NewInvoiceComponent implements OnInit {
         amountDue: new FormControl('', Validators.required),
         status: new FormControl('', Validators.required)
     });
-    locations: Observable<Object>;
+    locations: Observable<any>;
 
     constructor(private storeService: StoreService) {}
 
@@ -32,9 +32,6 @@ export class NewInvoiceComponent implements OnInit {
     }
 
     onSubmit() {
-        this.storeService.postInvoice(this.newInvoiceForm.value).subscribe(() => {
-            this.storeService.fetchInvoices();
-            },
-            (err) => console.log(err));
+        this.storeService.postInvoice(this.newInvoiceForm.value);
     }
 }
