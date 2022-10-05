@@ -58,7 +58,8 @@ export class StoreService {
                 if (response.status === 201) {
                     this.showSuccess();
                     setTimeout(() => {
-                        this.router.navigate(['./financials']).then();
+                        this.router.navigate(['./transactions']);
+                        this.toastService.clear();
                     }, 1500);
                 } else {
                     this.showDanger();
