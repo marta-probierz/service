@@ -10,6 +10,8 @@ import { LocationsModalComponent } from '@app/shared/locations-modal/locations-m
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Invoice } from '@app/transactions/Invoice';
 import { InvoicesService } from '@app/services/invoices.service';
+import { RemoveInvoiceModalComponent } from '@app/shared/remove-invoice-modal/remove-invoice-modal.component';
+import {EditInvoiceModalComponent} from '@app/shared/edit-invoice-modal/edit-invoice-modal.component';
 
 @Component({
     selector: 'app-transactions',
@@ -42,6 +44,15 @@ export class TransactionsComponent implements OnInit {
     openModal() {
         this.modalService.open(LocationsModalComponent, { size: 'lg' });
     }
+
+    openRemoveModal() {
+        this.modalService.open(RemoveInvoiceModalComponent);
+    }
+
+    openEditModal() {
+        this.modalService.open(EditInvoiceModalComponent, { size: 'lg' });
+    }
+
     ngOnInit(): void {
         this.transactionsService.getTransactions().subscribe((transactions: Transaction[]) => {
             this.transactions = transactions;

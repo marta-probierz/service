@@ -67,6 +67,11 @@ export class StoreService {
             });
     }
 
+    deleteInvoice(id): any {
+        const url = `${this.invoicesUrl}/${id}`;
+        this.http.delete(url).subscribe();
+    }
+
     get invoices(): Observable<Object> {
         return this.invoicesObs$.asObservable();
     }

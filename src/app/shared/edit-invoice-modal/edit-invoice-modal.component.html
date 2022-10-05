@@ -1,0 +1,68 @@
+<div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Edit Invoice</h4>
+</div>
+
+<div class="modal-body">
+    <div class="d-flex justify-content-center">
+<!--        <form class="w-50" [formGroup]="newInvoiceForm" (ngSubmit)="onSubmit()">-->
+        <form class="w-50" [formGroup]="newInvoiceForm">
+        <div class="row">
+                <div class="col form-group">
+                    <label for="invoiceDate">Invoice Date</label>
+                    <input formControlName="invoiceDate" type="date" class="form-control" id="invoiceDate" aria-describedby="invoiceDate" placeholder="Enter invoice date">
+                </div>
+                <div class="col form-group">
+                    <label for="invoice">Invoice</label>
+                    <input formControlName="invoice" type="number" class="form-control" id="invoice" placeholder="Enter Invoice">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="jobID">Job ID</label>
+                <input formControlName="jobID" type="text" class="form-control" id="jobID" placeholder="Enter Job ID">
+            </div>
+            <div class="form-group">
+                <label for="status">Location</label>
+                <select formControlName="location" class="form-control" id="location">
+                    <option value="" disabled selected hidden> Select Location </option>
+                    <option *ngFor="let location of locations | async">
+                        {{ location.acronym }}
+                    </option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="account">Account</label>
+                <input formControlName="account" type="text" class="form-control" id="account" placeholder="Enter Account">
+            </div>
+            <div class="row">
+                <div class="col form-group">
+                    <label for="billToAcct">Bill To Acct</label>
+                    <input formControlName="billToAcct" type="number" class="form-control" id="billToAcct" placeholder="Enter Bill To Acct">
+                </div>
+                <div class="col form-group">
+                    <label for="paymentDueDate">Payment Due Date</label>
+                    <input formControlName="paymentDueDate" type="date" class="form-control" id="paymentDueDate" placeholder="Enter Payment Due Date">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col form-group">
+                    <label for="amountDue">Amount Due</label>
+                    <input formControlName="amountDue" type="number" class="form-control" id="amountDue" placeholder="Enter Amount Due">
+                </div>
+                <div class="col form-group">
+                    <label for="status">Status</label>
+                    <select formControlName="status" class="form-control" id="status">
+                        <option value="" disabled selected hidden> Select Status </option>
+                        <option>Unpaid</option>
+                        <option>Past Due</option>
+                        <option>Paid</option>
+                    </select>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div class="modal-footer d-flex justify-content-around p-3">
+    <button type="button" class="btn btn-primary" type="submit" [disabled]="!newInvoiceForm.valid">Submit</button>
+    <button type="button" class="btn btn-secondary" (click)="activeModal.close('Close click')">Canel</button>
+</div>
