@@ -4,9 +4,8 @@
 
 <div class="modal-body">
     <div class="d-flex justify-content-center">
-<!--        <form class="w-50" [formGroup]="newInvoiceForm" (ngSubmit)="onSubmit()">-->
-        <form class="w-50" [formGroup]="newInvoiceForm">
-        <div class="row">
+        <form class="w-50" [formGroup]="editInvoiceForm">
+            <div class="row">
                 <div class="col form-group">
                     <label for="invoiceDate">Invoice Date</label>
                     <input formControlName="invoiceDate" type="date" class="form-control" id="invoiceDate" aria-describedby="invoiceDate" placeholder="Enter invoice date">
@@ -63,6 +62,6 @@
 </div>
 
 <div class="modal-footer d-flex justify-content-around p-3">
-    <button type="button" class="btn btn-primary" type="submit" [disabled]="!newInvoiceForm.valid">Submit</button>
+    <button type="button" class="btn btn-primary" type="submit" (click)="onEdit()">Submit</button>
     <button type="button" class="btn btn-secondary" (click)="activeModal.close('Close click')">Canel</button>
 </div>

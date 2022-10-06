@@ -67,9 +67,13 @@ export class StoreService {
             });
     }
 
-    deleteInvoice(id): any {
-        const url = `${this.invoicesUrl}/${id}`;
-        this.http.delete(url).subscribe();
+    deleteInvoice(id: number): Observable<any> {
+        return this.http.delete(`${this.invoicesUrl}/${id}`);
+    }
+
+    editInvoice(id: number, data: any): Observable<any> {
+        const URL = `${this.invoicesUrl}/${id}`;
+        return this.http.patch(URL, data, { headers: { 'Content-Type': 'application/json' } });
     }
 
     get invoices(): Observable<Object> {

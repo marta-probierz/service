@@ -1,0 +1,7 @@
+<div>
+    <h2>Are you sure you want to delete the invoice <b>{{ invoice.invoice }}</b>?</h2>
+</div>
+<div class="modal-footer d-flex justify-content-around p-3">
+    <button type="button" class="btn btn-primary" (click)="onDeleteInvoice()">Remove</button>
+    <button type="button" class="btn btn-secondary" (click)="activeModal.close('Close click')">Canel</button>
+</div>

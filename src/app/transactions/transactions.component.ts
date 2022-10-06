@@ -3,6 +3,7 @@ import { SortEvent } from 'primeng/api';
 import { NgbDateStruct, NgbDate, NgbCalendar, NgbDateParserFormatter } from '@ng-bootstrap/ng-bootstrap';
 import { FilterService } from 'primeng/api';
 import { Table } from 'primeng/table';
+import { Form } from '@angular/forms';
 
 import { Transaction } from '@app/transactions/Transaction';
 import { TransactionsService } from '@app/services/transactions.service';
@@ -10,8 +11,8 @@ import { LocationsModalComponent } from '@app/shared/locations-modal/locations-m
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Invoice } from '@app/transactions/Invoice';
 import { InvoicesService } from '@app/services/invoices.service';
-import { RemoveInvoiceModalComponent } from '@app/shared/remove-invoice-modal/remove-invoice-modal.component';
-import {EditInvoiceModalComponent} from '@app/shared/edit-invoice-modal/edit-invoice-modal.component';
+import { RemoveInvoiceComponent } from '@app/transactions/modals/remove-invoice/remove-invoice.component';
+import { EditInvoiceComponent } from '@app/transactions/modals/edit-invoice/edit-invoice.component';
 
 @Component({
     selector: 'app-transactions',
@@ -20,6 +21,8 @@ import {EditInvoiceModalComponent} from '@app/shared/edit-invoice-modal/edit-inv
 export class TransactionsComponent implements OnInit {
     @Input() account: number;
     @ViewChild('d', { static: true }) d: Table;
+    // @ViewChild('editForm', { static: true }) editForm: EditInvoiceComponent;
+
     transactions: Transaction[] = [];
     cols: any[];
     invoices: Invoice[] = [];
@@ -45,12 +48,62 @@ export class TransactionsComponent implements OnInit {
         this.modalService.open(LocationsModalComponent, { size: 'lg' });
     }
 
-    openRemoveModal() {
-        this.modalService.open(RemoveInvoiceModalComponent);
+    openRemoveModal(invoice: Invoice) {
+        const removeModalRef = this.modalService.open(RemoveInvoiceComponent);
+        removeModalRef.componentInstance.invoice = invoice;
+        removeModalRef.result.then((invoice: Invoice) => {
+            if (invoice) {
+                this.ngOnInit();
+            }
+        });
     }
 
-    openEditModal() {
-        this.modalService.open(EditInvoiceModalComponent, { size: 'lg' });
+    openEditModal(invoice: Invoice, form: Form) {
+        const editModalRef = this.modalService.open(EditInvoiceComponent, { size: 'lg' });
+        editModalRef.componentInstance.invoice = invoice;
+        editModalRef.result.then((invoice: Invoice) => {
+           if (invoice) {
+               this.ngOnInit();
+           }
+        });
+
+        // this.editInvoiceForm.setValue({
+        //     invoiceDate: this.invoice.invoiceDate,
+        //     invoice: this.invoice.invoice,
+        //     jobID: this.invoice.jobID,
+        //     location: this.invoice.location,
+        //     account: this.invoice.account,
+        //     billToAcct: this.invoice.billToAcct,
+        //     paymentDueDate: this.invoice.paymentDueDate,
+        //     amountDue: this.invoice.amountDue,
+        //     status: this.invoice.status
+        // });
+
+        // this.editForm.setValue({
+        //     invoiceDate: invoice.invoiceDate,
+        //     invoice: invoice.invoice,
+        //     jobID: invoice.jobID,
+        //     location: invoice.location,
+        //     account: invoice.account,
+        //     billToAcct: invoice.billToAcct,
+        //     paymentDueDate: invoice.paymentDueDate,
+        //     amountDue: invoice.amountDue,
+        //     status: invoice.status
+        // });
+
+        // editModalRef.result.then((invoice: Invoice) => {
+        //     this.editForm.patchValue({
+        //         invoiceDate: invoice.invoiceDate,
+        //         invoice: invoice.invoice,
+        //         jobID: invoice.jobID,
+        //         location: invoice.location,
+        //         account: invoice.account,
+        //         billToAcct: invoice.billToAcct,
+        //         paymentDueDate: invoice.paymentDueDate,
+        //         amountDue: invoice.amountDue,
+        //         status: invoice.status
+        //     });
+        // });
     }
 
     ngOnInit(): void {
