@@ -34,15 +34,13 @@ export class EditInvoiceComponent implements OnInit {
 
     ngOnInit(): void {
         this.storeService.fetchLocations();
-        this.storeService.fetchInvoices();
         this.locations = this.storeService.locations;
-        this.invoices = this.storeService.invoices;
+        this.editInvoiceForm.patchValue(this.invoice);
     }
 
     onEdit() {
         this.storeService.editInvoice(this.invoice.id, this.editInvoiceForm.value).subscribe(() => {
             this.activeModal.close(this.invoice);
         });
-        console.log(this.invoice.jobID);
     }
 }

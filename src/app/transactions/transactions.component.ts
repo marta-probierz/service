@@ -21,7 +21,6 @@ import { EditInvoiceComponent } from '@app/transactions/modals/edit-invoice/edit
 export class TransactionsComponent implements OnInit {
     @Input() account: number;
     @ViewChild('d', { static: true }) d: Table;
-    // @ViewChild('editForm', { static: true }) editForm: EditInvoiceComponent;
 
     transactions: Transaction[] = [];
     cols: any[];
@@ -66,44 +65,6 @@ export class TransactionsComponent implements OnInit {
                this.ngOnInit();
            }
         });
-
-        // this.editInvoiceForm.setValue({
-        //     invoiceDate: this.invoice.invoiceDate,
-        //     invoice: this.invoice.invoice,
-        //     jobID: this.invoice.jobID,
-        //     location: this.invoice.location,
-        //     account: this.invoice.account,
-        //     billToAcct: this.invoice.billToAcct,
-        //     paymentDueDate: this.invoice.paymentDueDate,
-        //     amountDue: this.invoice.amountDue,
-        //     status: this.invoice.status
-        // });
-
-        // this.editForm.setValue({
-        //     invoiceDate: invoice.invoiceDate,
-        //     invoice: invoice.invoice,
-        //     jobID: invoice.jobID,
-        //     location: invoice.location,
-        //     account: invoice.account,
-        //     billToAcct: invoice.billToAcct,
-        //     paymentDueDate: invoice.paymentDueDate,
-        //     amountDue: invoice.amountDue,
-        //     status: invoice.status
-        // });
-
-        // editModalRef.result.then((invoice: Invoice) => {
-        //     this.editForm.patchValue({
-        //         invoiceDate: invoice.invoiceDate,
-        //         invoice: invoice.invoice,
-        //         jobID: invoice.jobID,
-        //         location: invoice.location,
-        //         account: invoice.account,
-        //         billToAcct: invoice.billToAcct,
-        //         paymentDueDate: invoice.paymentDueDate,
-        //         amountDue: invoice.amountDue,
-        //         status: invoice.status
-        //     });
-        // });
     }
 
     ngOnInit(): void {
