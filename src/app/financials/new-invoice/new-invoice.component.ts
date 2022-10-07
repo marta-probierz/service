@@ -10,18 +10,17 @@ import { StoreService } from '@app/services/store.service';
     templateUrl: './new-invoice.component.html',
 })
 export class NewInvoiceComponent implements OnInit {
-    newInvoiceForm = new FormGroup({
-        invoiceDate: new FormControl('', Validators.required),
-        invoice: new FormControl('', Validators.required),
-        jobID: new FormControl('', Validators.required),
-        location: new FormControl('', Validators.required),
-        account: new FormControl('', Validators.required),
-        billToAcct: new FormControl('', Validators.required),
-        paymentDueDate: new FormControl('', Validators.required),
-        amountDue: new FormControl('', Validators.required),
-        status: new FormControl('', Validators.required)
-    });
     locations: Observable<any>;
+    newInvoiceForm: FormGroup;
+    invoiceDate: FormControl;
+    invoice: FormControl;
+    jobID: FormControl;
+    location: FormControl;
+    account: FormControl;
+    billToAcct: FormControl;
+    paymentDueDate: FormControl;
+    amountDue: FormControl;
+    status: FormControl;
 
     constructor(private storeService: StoreService) {}
 
@@ -29,6 +28,18 @@ export class NewInvoiceComponent implements OnInit {
         this.storeService.fetchInvoices();
         this.storeService.fetchLocations();
         this.locations = this.storeService.locations;
+
+        this.newInvoiceForm = new FormGroup({
+            invoiceDate: new FormControl(this.invoiceDate, Validators.required),
+            invoice: new FormControl(this.invoice, [Validators.required, Validators.pattern(/^-?(0|[1-9]\d*)?$/)]),
+            jobID: new FormControl(this.jobID, [Validators.required, Validators.minLength(3)]),
+            location: new FormControl(this.location, Validators.required),
+            account: new FormControl(this.account, [Validators.required, Validators.minLength(3)]),
+            billToAcct: new FormControl(this.billToAcct, [Validators.required, Validators.pattern(/^-?(0|[1-9]\d*)?$/)]),
+            paymentDueDate: new FormControl(this.paymentDueDate, Validators.required),
+            amountDue: new FormControl(this.amountDue, [Validators.required, Validators.pattern(/^[0-9\.\,]+$/)]),
+            status: new FormControl(this.status, Validators.required),
+        });
     }
 
     onSubmit() {

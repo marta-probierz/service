@@ -518,7 +518,7 @@
       "account": "Shutterfly Transactional",
       "billToAcct": 16804770,
       "paymentDueDate": "2022-10-01",
-      "amountDue": 56.9,
+      "amountDue": "56.85",
       "status": "Paid",
       "id": 66
     }
