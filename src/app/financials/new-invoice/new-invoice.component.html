@@ -158,6 +158,8 @@
                                    placeholder="Enter Amount Due"
                                    [ngClass]="{'border-danger' : newInvoiceForm.controls.amountDue.invalid && (newInvoiceForm.controls.amountDue.dirty || newInvoiceForm.controls.amountDue.touched) }"
                             >
+                            <button (click)="increment()" type="button" class="increment">+</button>
+                            <button (click)="decrement()" type="button" class="decrement">-</button>
                             <div *ngIf="newInvoiceForm.controls.amountDue.dirty && (newInvoiceForm.controls.amountDue.dirty || newInvoiceForm.controls.amountDue.touched)"
                                  class="text-danger">
                                 <div *ngIf="newInvoiceForm.controls.amountDue.errors?.['required']">

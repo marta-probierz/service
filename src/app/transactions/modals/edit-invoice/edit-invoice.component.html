@@ -4,7 +4,7 @@
 
 <div class="modal-body">
     <div class="d-flex justify-content-center">
-        <form style="min-width: 600px" [formGroup]="editInvoiceForm">
+        <form style="min-width: 700px" [formGroup]="editInvoiceForm">
             <div class="row">
 
 
@@ -164,6 +164,9 @@
                            placeholder="Enter Amount Due"
                            [ngClass]="{'border-danger' : editInvoiceForm.controls.amountDue.invalid && (editInvoiceForm.controls.amountDue.dirty || editInvoiceForm.controls.amountDue.touched) }"
                     >
+                    <button (click)="increment()" type="button" class="increment">+</button>
+                    <button (click)="decrement()" type="button" class="decrement">-</button>
+
                     <div *ngIf="editInvoiceForm.controls.amountDue.dirty && (editInvoiceForm.controls.amountDue.dirty || editInvoiceForm.controls.amountDue.touched)"
                          class="text-danger">
                         <div *ngIf="editInvoiceForm.controls.amountDue.errors?.['required']">

@@ -10,6 +10,7 @@ import { Invoice } from '@app/transactions/Invoice';
 @Component({
     selector: 'app-edit-invoice',
     templateUrl: './edit-invoice.component.html',
+    styleUrls: ['./edit-invoice.component.scss']
 })
 
 export class EditInvoiceComponent implements OnInit {
@@ -26,18 +27,7 @@ export class EditInvoiceComponent implements OnInit {
     paymentDueDate: FormControl;
     amountDue: FormControl;
     status: FormControl;
-
-    // editInvoiceForm = new FormGroup({
-    //     invoiceDate: new FormControl(),
-    //     invoice: new FormControl(),
-    //     jobID: new FormControl(),
-    //     location: new FormControl(),
-    //     account: new FormControl(),
-    //     billToAcct: new FormControl(),
-    //     paymentDueDate: new FormControl(),
-    //     amountDue: new FormControl(),
-    //     status: new FormControl()
-    // });
+    newAmountDue: number;
 
     constructor(public activeModal: NgbActiveModal, private storeService: StoreService) { }
 
@@ -53,7 +43,7 @@ export class EditInvoiceComponent implements OnInit {
             account: new FormControl(this.account, [Validators.required, Validators.minLength(3)]),
             billToAcct: new FormControl(this.billToAcct, [Validators.required, Validators.pattern(/^-?(0|[1-9]\d*)?$/)]),
             paymentDueDate: new FormControl(this.paymentDueDate, Validators.required),
-            amountDue: new FormControl(this.amountDue, [Validators.required, Validators.pattern(/^[0-9\.\,]+$/)]),
+            amountDue: new FormControl(this.amountDue, [Validators.required, Validators.pattern(/^[0-9\.\,\-]+$/)]),
             status: new FormControl(this.status, Validators.required),
         });
 
@@ -64,5 +54,17 @@ export class EditInvoiceComponent implements OnInit {
         this.storeService.editInvoice(this.invoice.id, this.editInvoiceForm.value).subscribe(() => {
             this.activeModal.close(this.invoice);
         });
+    }
+
+    increment() {
+        this.editInvoiceForm.value.amountDue = Number(this.editInvoiceForm.value.amountDue);
+        this.editInvoiceForm.value.amountDue++;
+        this.editInvoiceForm.patchValue(this.editInvoiceForm.value);
+    }
+
+    decrement() {
+        this.editInvoiceForm.value.amountDue = Number(this.editInvoiceForm.value.amountDue);
+        this.editInvoiceForm.value.amountDue--;
+        this.editInvoiceForm.patchValue(this.editInvoiceForm.value);
     }
 }

@@ -1,0 +1,19 @@
+.increment, .decrement {
+  position: absolute;
+  right: 41px;
+  z-index: 2;
+  border: none;
+  top: 25px;
+  height: 37px;
+  cursor: pointer;
+  color: white;
+  background-color: #4F7577;
+  width: 25px;
+}
+
+.decrement {
+  right: 16.5px;
+  background-color: #8bafb0;
+  padding-bottom: 4px;
+  border-radius: 0 1px 1px 0;
+}
