@@ -15,6 +15,7 @@ import { CardComponent } from '@app/shared/card/card.component';
 import { LocationsModalComponent } from './locations-modal/locations-modal.component';
 import { ToastsComponent } from '@app/shared/toast/toast.component';
 
+
 @NgModule({
   imports: [CommonModule, FormsModule, ReactiveFormsModule, RouterModule, PbdsHeaderShadowModule, PbdsPageTitleModule, TableModule, HttpClientModule, NgbModule],
   declarations: [HeaderComponent, FooterComponent, WelcomeBannerComponent, CardComponent, LocationsModalComponent, ToastsComponent],

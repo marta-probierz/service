@@ -3,6 +3,7 @@ import { SortEvent } from 'primeng/api';
 import { NgbDateStruct, NgbDate, NgbCalendar, NgbDateParserFormatter } from '@ng-bootstrap/ng-bootstrap';
 import { FilterService } from 'primeng/api';
 import { Table } from 'primeng/table';
+import { Form } from '@angular/forms';
 
 import { Transaction } from '@app/transactions/Transaction';
 import { TransactionsService } from '@app/services/transactions.service';
@@ -10,6 +11,8 @@ import { LocationsModalComponent } from '@app/shared/locations-modal/locations-m
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Invoice } from '@app/transactions/Invoice';
 import { InvoicesService } from '@app/services/invoices.service';
+import { RemoveInvoiceComponent } from '@app/transactions/modals/remove-invoice/remove-invoice.component';
+import { EditInvoiceComponent } from '@app/transactions/modals/edit-invoice/edit-invoice.component';
 
 @Component({
     selector: 'app-transactions',
@@ -18,6 +21,7 @@ import { InvoicesService } from '@app/services/invoices.service';
 export class TransactionsComponent implements OnInit {
     @Input() account: number;
     @ViewChild('d', { static: true }) d: Table;
+
     transactions: Transaction[] = [];
     cols: any[];
     invoices: Invoice[] = [];
@@ -42,6 +46,27 @@ export class TransactionsComponent implements OnInit {
     openModal() {
         this.modalService.open(LocationsModalComponent, { size: 'lg' });
     }
+
+    openRemoveModal(invoice: Invoice) {
+        const removeModalRef = this.modalService.open(RemoveInvoiceComponent);
+        removeModalRef.componentInstance.invoice = invoice;
+        removeModalRef.result.then((invoice: Invoice) => {
+            if (invoice) {
+                this.ngOnInit();
+            }
+        });
+    }
+
+    openEditModal(invoice: Invoice, form: Form) {
+        const editModalRef = this.modalService.open(EditInvoiceComponent, { size: 'lg' });
+        editModalRef.componentInstance.invoice = invoice;
+        editModalRef.result.then((invoice: Invoice) => {
+           if (invoice) {
+               this.ngOnInit();
+           }
+        });
+    }
+
     ngOnInit(): void {
         this.transactionsService.getTransactions().subscribe((transactions: Transaction[]) => {
             this.transactions = transactions;

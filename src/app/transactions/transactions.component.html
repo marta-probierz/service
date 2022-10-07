@@ -284,28 +284,45 @@
                                         <i *ngIf="col.icon" (click)="openModal()" class="pbi-icon-outline pbi-alert-circle pr-1" aria-hidden="true" type="button"></i>
                                         <p-sortIcon pSortableColumn="col.header" [field]="col.field" class="pr-1"></p-sortIcon>
                                     </th>
+                                    <th>Edit / Remove</th>
                                 </tr>
                             </ng-template>
 
 
-                            <ng-template pTemplate="body" let-invoices let-columns="cols">
+                            <ng-template pTemplate="body" let-invoice let-columns="cols">
                                 <tr [pSelectableRow]="invoices">
                                     <td><p-tableCheckbox [value]="invoices" aria-label="Select row"></p-tableCheckbox></td>
-                                    <td>{{ invoices.invoiceDate | date }}</td>
-                                    <td><a [routerLink]="['/transactions']">{{ invoices.invoice }}</a></td>
-                                    <td>{{ invoices.jobID }}</td>
-                                    <td>{{ invoices.location }}</td>
-                                    <td>{{ invoices.account }}</td>
-                                    <td>{{ invoices.billToAcct }}</td>
-                                    <td>{{ invoices.paymentDueDate | date }}</td>
-                                    <td>{{ invoices.amountDue | currency }}</td>
+                                    <td>{{ invoice.invoiceDate | date }}</td>
+                                    <td><a [routerLink]="['/transactions']">{{ invoice.invoice }}</a></td>
+                                    <td style="max-width: 250px">{{ invoice.jobID }}</td>
+                                    <td>{{ invoice.location }}</td>
+                                    <td>{{ invoice.account }}</td>
+                                    <td>{{ invoice.billToAcct }}</td>
+                                    <td>{{ invoice.paymentDueDate | date }}</td>
+                                    <td>{{ invoice.amountDue | currency }}</td>
                                     <td style="min-width: 100px">
                                         <span class="pt-1 pb-1 pl-2 pr-2 text-white"
                                               style="border-radius: 16.5px"
-                                              [ngStyle]="{'background-color': invoices.status === 'Past Due' ? 'red' : (invoices.status === 'Paid' ? 'green' : 'orange') }"
+                                              [ngStyle]="{'background-color': invoice.status === 'Past Due' ? 'red' : (invoice.status === 'Paid' ? 'green' : 'orange') }"
                                         >
-                                            {{ invoices.status }}
+                                            {{ invoice.status }}
                                         </span>
+                                    </td>
+                                    <td style="min-width: 150px">
+                                        <button
+                                                (click)="openEditModal(invoice)"
+                                                class="pt-1 pb-1 pl-2 pr-2 text-white bg-info border-0"
+                                                style="border-radius: 16.5px"
+                                        >
+                                            Edit
+                                        </button>
+                                        <button
+                                                (click)="openRemoveModal(invoice)"
+                                                class="pt-1 pb-1 pl-2 pr-2 ml-3 text-white bg-primary border-0"
+                                                style="border-radius: 16.5px"
+                                        >
+                                            Remove
+                                        </button>
                                     </td>
                                 </tr>
                             </ng-template>
