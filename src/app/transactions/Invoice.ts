@@ -7,6 +7,6 @@ export interface Invoice {
     account: string;
     billToAcct: number;
     paymentDueDate: string;
-    amountDue: number;
+    amountDue: string;
     status: string;
 }

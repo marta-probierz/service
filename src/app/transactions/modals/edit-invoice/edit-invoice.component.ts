@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
-import {FormGroup, FormControl, Validators} from '@angular/forms';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Observable } from 'rxjs';
+import { CurrencyPipe } from '@angular/common';
 
 import { StoreService } from '@app/services/store.service';
 import { Invoice } from '@app/transactions/Invoice';
@@ -29,7 +30,7 @@ export class EditInvoiceComponent implements OnInit {
     status: FormControl;
     newAmountDue: number;
 
-    constructor(public activeModal: NgbActiveModal, private storeService: StoreService) { }
+    constructor(public activeModal: NgbActiveModal, private storeService: StoreService, private currencyPipe: CurrencyPipe) { }
 
     ngOnInit(): void {
         this.storeService.fetchLocations();
@@ -43,11 +44,20 @@ export class EditInvoiceComponent implements OnInit {
             account: new FormControl(this.account, [Validators.required, Validators.minLength(3)]),
             billToAcct: new FormControl(this.billToAcct, [Validators.required, Validators.pattern(/^-?(0|[1-9]\d*)?$/)]),
             paymentDueDate: new FormControl(this.paymentDueDate, Validators.required),
-            amountDue: new FormControl(this.amountDue, [Validators.required, Validators.pattern(/^[0-9\.\,\-]+$/)]),
+            amountDue: new FormControl(this.amountDue, [Validators.required, Validators.pattern(/^[0-9\.\,\-\$]+$/)]),
             status: new FormControl(this.status, Validators.required),
         });
 
         this.editInvoiceForm.patchValue(this.invoice);
+
+
+        this.editInvoiceForm.valueChanges.subscribe(form => {
+            if (form.amountDue) {
+                this.editInvoiceForm.patchValue({
+                    amountDue: this.currencyPipe.transform(form.amountDue.replace(/\D/g, '').replace(/^0+/, ''), 'USD', '', '1.0-0')
+                }, {emitEvent: false});
+            }
+        });
     }
 
     onEdit() {
