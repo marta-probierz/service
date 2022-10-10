@@ -64,7 +64,7 @@ export class EditInvoiceComponent implements OnInit {
 
     onEdit() {
         if (this.editInvoiceForm.value.amountDue) {
-            this.editInvoiceForm.value.amountDue = this.editInvoiceForm.value.amountDue.slice(1).replace(/,/g, '');
+            this.editInvoiceForm.value.amountDue = parseInt(this.editInvoiceForm.value.amountDue.slice(1).replace(/,/g, ''), 10);
             this.storeService.editInvoice(this.invoice.id, this.editInvoiceForm.value).subscribe(() => {
                 this.activeModal.close(this.invoice);
             });

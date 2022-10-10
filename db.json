@@ -254,7 +254,7 @@
       "account": "Shutterfly Business Solutions",
       "billToAcct": 16804770,
       "paymentDueDate": "2022-11-06",
-      "amountDue": "44",
+      "amountDue": 45,
       "status": "Unpaid",
       "id": 44
     },
@@ -266,7 +266,7 @@
       "account": "Shutterfly Business Solutions",
       "billToAcct": 16804770,
       "paymentDueDate": "2022-11-06",
-      "amountDue": "898.63",
+      "amountDue": 434,
       "status": "Unpaid",
       "id": 45
     },
