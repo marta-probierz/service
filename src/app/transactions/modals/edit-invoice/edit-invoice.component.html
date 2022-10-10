@@ -162,14 +162,9 @@
                            class="form-control"
                            id="amountDue"
                            placeholder="Enter Amount Due"
-                           [value]="editInvoiceForm.get('amountDue').value | currency"
+                           [value]="amountDue.value"
                            [ngClass]="{'border-danger' : editInvoiceForm.controls.amountDue.invalid && (editInvoiceForm.controls.amountDue.dirty || editInvoiceForm.controls.amountDue.touched) }"
                     >
-
-<!--                    [value]="editInvoiceForm.get('amountDue').value | number: '1.0-0'"-->
-<!--                    [value]="editInvoiceForm.get('amountDue').value | currency-->
-<!--                    [value]="editInvoiceForm.get('amountDue').value | currency:'USD':'symbol':'4.2-2' "-->
-
                     <button (click)="increment()" type="button" class="increment">+</button>
                     <button (click)="decrement()" type="button" class="decrement">-</button>
 

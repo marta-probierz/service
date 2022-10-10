@@ -254,7 +254,7 @@
       "account": "Shutterfly Business Solutions",
       "billToAcct": 16804770,
       "paymentDueDate": "2022-11-06",
-      "amountDue": "50",
+      "amountDue": "44",
       "status": "Unpaid",
       "id": 44
     },
@@ -266,7 +266,7 @@
       "account": "Shutterfly Business Solutions",
       "billToAcct": 16804770,
       "paymentDueDate": "2022-11-06",
-      "amountDue": 898.63,
+      "amountDue": "898.63",
       "status": "Unpaid",
       "id": 45
     },
@@ -278,7 +278,7 @@
       "account": "Shutterfly Lifetouch",
       "billToAcct": 16804770,
       "paymentDueDate": "2022-11-04",
-      "amountDue": 108.38,
+      "amountDue": "108.38",
       "status": "Past Due",
       "id": 46
     },
@@ -290,7 +290,7 @@
       "account": "Shutterfly Transactional",
       "billToAcct": 16804770,
       "paymentDueDate": "2022-11-22",
-      "amountDue": 67.03,
+      "amountDue": "476",
       "status": "Paid",
       "id": 47
     },
@@ -302,7 +302,7 @@
       "account": "Shutterfly Transactional",
       "billToAcct": 16804770,
       "paymentDueDate": "2022-11-12",
-      "amountDue": 90.91,
+      "amountDue": "90.91",
       "status": "Unpaid",
       "id": 48
     },
@@ -314,7 +314,7 @@
       "account": "Shutterfly Business Solutions",
       "billToAcct": 16804770,
       "paymentDueDate": "2022-10-10",
-      "amountDue": 88.15,
+      "amountDue": "88.15",
       "status": "Paid",
       "id": 49
     },
@@ -326,7 +326,7 @@
       "account": "Shutterfly Business Solutions",
       "billToAcct": 16804770,
       "paymentDueDate": "2022-11-01",
-      "amountDue": 121.48,
+      "amountDue": "121.48",
       "status": "Past Due",
       "id": 50
     },
@@ -338,7 +338,7 @@
       "account": "Shutterfly Business Solutions",
       "billToAcct": 16804770,
       "paymentDueDate": "2022-11-03",
-      "amountDue": 102.93,
+      "amountDue": "102.93",
       "status": "Unpaid",
       "id": 51
     },
@@ -350,7 +350,7 @@
       "account": "Shutterfly Business Solutions",
       "billToAcct": 16804770,
       "paymentDueDate": "2022-10-15",
-      "amountDue": 44.01,
+      "amountDue": "65",
       "status": "Paid",
       "id": 52
     },
@@ -362,7 +362,7 @@
       "account": "Shutterfly Lifetouch",
       "billToAcct": 16804770,
       "paymentDueDate": "2022-11-02",
-      "amountDue": 57.65,
+      "amountDue": "57.65",
       "status": "Paid",
       "id": 53
     },
@@ -386,7 +386,7 @@
       "account": "Shuterfly Business Solutions",
       "billToAcct": 16804770,
       "paymentDueDate": "2022-10-17",
-      "amountDue": 123.9,
+      "amountDue": "123.9",
       "status": "Unpaid",
       "id": 55
     },
@@ -398,7 +398,7 @@
       "account": "Shutterfly Transactional",
       "billToAcct": 16804770,
       "paymentDueDate": "2022-10-09",
-      "amountDue": 43.87,
+      "amountDue": "43.87",
       "status": "Paid",
       "id": 56
     },
@@ -410,7 +410,7 @@
       "account": "Shutterfly Transactional",
       "billToAcct": 16804770,
       "paymentDueDate": "2022-11-04",
-      "amountDue": 435.87,
+      "amountDue": "435.87",
       "status": "Past Due",
       "id": 57
     },
@@ -422,7 +422,7 @@
       "account": "Shutterfly Transactional",
       "billToAcct": 16804770,
       "paymentDueDate": "2022-11-04",
-      "amountDue": 55,
+      "amountDue": "55",
       "status": "Unpaid",
       "id": 58
     },
@@ -434,7 +434,7 @@
       "account": "Shutterfly Transactional",
       "billToAcct": 16804770,
       "paymentDueDate": "2022-12-01",
-      "amountDue": 57.9,
+      "amountDue": "57.9",
       "status": "Unpaid",
       "id": 59
     },
@@ -446,7 +446,7 @@
       "account": "Shutterfly Transactional",
       "billToAcct": 16804770,
       "paymentDueDate": "2022-09-07",
-      "amountDue": 23.12,
+      "amountDue": "23.12",
       "status": "Paid",
       "id": 60
     },
@@ -458,7 +458,7 @@
       "account": "Shutterfly Transactional",
       "billToAcct": 16804770,
       "paymentDueDate": "2022-10-06",
-      "amountDue": 54.98,
+      "amountDue": "54.98",
       "status": "Paid",
       "id": 61
     },
@@ -470,7 +470,7 @@
       "account": "Shutterfly Business Solutions",
       "billToAcct": 16804770,
       "paymentDueDate": "2022-10-14",
-      "amountDue": 546.09,
+      "amountDue": "546.09",
       "status": "Unpaid",
       "id": 62
     },
@@ -482,7 +482,7 @@
       "account": "Shutterfly Business Solutions",
       "billToAcct": 16804770,
       "paymentDueDate": "2022-10-05",
-      "amountDue": 234,
+      "amountDue": "234",
       "status": "Paid",
       "id": 63
     },
@@ -494,7 +494,7 @@
       "account": "Shutterfly Lifetouch",
       "billToAcct": 16804770,
       "paymentDueDate": "2022-09-20",
-      "amountDue": 23.98,
+      "amountDue": "23.98",
       "status": "Paid",
       "id": 64
     },
@@ -506,7 +506,7 @@
       "account": "Shutterfly Transactional",
       "billToAcct": 16804770,
       "paymentDueDate": "2022-10-08",
-      "amountDue": 65.7,
+      "amountDue": "65.7",
       "status": "Paid",
       "id": 65
     },

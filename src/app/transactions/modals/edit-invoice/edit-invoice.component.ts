@@ -28,13 +28,16 @@ export class EditInvoiceComponent implements OnInit {
     paymentDueDate: FormControl;
     amountDue: FormControl;
     status: FormControl;
-    newAmountDue: number;
 
     constructor(public activeModal: NgbActiveModal, private storeService: StoreService, private currencyPipe: CurrencyPipe) { }
 
     ngOnInit(): void {
         this.storeService.fetchLocations();
         this.locations = this.storeService.locations;
+        this.amountDue = new FormControl(this.formatCurrency(this.invoice.amountDue), [
+            Validators.required,
+            Validators.pattern(/^[0-9\.\,\-\$]+$/),
+        ]);
 
         this.editInvoiceForm = new FormGroup({
             invoiceDate: new FormControl(this.invoiceDate, Validators.required),
@@ -44,37 +47,37 @@ export class EditInvoiceComponent implements OnInit {
             account: new FormControl(this.account, [Validators.required, Validators.minLength(3)]),
             billToAcct: new FormControl(this.billToAcct, [Validators.required, Validators.pattern(/^-?(0|[1-9]\d*)?$/)]),
             paymentDueDate: new FormControl(this.paymentDueDate, Validators.required),
-            amountDue: new FormControl(this.amountDue, [Validators.required, Validators.pattern(/^[0-9\.\,\-\$]+$/)]),
+            amountDue: this.amountDue,
             status: new FormControl(this.status, Validators.required),
         });
 
-        this.editInvoiceForm.patchValue(this.invoice);
-
-
-        this.editInvoiceForm.valueChanges.subscribe(form => {
-            if (form.amountDue) {
-                this.editInvoiceForm.patchValue({
-                    amountDue: this.currencyPipe.transform(form.amountDue.replace(/\D/g, '').replace(/^0+/, ''), 'USD', '', '1.0-0')
-                }, {emitEvent: false});
-            }
+        this.amountDue.valueChanges.subscribe((val) => {
+            this.amountDue.setValue(this.formatCurrency(val), { emitEvent: false });
         });
+
+        this.editInvoiceForm.patchValue(this.invoice);
+    }
+
+    formatCurrency(val: string) {
+        return this.currencyPipe.transform(val?.replace(/\D/g, '')?.replace(/^0+/, ''), 'USD', 'symbol', '1.0-0');
     }
 
     onEdit() {
-        this.storeService.editInvoice(this.invoice.id, this.editInvoiceForm.value).subscribe(() => {
-            this.activeModal.close(this.invoice);
-        });
+        if (this.editInvoiceForm.value.amountDue) {
+            this.editInvoiceForm.value.amountDue = this.editInvoiceForm.value.amountDue.slice(1).replace(/,/g, '');
+            this.storeService.editInvoice(this.invoice.id, this.editInvoiceForm.value).subscribe(() => {
+                this.activeModal.close(this.invoice);
+            });
+        }
     }
 
     increment() {
-        this.editInvoiceForm.value.amountDue = Number(this.editInvoiceForm.value.amountDue);
-        this.editInvoiceForm.value.amountDue++;
-        this.editInvoiceForm.patchValue(this.editInvoiceForm.value);
+        const value = Number(this.amountDue.value.replace(/[^0-9\.-]+/g, '')) + 1;
+        this.amountDue.setValue(value.toString());
     }
 
     decrement() {
-        this.editInvoiceForm.value.amountDue = Number(this.editInvoiceForm.value.amountDue);
-        this.editInvoiceForm.value.amountDue--;
-        this.editInvoiceForm.patchValue(this.editInvoiceForm.value);
+        const value = Number(this.amountDue.value.replace(/[^0-9\.-]+/g, '')) - 1;
+        this.amountDue.setValue(value.toString());
     }
 }
