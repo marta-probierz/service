@@ -34,7 +34,7 @@ export class EditInvoiceComponent implements OnInit {
     ngOnInit(): void {
         this.storeService.fetchLocations();
         this.locations = this.storeService.locations;
-        this.amountDue = new FormControl(this.formatCurrency(this.invoice.amountDue), [
+        this.amountDue = new FormControl(this.currencyPipe.transform(this.invoice.amountDue.toString(), 'USD', 'symbol', '1.2-2'), [
             Validators.required,
             Validators.pattern(/^[0-9\.\,\-\$]+$/),
         ]);
@@ -51,15 +51,11 @@ export class EditInvoiceComponent implements OnInit {
             status: new FormControl(this.status, Validators.required),
         });
 
-        this.amountDue.valueChanges.subscribe((val) => {
-            this.amountDue.setValue(this.formatCurrency(val), { emitEvent: false });
+        this.amountDue.valueChanges.subscribe((val: string) => {
+            this.amountDue.setValue(this.currencyPipe.transform(val.toString().replace(/\D/g, '').replace(/^0+/, ''), 'USD', 'symbol', '1.0-0'), { emitEvent: false });
         });
 
         this.editInvoiceForm.patchValue(this.invoice);
-    }
-
-    formatCurrency(val: string) {
-        return this.currencyPipe.transform(val?.replace(/\D/g, '')?.replace(/^0+/, ''), 'USD', 'symbol', '1.0-0');
     }
 
     onEdit() {
