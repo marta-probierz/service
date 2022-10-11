@@ -22,6 +22,7 @@ export class TransactionsComponent implements OnInit {
     @Input() account: number;
     @ViewChild('d', { static: true }) d: Table;
 
+    active: number;
     transactions: Transaction[] = [];
     cols: any[];
     invoices: Invoice[] = [];

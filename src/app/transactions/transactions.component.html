@@ -1,3 +1,4 @@
+<app-toasts class="mt-7" aria-live="polite" aria-atomic="true"></app-toasts>
 <pbds-page-title ttl="Transactions and Invoices" layout="container-fluid"></pbds-page-title>
 <div class="container-fluid">
     <div class="row">
@@ -13,11 +14,12 @@
                 </div>
             </div>
 
-            <ul ngbNav #nav="ngbNav" class="nav-tabs pt-2">
+
+            <ul ngbNav #nav="ngbNav" class="nav-tabs pt-2" [(activeId)]="active">
 
                 <!-- Pending Transactions -->
                 <li [ngbNavItem]="1">
-                    <a ngbNavLink>Pending Transactions</a>
+                    <a ngbNavLink> Pending Transactions </a>
                     <ng-template ngbNavContent>
 
                         <h5>Expected Invoice Date</h5>
@@ -145,7 +147,7 @@
 
                 <!-- Invoices -->
                 <li [ngbNavItem]="2">
-                    <a ngbNavLink>Invoices</a>
+                    <a ngbNavLink> Invoices </a>
                     <ng-template ngbNavContent>
                         <h5>
                             Total Amount Due

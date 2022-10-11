@@ -1,4 +1,4 @@
-import {Component, TemplateRef} from '@angular/core';
+import { Component, TemplateRef } from '@angular/core';
 
 import { ToastService } from '@app/services/toast.service';
 
@@ -9,9 +9,10 @@ import { ToastService } from '@app/services/toast.service';
     <ngb-toast
       *ngFor="let toast of toastService.toasts"
       [class]="toast.classname"
-      [autohide]="true"
+      [autohide]="false"
       [delay]="toast.delay || 5000"
       (hidden)="toastService.remove(toast)"
+      header="Hello!"
     >
       <ng-template [ngIf]="isTemplate(toast)" [ngIfElse]="text">
         <ng-template [ngTemplateOutlet]="toast.textOrTpl"></ng-template>
