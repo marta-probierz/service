@@ -74,7 +74,7 @@ export class TransactionsComponent implements OnInit {
         });
         this.invoicesService.getInvoices().subscribe((invoices: Invoice[]) => {
            this.invoices = invoices;
-            this.totalAmountDue = this.invoices.map(item => item.amountDue).reduce((acc, amount) => acc + amount, 0);
+            this.totalAmountDue = this.invoices.map(item => item.amountDue).reduce((acc, amount) => +acc + +amount, 0);
             this.statuses = [...new Set(this.invoices.map(i => i.status))];
             this.locations = [...new Set(this.invoices.map(i => i.location))];
         });

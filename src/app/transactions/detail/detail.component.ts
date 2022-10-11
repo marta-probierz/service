@@ -42,10 +42,10 @@ export class DetailComponent implements OnInit {
   ngOnInit() {
     this.transactionsService.getTransactions().subscribe((transactions: Transaction[]) => {
       this.transactionsDetail = transactions.find((item: Transaction) => item.id === parseInt(this.id, 10))?.detail;
-      this.totalFee = this.transactionsDetail.map(item => item.fee).reduce((acc, amount) => acc + amount, 0);
-      this.totalPostage = this.transactionsDetail.map(item => item.postage).reduce((acc, amount) => acc + amount, 0);
-      this.totalAdjFee = this.transactionsDetail.map(item => item.adjFee).reduce((acc, amount) => acc + amount, 0);
-      this.totalAdjPostage = this.transactionsDetail.map(item => item.adjPostage).reduce((acc, amount) => acc + amount, 0);
+      this.totalFee = this.transactionsDetail.map(item => item.fee).reduce((acc, amount) => +acc + +amount, 0);
+      this.totalPostage = this.transactionsDetail.map(item => item.postage).reduce((acc, amount) => +acc + +amount, 0);
+      this.totalAdjFee = this.transactionsDetail.map(item => item.adjFee).reduce((acc, amount) => +acc + +amount, 0);
+      this.totalAdjPostage = this.transactionsDetail.map(item => item.adjPostage).reduce((acc, amount) => +acc + +amount, 0);
       this.total = this.totalFee + this.totalPostage + this.totalAdjFee + this.totalAdjPostage;
     });
 

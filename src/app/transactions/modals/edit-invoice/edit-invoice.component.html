@@ -4,8 +4,10 @@
 
 <div class="modal-body">
     <div class="d-flex justify-content-center">
-        <form class="w-50" [formGroup]="editInvoiceForm">
+        <form style="min-width: 700px" [formGroup]="editInvoiceForm">
             <div class="row">
+
+
                 <div class="col form-group">
                     <label for="invoiceDate">Invoice Date</label>
                     <input
@@ -14,48 +16,177 @@
                             id="invoiceDate"
                             aria-describedby="invoiceDate"
                             placeholder="Enter invoice date"
-                            type="date">
+                            type="date"
+                            [ngClass]="{'border-danger' : editInvoiceForm.controls.invoiceDate.invalid && (editInvoiceForm.controls.invoiceDate.dirty || editInvoiceForm.controls.invoiceDate.touched) }"
+                    >
+                    <div *ngIf="editInvoiceForm.controls.invoiceDate.dirty && (editInvoiceForm.controls.invoiceDate.dirty || editInvoiceForm.controls.invoiceDate.touched)"
+                         class="text-danger">
+                        <div *ngIf="editInvoiceForm.controls.invoiceDate.errors?.['required']">
+                            Invoice Date is required
+                        </div>
+                    </div>
                 </div>
+
+
                 <div class="col form-group">
                     <label for="invoice">Invoice</label>
-                    <input formControlName="invoice" type="number" class="form-control" id="invoice" placeholder="Enter Invoice">
+                    <input formControlName="invoice"
+                           type="text"
+                           class="form-control"
+                           id="invoice"
+                           placeholder="Enter Invoice"
+                           [ngClass]="{'border-danger' : editInvoiceForm.controls.invoice.invalid && (editInvoiceForm.controls.invoice.dirty || editInvoiceForm.controls.invoice.touched) }"
+                    >
+                    <div *ngIf="editInvoiceForm.controls.invoice.dirty && (editInvoiceForm.controls.invoice.dirty || editInvoiceForm.controls.invoice.touched)"
+                         class="text-danger">
+                        <div *ngIf="editInvoiceForm.controls.invoice.errors?.['required']">
+                            Invoice is required
+                        </div>
+                        <div *ngIf="editInvoiceForm.controls.invoice.errors?.['pattern']">
+                            The invoice must contain only numbers
+                        </div>
+                    </div>
                 </div>
             </div>
+
+
             <div class="form-group">
                 <label for="jobID">Job ID</label>
-                <input formControlName="jobID" type="text" class="form-control" id="jobID" placeholder="Enter Job ID">
+                <input formControlName="jobID"
+                       type="text"
+                       class="form-control"
+                       id="jobID"
+                       placeholder="Enter Job ID"
+                       [ngClass]="{'border-danger' : editInvoiceForm.controls.jobID.invalid && (editInvoiceForm.controls.jobID.dirty || editInvoiceForm.controls.jobID.touched) }"
+                >
+                <div *ngIf="editInvoiceForm.controls.jobID.dirty && (editInvoiceForm.controls.jobID.dirty || editInvoiceForm.controls.jobID.touched)"
+                     class="text-danger">
+                    <div *ngIf="editInvoiceForm.controls.jobID.errors?.['required']">
+                        Job ID is required
+                    </div>
+                    <div *ngIf="editInvoiceForm.controls.jobID.errors?.['minlength']">
+                        The Job ID must contain at least 3 characters
+                    </div>
+                </div>
             </div>
+
+
             <div class="form-group">
                 <label for="status">Location</label>
-                <select formControlName="location" class="form-control" id="location">
+                <select formControlName="location"
+                        class="form-control"
+                        id="location"
+                        [ngClass]="{'border-danger' : editInvoiceForm.controls.location.invalid && (editInvoiceForm.controls.location.dirty || editInvoiceForm.controls.location.touched) }"
+                >
                     <option value="" disabled selected hidden> Select Location </option>
                     <option *ngFor="let location of locations | async">
                         {{ location.acronym }}
                     </option>
                 </select>
+                <div *ngIf="editInvoiceForm.controls.location.dirty && (editInvoiceForm.controls.location.dirty || editInvoiceForm.controls.location.touched)"
+                     class="text-danger">
+                    <div *ngIf="editInvoiceForm.controls.location.errors?.['required']">
+                        Location is required
+                    </div>
+                </div>
             </div>
+
+
             <div class="form-group">
                 <label for="account">Account</label>
-                <input formControlName="account" type="text" class="form-control" id="account" placeholder="Enter Account">
+                <input formControlName="account"
+                       type="text"
+                       class="form-control"
+                       id="account"
+                       placeholder="Enter Account"
+                       [ngClass]="{'border-danger' : editInvoiceForm.controls.account.invalid && (editInvoiceForm.controls.account.dirty || editInvoiceForm.controls.account.touched) }"
+                >
+                <div *ngIf="editInvoiceForm.controls.account.dirty && (editInvoiceForm.controls.account.dirty || editInvoiceForm.controls.account.touched)"
+                     class="text-danger">
+                    <div *ngIf="editInvoiceForm.controls.account.errors?.['required']">
+                        Account is required
+                    </div>
+                    <div *ngIf="editInvoiceForm.controls.account.errors?.['minlength']">
+                        The account must contain at least 3 characters
+                    </div>
+                </div>
             </div>
+
+
             <div class="row">
                 <div class="col form-group">
                     <label for="billToAcct">Bill To Acct</label>
-                    <input formControlName="billToAcct" type="number" class="form-control" id="billToAcct" placeholder="Enter Bill To Acct">
+                    <input formControlName="billToAcct"
+                           type="text"
+                           class="form-control"
+                           id="billToAcct"
+                           placeholder="Enter Bill To Acct"
+                           [ngClass]="{'border-danger' : editInvoiceForm.controls.billToAcct.invalid && (editInvoiceForm.controls.billToAcct.dirty || editInvoiceForm.controls.billToAcct.touched) }"
+                    >
+                    <div *ngIf="editInvoiceForm.controls.billToAcct.dirty && (editInvoiceForm.controls.billToAcct.dirty || editInvoiceForm.controls.billToAcct.touched)"
+                         class="text-danger">
+                        <div *ngIf="editInvoiceForm.controls.billToAcct.errors?.['required']">
+                            Bill To Acct is required
+                        </div>
+                        <div *ngIf="editInvoiceForm.controls.billToAcct.errors?.['pattern']">
+                            The Bill To Acct must contain only numbers
+                        </div>
+                    </div>
                 </div>
+
+
                 <div class="col form-group">
                     <label for="paymentDueDate">Payment Due Date</label>
-                    <input formControlName="paymentDueDate" type="date" class="form-control" id="paymentDueDate" placeholder="Enter Payment Due Date">
+                    <input formControlName="paymentDueDate"
+                           type="date"
+                           class="form-control"
+                           id="paymentDueDate"
+                           placeholder="Enter Payment Due Date"
+                           [ngClass]="{'border-danger' : editInvoiceForm.controls.paymentDueDate.invalid && (editInvoiceForm.controls.paymentDueDate.dirty || editInvoiceForm.controls.paymentDueDate.touched) }"
+                    >
+                    <div *ngIf="editInvoiceForm.controls.paymentDueDate.dirty && (editInvoiceForm.controls.paymentDueDate.dirty || editInvoiceForm.controls.paymentDueDate.touched)"
+                         class="text-danger">
+                        <div *ngIf="editInvoiceForm.controls.paymentDueDate.errors?.['required']">
+                            Payment Due Date is required
+                        </div>
+                    </div>
                 </div>
             </div>
+
+
             <div class="row">
                 <div class="col form-group">
                     <label for="amountDue">Amount Due</label>
-                    <input formControlName="amountDue" type="number" class="form-control" id="amountDue" placeholder="Enter Amount Due">
+                    <input formControlName="amountDue"
+                           type="text"
+                           class="form-control"
+                           id="amountDue"
+                           placeholder="Enter Amount Due"
+                           [value]="amountDue.value"
+                           [ngClass]="{'border-danger' : editInvoiceForm.controls.amountDue.invalid && (editInvoiceForm.controls.amountDue.dirty || editInvoiceForm.controls.amountDue.touched) }"
+                    >
+                    <button (click)="increment()" type="button" class="increment">+</button>
+                    <button (click)="decrement()" type="button" class="decrement">-</button>
+
+                    <div *ngIf="editInvoiceForm.controls.amountDue.dirty && (editInvoiceForm.controls.amountDue.dirty || editInvoiceForm.controls.amountDue.touched)"
+                         class="text-danger">
+                        <div *ngIf="editInvoiceForm.controls.amountDue.errors?.['required']">
+                            Amount Due is required
+                        </div>
+                        <div *ngIf="editInvoiceForm.controls.amountDue.errors?.['pattern']">
+                            The Amount Due must contain only numbers
+                        </div>
+                    </div>
                 </div>
+
+
                 <div class="col form-group">
                     <label for="status">Status</label>
-                    <select formControlName="status" class="form-control" id="status">
+                    <select formControlName="status"
+                            class="form-control"
+                            id="status"
+                            [ngClass]="{'border-danger' : editInvoiceForm.controls.status.invalid && (editInvoiceForm.controls.status.dirty || editInvoiceForm.controls.status.touched) }"
+                    >
                         <option value="" disabled selected hidden> Select Status </option>
                         <option>Unpaid</option>
                         <option>Past Due</option>
@@ -68,6 +199,6 @@
 </div>
 
 <div class="modal-footer d-flex justify-content-around p-3">
-    <button type="button" class="btn btn-primary" type="submit" (click)="onEdit()">Submit</button>
+    <button type="button" [disabled]="!editInvoiceForm.valid" class="btn btn-primary" type="submit" (click)="onEdit()">Submit</button>
     <button type="button" class="btn btn-secondary" (click)="activeModal.close('Close click')">Canel</button>
 </div>
