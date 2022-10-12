@@ -5,6 +5,7 @@ import { HeaderComponent } from '@app/shared/header/header.component';
 import { TransactionsComponent } from './transactions.component';
 import { DetailComponent} from '@app/transactions/detail/detail.component';
 
+
 const routes: Routes = [
     {
         path: '',

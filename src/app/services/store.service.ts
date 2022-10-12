@@ -8,6 +8,7 @@ import { Invoice } from '@app/transactions/Invoice';
 import { Location } from '@app/shared/locations-modal/Location';
 import { ToastService } from '@app/services/toast.service';
 
+
 @Injectable({
     providedIn: 'root'
 })
@@ -56,11 +57,9 @@ export class StoreService {
         this.http.post(this.invoicesUrl, data, { headers: head, observe: 'response' })
             .subscribe(response => {
                 if (response.status === 201) {
-                    this.showSuccess();
-                    setTimeout(() => {
-                        this.router.navigate(['./transactions']);
-                        this.toastService.clear();
-                    }, 1500);
+                    this.router.navigate(['./transactions'], { fragment: 'invoices' }).then(() => {
+                        this.showSuccess();
+                    });
                 } else {
                     this.showDanger();
                 }
