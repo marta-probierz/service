@@ -1,6 +1,6 @@
 import { Component, OnInit, Input, ViewChild } from '@angular/core';
 import { SortEvent } from 'primeng/api';
-import { NgbDateStruct, NgbDate, NgbCalendar, NgbDateParserFormatter } from '@ng-bootstrap/ng-bootstrap';
+import {NgbDateStruct, NgbDate, NgbCalendar, NgbDateParserFormatter, NgbNav} from '@ng-bootstrap/ng-bootstrap';
 import { FilterService } from 'primeng/api';
 import { Table } from 'primeng/table';
 import { Form } from '@angular/forms';
@@ -13,6 +13,7 @@ import { Invoice } from '@app/transactions/Invoice';
 import { InvoicesService } from '@app/services/invoices.service';
 import { RemoveInvoiceComponent } from '@app/transactions/modals/remove-invoice/remove-invoice.component';
 import { EditInvoiceComponent } from '@app/transactions/modals/edit-invoice/edit-invoice.component';
+import {ActivatedRoute} from '@angular/router';
 
 @Component({
     selector: 'app-transactions',
@@ -21,6 +22,7 @@ import { EditInvoiceComponent } from '@app/transactions/modals/edit-invoice/edit
 export class TransactionsComponent implements OnInit {
     @Input() account: number;
     @ViewChild('d', { static: true }) d: Table;
+    @ViewChild(NgbNav, {static: true}) ngbNav: NgbNav;
 
     active: number;
     transactions: Transaction[] = [];
@@ -39,7 +41,13 @@ export class TransactionsComponent implements OnInit {
     statuses: string[];
     locations: string[];
 
-    constructor(private transactionsService: TransactionsService, private modalService: NgbModal, private invoicesService: InvoicesService, private filterService: FilterService, private calendar: NgbCalendar, public formatter: NgbDateParserFormatter) {
+    links = [
+        { title: 'Pending Transactions', fragment: 'pending-transactions' },
+        { title: 'Invoices', fragment: 'invoices' },
+        { title: 'Invoice Summaries by Date', fragment: 'invoice-summaries-by-date' }
+    ];
+
+    constructor(public route: ActivatedRoute, private transactionsService: TransactionsService, private modalService: NgbModal, private invoicesService: InvoicesService, private filterService: FilterService, private calendar: NgbCalendar, public formatter: NgbDateParserFormatter) {
         this.fromDate = calendar.getToday();
         this.toDate = calendar.getNext(calendar.getToday(), 'd', 10);
     }

@@ -57,7 +57,7 @@ export class StoreService {
         this.http.post(this.invoicesUrl, data, { headers: head, observe: 'response' })
             .subscribe(response => {
                 if (response.status === 201) {
-                    this.router.navigate(['./transactions']).then(() => {
+                    this.router.navigateByUrl('/transactions#invoices').then(() => {
                         this.showSuccess();
                     });
                 } else {
