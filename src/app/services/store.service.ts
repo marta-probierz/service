@@ -1,4 +1,4 @@
-import { Injectable, TemplateRef } from '@angular/core';
+import { EventEmitter, Injectable, Output, TemplateRef } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { shareReplay } from 'rxjs/operators';
@@ -7,6 +7,7 @@ import { Router } from '@angular/router';
 import { Invoice } from '@app/transactions/Invoice';
 import { Location } from '@app/shared/locations-modal/Location';
 import { ToastService } from '@app/services/toast.service';
+import { NgbNav } from '@ng-bootstrap/ng-bootstrap';
 
 
 @Injectable({
@@ -14,6 +15,7 @@ import { ToastService } from '@app/services/toast.service';
 })
 
 export class StoreService {
+    // @Output() changeActive = new EventEmitter<NgbNav>();
     toasts: any[] = [];
 
     private invoicesUrl = 'http://localhost:5000/invoices';
@@ -57,7 +59,8 @@ export class StoreService {
         this.http.post(this.invoicesUrl, data, { headers: head, observe: 'response' })
             .subscribe(response => {
                 if (response.status === 201) {
-                    this.router.navigateByUrl('/transactions#invoices').then(() => {
+                    // this.router.navigateByUrl('/transactions#invoices').then(() => {
+                    this.router.navigate(['./transactions']).then(() => {
                         this.showSuccess();
                     });
                 } else {

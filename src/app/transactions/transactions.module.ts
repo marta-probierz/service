@@ -11,10 +11,13 @@ import { TransactionsRoutingModule } from './transactions-routing.module';
 import { DetailComponent } from './detail/detail.component';
 import { RemoveInvoiceComponent } from '@app/transactions/modals/remove-invoice/remove-invoice.component';
 import { EditInvoiceComponent } from '@app/transactions/modals/edit-invoice/edit-invoice.component';
+import { InvoicesComponent } from './invoices/invoices.component';
+import { PendingTransactionsComponent } from './pending-transactions/pending-transactions.component';
+import { InvoiceSummariesByDateComponent } from './invoice-summaries-by-date/invoice-summaries-by-date.component';
 
 @NgModule({
     imports: [TransactionsRoutingModule, SharedModule, NgbModule, TableModule, HttpClientModule, FormsModule, ReactiveFormsModule],
-    declarations: [TransactionsComponent, DetailComponent, RemoveInvoiceComponent, EditInvoiceComponent],
+    declarations: [TransactionsComponent, DetailComponent, RemoveInvoiceComponent, EditInvoiceComponent, InvoicesComponent, PendingTransactionsComponent, InvoiceSummariesByDateComponent],
     exports: [],
     providers: [CurrencyPipe]
 })

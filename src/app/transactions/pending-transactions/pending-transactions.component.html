@@ -1,0 +1,119 @@
+<h5>Expected Invoice Date</h5>
+<h4>Jun 5, 2021</h4>
+<h5>Please review pending transactions and notify Pitney Bowes Presort Services of discrepancies by <b>Jun 7, 2021.</b></h5>
+
+<div class="toolbar">
+    <div class="toolbar-left">
+        <button class="btn btn-secondary" type="button">
+            <i class="pbi-icon-mini pbi-download" aria-hidden="true"></i> Download .csv
+        </button>
+    </div>
+
+    <div class="toolbar-right">
+        <div ngbDropdown class="d-inline-block">
+            <button type="button" class="btn btn-sm btn-outline-primary" id="locationsJobsMenu" ngbDropdownToggle>
+                <i class="pbi-icon-mini pbi-filter pr-1"></i> Locations and Jobs
+            </button>
+            <div ngbDropdownMenu aria-labelledby="locationsJobsMenu">
+                <a class="dropdown-item" (click)="filterLocationPen('', dt)">Show All</a>
+                <div class="dropdown-divider"></div>
+                <ng-container>
+                    <ng-container *ngFor="let location of locationsPen">
+                        <a class="dropdown-item" (click)="filterLocationPen(location, dt)">
+                            {{ location }}
+                        </a>
+                    </ng-container>
+                </ng-container>
+            </div>
+        </div>
+
+        <div class="toolbar-divider">&nbsp;</div>
+
+        <div class="input-group">
+            <div class="input-group-prepend">
+                <span class="input-group-text" id="basic-addon4">
+                    <i class="pbi-icon-mini pbi-search" aria-hidden="true"></i>
+                </span>
+            </div>
+            <input
+                    type="text"
+                    class="form-control"
+                    (input)="dt.filterGlobal($event.target.value, 'contains')"
+                    placeholder="Search"
+                    aria-label="Search"
+            />
+        </div>
+    </div>
+</div>
+
+<p-table #dt [value]="transactions"
+         [paginator]="true"
+         [rows]="25"
+         [showCurrentPageReport]="false"
+         [rowsPerPageOptions]="[25, 35, 45, 55]"
+         [globalFilterFields]="['jobID', 'location', 'account', 'billToAcct', 'pendingAmountDue', 'lastActivityDate']"
+         [filterDelay]="0"
+         (sortFunction)="customSort($event)"
+         [customSort]="true"
+         class="p-datatable-striped"
+>
+    <ng-template pTemplate="header">
+        <tr>
+            <th style="width: 2.25em" scope="col">
+                <p-tableHeaderCheckbox aria-label="Select all rows"></p-tableHeaderCheckbox>
+            </th>
+            <th *ngFor="let col of cols" [pSortableColumn]="col.field" scope="col">
+                {{ col.header }}
+                <i *ngIf="col.icon" (click)="openModal()" class="pbi-icon-outline pbi-alert-circle pr-1" aria-hidden="true" type="button"></i>
+                <p-sortIcon pSortableColumn="col.header" [field]="col.field" class="pr-1"></p-sortIcon>
+            </th>
+        </tr>
+    </ng-template>
+
+
+    <ng-template pTemplate="body" let-transaction let-columns="cols">
+        <tr [pSelectableRow]="transaction">
+            <td>
+                <p-tableCheckbox [value]="transaction" aria-label="Select row"></p-tableCheckbox>
+            </td>
+            <td *ngFor="let col of cols">
+                <ng-container *ngIf="col.field === 'jobID'; then routerLink"></ng-container>
+                <ng-container *ngIf="col.field === 'pendingAmountDue'; then currency;"></ng-container>
+                <ng-container *ngIf="col.field === 'lastActivityDate'; then date;"></ng-container>
+                <ng-container *ngIf="col.field !== 'pendingAmountDue' && col.field !== 'jobID' && col.field !== 'lastActivityDate'; then all"></ng-container>
+
+                <ng-template #routerLink>
+                    <a [routerLink]="['/transactions', transaction.id]">
+                        {{ transaction[col.field] }}
+                    </a>
+                </ng-template>
+
+                <ng-template #currency>
+                    {{ transaction[col.field] | currency }}
+                </ng-template>
+
+                <ng-template #date>
+                    {{ transaction[col.field] | date }}
+                </ng-template>
+
+                <ng-template #all>
+                    {{ transaction[col.field] }}
+                </ng-template>
+
+            </td>
+        </tr>
+    </ng-template>
+
+    <ng-template pTemplate="footer">
+        <tr>
+            <td colspan="7">Pending transactions are subject to change.</td>
+        </tr>
+    </ng-template>
+
+    <ng-template pTemplate="emptymessage">
+        <tr>
+            <td colspan="5">No result found</td>
+        </tr>
+    </ng-template>
+
+</p-table>
