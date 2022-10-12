@@ -521,42 +521,6 @@
       "amountDue": "56.85",
       "status": "Paid",
       "id": 66
-    },
-    {
-      "invoiceDate": "2022-10-14",
-      "invoice": "4343",
-      "jobID": "434",
-      "location": "AUS",
-      "account": "444",
-      "billToAcct": "4",
-      "paymentDueDate": "2022-10-09",
-      "amountDue": "4",
-      "status": "Paid",
-      "id": 67
-    },
-    {
-      "invoiceDate": "2022-10-16",
-      "invoice": "43",
-      "jobID": "444",
-      "location": "CED",
-      "account": "444",
-      "billToAcct": "4",
-      "paymentDueDate": "2022-10-16",
-      "amountDue": "4",
-      "status": "Paid",
-      "id": 68
-    },
-    {
-      "invoiceDate": "2022-10-22",
-      "invoice": "33",
-      "jobID": "333",
-      "location": "AUS",
-      "account": "333",
-      "billToAcct": "33",
-      "paymentDueDate": "2022-11-06",
-      "amountDue": "3",
-      "status": "Paid",
-      "id": 69
     }
   ]
 }

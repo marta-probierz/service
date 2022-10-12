@@ -1,6 +1,5 @@
-import { Component, OnInit, ViewChild, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { NgbNav } from '@ng-bootstrap/ng-bootstrap';
 
 
 @Component({
@@ -8,30 +7,37 @@ import { NgbNav } from '@ng-bootstrap/ng-bootstrap';
     templateUrl: './transactions.component.html',
 })
 export class TransactionsComponent implements OnInit {
-    @ViewChild(NgbNav, { static: true }) ngbNav: NgbNav;
     active: number;
-    fragment: string;
 
-    // @Output() newItemEvent = new EventEmitter<NgbNav>();
-    // // addNewItem(value: any) {
-    // //     this.newItemEvent.emit(value);
-    // // }
+    tabs = [
+        {
+            id: 1,
+            fragment: 'pending-transactions',
+        },
+        {
+            id: 2,
+            fragment: 'invoices',
+        },
+        {
+            id: 3,
+            fragment: 'invoice-summaries-by-date'
+        }
+    ];
 
-    // links = [
-    //     { title: 'Pending Transactions', fragment: 'pending-transactions' },
-    //     { title: 'Invoices', fragment: 'invoices' },
-    //     { title: 'Invoice Summaries by Date', fragment: 'invoice-summaries-by-date' }
-    // ];
+    constructor(public route: ActivatedRoute) {
+        this.route.fragment.subscribe((fragment: string) => {
+            if (fragment) {
+                this.active = this.tabs.find((tab: {fragment: string, id: number}) => tab.fragment === fragment).id;
+            }
+        });
+    }
 
-    constructor(public route: ActivatedRoute) { }
+    ngOnInit(): void { }
 
-    ngOnInit(): void {
-        // this.route.fragment.subscribe(fragment => {
-        //     console.log(`ActivatedRoute.fragment: ${fragment} (typeof: ${typeof fragment})`);
-        //     console.log(`window.location.hash: ${window.location.hash}`);
-        //     this.fragment = fragment;
-        // });
-        // console.log(this.ngbNav.activeIdChange);
-        // this.active = 2;
+    onNavChange(activeId: number) {
+        const fragment = this.tabs.find((tab: {fragment: string, id: number}) => tab.id === activeId)?.fragment;
+        if (fragment) {
+            window.location.hash = fragment;
+        }
     }
 }

@@ -14,33 +14,7 @@
                 </div>
             </div>
 
-<!--            <ul ngbNav [activeId]="route.fragment | async" class="nav-tabs">-->
-<!--                <li [ngbNavItem]="link.fragment" *ngFor="let link of links">-->
-<!--                    <a ngbNavLink routerLink="." [fragment]="link.fragment">{{ link.title }}</a>-->
-<!--                </li>-->
-<!--            </ul>-->
-<!--            <router-outlet></router-outlet>-->
-
-
-<!--            <ul ngbNav [activeId]="route.fragment | async" class="nav-tabs">-->
-<!--                <li [ngbNavItem]="'pending-transactions'">-->
-<!--                    <a ngbNavLink routerLink="." [fragment]="'pending-transactions'">pending-transactions</a>-->
-<!--                    <app-pending-transactions></app-pending-transactions>-->
-<!--                </li>-->
-<!--                <li [ngbNavItem]="'invoices'">-->
-<!--                    <a ngbNavLink routerLink="." [fragment]="'invoices'">invoices</a>-->
-<!--                    <app-invoices></app-invoices>-->
-<!--                </li>-->
-<!--                <li [ngbNavItem]="'invoice-summaries-by-date'">-->
-<!--                    <a ngbNavLink routerLink="." [fragment]="'invoice-summaries-by-date'">invoice-summaries-by-date</a>-->
-<!--                    <app-invoice-summaries-by-date></app-invoice-summaries-by-date>-->
-<!--                </li>-->
-<!--            </ul>-->
-<!--            <router-outlet></router-outlet>-->
-
-
-
-            <ul ngbNav #nav="ngbNav" class="nav-tabs pt-2" [(activeId)]="active" >
+            <ul ngbNav #nav="ngbNav" class="nav-tabs pt-2" [(activeId)]="active" (activeIdChange)="onNavChange($event)">
 
                 <!-- Pending Transactions -->
                 <li [ngbNavItem]="1">
