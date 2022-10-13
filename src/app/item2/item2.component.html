@@ -10,8 +10,9 @@
             </app-products>
         </div>
         <div class="col-sm">
+            <app-product-card [products]="invoices | async"></app-product-card>
             <div *ngIf="selectedProduct">
-                <p> {{ selectedProduct.jobID }} </p>
+                <p><b>Job ID:</b> {{ selectedProduct.jobID }} </p>
             </div>
         </div>
     </div>
