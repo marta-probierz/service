@@ -23,6 +23,10 @@ const routes: Routes = [
     loadChildren: () => import('./financials/financials.module').then((m) => m.FinancialsModule),
   },
   {
+    path: 'item2',
+    loadChildren: () => import('./item2/item2.module').then((m) => m.Item2Module),
+  },
+  {
     path: '',
     redirectTo: '/home',
     pathMatch: 'full',

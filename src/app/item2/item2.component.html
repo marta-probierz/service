@@ -1,0 +1,18 @@
+<pbds-page-title ttl="Sharing data" layout="container-fluid"></pbds-page-title>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm">
+            <h2>Lorem ipsum:</h2>
+            <app-products
+                    [products]="invoices | async"
+                    (onSelected)="onSelectedProduct($event)"
+            >
+            </app-products>
+        </div>
+        <div class="col-sm">
+            <div *ngIf="selectedProduct">
+                <p> {{ selectedProduct.jobID }} </p>
+            </div>
+        </div>
+    </div>
+</div>

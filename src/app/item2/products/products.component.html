@@ -1,0 +1,28 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="col">
+            <div style="width: 400px">
+                <ng-container *ngFor="let product of products">
+                    <ngb-accordion #acc="ngbAccordion">
+                        <ngb-panel title="{{ product.jobID }}">
+                            <ng-template ngbPanelContent>
+                                <p> Invoice: {{ product.invoice }} </p>
+                                <p> Lorem ipsum dolor sit amet, consectetur adipisicing elit. Inventore sed consequuntur error repudiandae numquam deserunt quisquam repellat libero asperiores earum nam nobis </p>
+                                <button (click)="onSelectedProductDetail(product)"
+                                        class="btn btn-outline-primary"
+                                >
+                                    Detail
+                                </button>
+                                <button (click)="onSelectedProductShow(product)"
+                                        class="btn btn-primary"
+                                >
+                                    Show
+                                </button>
+                            </ng-template>
+                        </ngb-panel>
+                    </ngb-accordion>
+                </ng-container>
+            </div>
+        </div>
+    </div>
+</div>
