@@ -8,10 +8,11 @@ import { Item2RoutingModule } from '@app/item2/item2-routing.module';
 import { ProductsComponent } from './products/products.component';
 import { ModalComponent } from './modal/modal.component';
 import { ProductCardComponent } from './product-card/product-card.component';
+import { AddNewComponent } from './add-new/add-new.component';
 
 @NgModule({
     imports: [Item2RoutingModule, SharedModule, NgbModule, CardModule],
-    declarations: [Item2Component, ProductsComponent, ModalComponent, ProductCardComponent],
+    declarations: [Item2Component, ProductsComponent, ModalComponent, ProductCardComponent, AddNewComponent],
     exports: []
 })
 export class Item2Module {}

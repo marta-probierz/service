@@ -1,7 +1,33 @@
 <div class="bg-light w-75 shadow p-3 mb-5 bg-white rounded mt-7">
-<p-card [style]="{'padding': '15px'}">
-    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-    <p *ngIf="products"><b>All invoices:</b> {{ products.length }} </p>
-</p-card>
+    <p-card [style]="{'padding': '15px'}">
+    <div [ngClass]="{'limitTextHeight': isReadMore}">
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+        Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure
+        dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat
+        non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+        Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure
+        dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat
+        non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+    </div>
+    <button type="button" class="mt-2 mb-3 bg-transparent border-0 text-secondary" (click)="showText()">
+        <i aria-hidden="true" [ngClass]="isReadMore ? 'pbi-icon-outline pbi-minimal-down' : 'pbi-icon-outline pbi-minimal-up'"></i>
+        {{ isReadMore ? 'Read More': 'Read Less' }}
+    </button>
+
+        <p *ngIf="products"><b>All invoices:</b> {{ products.length }} </p>
+        <p>
+            <b>Total Amount Due:</b>
+            {{ totalAmountDue | currency }}
+            <i class="pbi-icon-outline pbi-alert-circle pl-1"
+               aria-hidden="true"
+               type="button"
+               placement="bottom"
+               triggers="mouseenter:mouseleave"
+               ngbPopover="Lorem, ipsum dolor sit amet consectetur adipisicing elit."
+               popoverTitle="Total Amount Due">
+            </i>
+        </p>
+    </p-card>
 </div>
 

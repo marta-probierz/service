@@ -1,10 +1,9 @@
 <div class="container-fluid">
     <div class="row">
         <div class="col">
-            <div style="width: 400px">
-                <ng-container *ngFor="let product of products">
-                    <ngb-accordion #acc="ngbAccordion">
-                        <ngb-panel title="{{ product.jobID }}">
+            <div style="width: 550px">
+                    <ngb-accordion #acc="ngbAccordion" [closeOthers]="true" activeIds="static-0">
+                        <ngb-panel *ngFor="let product of products; let index = index" title="{{ product.jobID }}" id="static-{{index}}">
                             <ng-template ngbPanelContent>
                                 <p> Invoice: {{ product.invoice }} </p>
                                 <p> Lorem ipsum dolor sit amet, consectetur adipisicing elit. Inventore sed consequuntur error repudiandae numquam deserunt quisquam repellat libero asperiores earum nam nobis </p>
@@ -13,15 +12,14 @@
                                 >
                                     Detail
                                 </button>
-                                <button (click)="onSelectedProductShow(product)"
+                                <button (click)="onSelectedProductStatus(product)"
                                         class="btn btn-primary"
                                 >
-                                    Show
+                                    Status
                                 </button>
                             </ng-template>
                         </ngb-panel>
                     </ngb-accordion>
-                </ng-container>
             </div>
         </div>
     </div>

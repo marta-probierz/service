@@ -20,8 +20,7 @@ export class ProductsComponent implements OnInit {
     modalRef.componentInstance.products = product;
   }
 
-  onSelectedProductShow(product) {
-    console.log(product);
+  onSelectedProductStatus(product) {
     this.onSelected.emit(product);
   }
 }

@@ -1,6 +1,7 @@
 <pbds-page-title ttl="Sharing data" layout="container-fluid"></pbds-page-title>
 <div class="container-fluid">
     <div class="row">
+
         <div class="col-sm">
             <h2>Lorem ipsum:</h2>
             <app-products
@@ -9,11 +10,51 @@
             >
             </app-products>
         </div>
+
+
         <div class="col-sm">
-            <app-product-card [products]="invoices | async"></app-product-card>
-            <div *ngIf="selectedProduct">
-                <p><b>Job ID:</b> {{ selectedProduct.jobID }} </p>
+
+            <div class="w-75 mt-7 d-flex justify-content-center">
+                <button (click)="toggleAddNew()" type="button" class="btn btn-primary mt-2" style="width: 200px">
+                    {{ !showAddNew ? 'Add New Invoice' : 'Cancel' }}
+                </button>
             </div>
+            <app-add-new *ngIf="showAddNew"></app-add-new>
+
+            <app-product-card [products]="invoices | async"></app-product-card>
+
+            <div *ngIf="selectedProduct">
+                <div *ngIf="toDisplay" class="bg-light w-75 shadow p-3 mb-5 bg-white rounded mt-7">
+                    <button (click)="toggleData()" type="button" class="close" aria-label="Close">x</button>
+                    <p-card [style]="{'padding-top': '15px'}">
+                        <p class="d-flex justify-content-center align-items-center ml-3"> <span class="pt-1 pb-1 pl-2 pr-2 text-white"
+                                  style="border-radius: 16.5px"
+                                  [ngStyle]="{'background-color': selectedProduct.status === 'Past Due' ? 'red' : (selectedProduct.status === 'Paid' ? 'green' : 'orange') }"
+                            >
+                            {{ selectedProduct.status }}
+                            </span>
+                        </p>
+                        <form [formGroup]="editStatusForm">
+                            <div class="col form-group d-flex pt-3">
+                                <label class="pt-1" for="status">Change Status</label>
+                                <select formControlName="status"
+                                        class="form-control"
+                                        id="status"
+                                >
+                                    <option value="" hidden> </option>
+                                    <option>Unpaid</option>
+                                    <option>Past Due</option>
+                                    <option>Paid</option>
+                                </select>
+                            </div>
+                        </form>
+                        <div class="d-flex justify-content-center align-items-center">
+                            <button class="btn btn-primary mt-2" type="submit" (click)="onEdit()">Change</button>
+                        </div>
+                    </p-card>
+                </div>
+            </div>
+
         </div>
     </div>
 </div>
