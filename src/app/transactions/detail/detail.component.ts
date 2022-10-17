@@ -6,7 +6,6 @@ import { Table } from 'primeng/table';
 import { ActivatedRoute } from '@angular/router';
 
 import { Detail } from '@app/transactions/detail/Detail';
-import { Transaction } from '@app/transactions/Transaction';
 
 
 @Component({
@@ -15,7 +14,6 @@ import { Transaction } from '@app/transactions/Transaction';
 })
 export class DetailComponent implements OnInit {
   @ViewChild('dt', { static: true }) dt: Table;
-  transactions: Transaction[] = [];
   transactionsDetail: Detail[];
   cols: any[];
   id: string;
@@ -31,6 +29,8 @@ export class DetailComponent implements OnInit {
   toDate: NgbDate | null;
   selectedDateFrom: string;
   selectedDateTo: string;
+  location: string;
+  billToAcct: string;
 
   constructor(private activatedRoute: ActivatedRoute, private filterService: FilterService, private calendar: NgbCalendar, public formatter: NgbDateParserFormatter) {
     this.activatedRoute.params.subscribe((param) => {
@@ -41,8 +41,9 @@ export class DetailComponent implements OnInit {
   }
   ngOnInit() {
     this.activatedRoute.data.subscribe(value => {
-      this.transactions = value.transactions;
-      this.transactionsDetail = this.transactions.find((item: Transaction) => item.id === parseInt(this.id, 10))?.detail;
+      this.location = value.transactions.location;
+      this.billToAcct = value.transactions.billToAcct;
+      this.transactionsDetail = value.transactions.detail;
       this.totalFee = this.transactionsDetail.map(item => item.fee).reduce((acc, amount) => +acc + +amount, 0);
       this.totalPostage = this.transactionsDetail.map(item => item.postage).reduce((acc, amount) => +acc + +amount, 0);
       this.totalAdjFee = this.transactionsDetail.map(item => item.adjFee).reduce((acc, amount) => +acc + +amount, 0);
