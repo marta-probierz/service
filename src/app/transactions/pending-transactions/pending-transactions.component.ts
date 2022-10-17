@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { SortEvent } from 'primeng/api';
+import { ActivatedRoute } from '@angular/router';
 
 import { Transaction } from '@app/transactions/Transaction';
-import { TransactionsService } from '@app/services/transactions.service';
 import { LocationsModalComponent } from '@app/shared/locations-modal/locations-modal.component';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
@@ -16,15 +16,15 @@ export class PendingTransactionsComponent implements OnInit {
   cols: any[];
   locationsPen: string[];
 
-  constructor(private transactionsService: TransactionsService, private modalService: NgbModal) { }
+  constructor(private modalService: NgbModal, public activatedRoute: ActivatedRoute) { }
 
   openModal() {
     this.modalService.open(LocationsModalComponent, { size: 'lg' });
   }
 
   ngOnInit(): void {
-    this.transactionsService.getTransactions().subscribe((transactions: Transaction[]) => {
-      this.transactions = transactions;
+    this.activatedRoute.data.subscribe(value => {
+      this.transactions = value.transactions;
       this.locationsPen = [...new Set(this.transactions.map(i => i.location))];
     });
 

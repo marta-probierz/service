@@ -4,13 +4,14 @@ import { NgbDateStruct, NgbDate, NgbCalendar, NgbDateParserFormatter } from '@ng
 import { FilterService } from 'primeng/api';
 import { Table } from 'primeng/table';
 import { Form } from '@angular/forms';
+import { ActivatedRoute } from '@angular/router';
 
 import { LocationsModalComponent } from '@app/shared/locations-modal/locations-modal.component';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Invoice } from '@app/transactions/Invoice';
-import { InvoicesService } from '@app/services/invoices.service';
 import { RemoveInvoiceComponent } from '@app/transactions/modals/remove-invoice/remove-invoice.component';
 import { EditInvoiceComponent } from '@app/transactions/modals/edit-invoice/edit-invoice.component';
+
 
 @Component({
   selector: 'app-invoices',
@@ -32,7 +33,7 @@ export class InvoicesComponent implements OnInit {
   statuses: string[];
   locations: string[];
 
-  constructor(private modalService: NgbModal, private invoicesService: InvoicesService, private filterService: FilterService, private calendar: NgbCalendar, public formatter: NgbDateParserFormatter) {
+  constructor(private modalService: NgbModal, private filterService: FilterService, private calendar: NgbCalendar, public formatter: NgbDateParserFormatter, public activatedRoute: ActivatedRoute) {
     this.fromDate = calendar.getToday();
     this.toDate = calendar.getNext(calendar.getToday(), 'd', 10);
   }
@@ -62,12 +63,13 @@ export class InvoicesComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.invoicesService.getInvoices().subscribe((invoices: Invoice[]) => {
-       this.invoices = invoices;
-        this.totalAmountDue = this.invoices.map(item => item.amountDue).reduce((acc, amount) => +acc + +amount, 0);
-        this.statuses = [...new Set(this.invoices.map(i => i.status))];
-        this.locations = [...new Set(this.invoices.map(i => i.location))];
-    });
+      this.activatedRoute.data.subscribe(value => {
+          this.invoices = value.invoices;
+          this.totalAmountDue = this.invoices.map(item => item.amountDue).reduce((acc, amount) => +acc + +amount, 0);
+          this.statuses = [...new Set(this.invoices.map(i => i.status))];
+          this.locations = [...new Set(this.invoices.map(i => i.location))];
+      });
+
 
     this.invoicesCols = [
         { field: 'invoiceDate', header: 'Invoice Date', icon: false },

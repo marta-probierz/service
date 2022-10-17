@@ -1,9 +1,13 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+
 import { FooterComponent } from '@app/shared/footer/footer.component';
 import { HeaderComponent } from '@app/shared/header/header.component';
 import { TransactionsComponent } from './transactions.component';
-import { DetailComponent} from '@app/transactions/detail/detail.component';
+import { DetailComponent } from '@app/transactions/detail/detail.component';
+import { InvoicesResolverService } from '@app/transactions/invoices/invoices.resolver';
+import { TransactionsResolverService } from '@app/transactions/pending-transactions/pending-transactions.resolver';
+import { TransactionsDetailByIDResolverService } from '@app/transactions/detail/detail.resolver';
 
 
 const routes: Routes = [
@@ -13,6 +17,9 @@ const routes: Routes = [
             {
                 path: 'transactions/:id',
                 component: DetailComponent,
+                resolve: {
+                    transactions: TransactionsDetailByIDResolverService
+                }
             },
             {
                 path: '',
@@ -22,6 +29,10 @@ const routes: Routes = [
             {
                 path: '',
                 component: TransactionsComponent,
+                resolve: {
+                    invoices: InvoicesResolverService,
+                    transactions: TransactionsResolverService
+                }
             },
             {
                 path: '',
