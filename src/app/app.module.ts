@@ -6,6 +6,8 @@ import { TransactionsModule } from '@app/transactions/transactions.module';
 import { LoadingBarHttpClientModule } from '@ngx-loading-bar/http-client';
 import { LoadingBarRouterModule } from '@ngx-loading-bar/router';
 import { FinancialsModule } from '@app/financials/financials.module';
+import { Item1Module } from '@app/item1/item1.module';
+import { Item2Module } from '@app/item2/item2.module';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -21,6 +23,8 @@ import { AppComponent } from './app.component';
     TransactionsModule,
     BrowserAnimationsModule,
     FinancialsModule,
+    Item1Module,
+    Item2Module
   ],
   providers: [],
   bootstrap: [AppComponent],

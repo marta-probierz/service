@@ -1,6 +1,6 @@
 export interface Invoice {
     id?: number;
-    date: string;
+    invoiceDate: string;
     invoice: number;
     jobID: string;
     location: string;
