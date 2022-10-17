@@ -47,6 +47,7 @@ export class Item2Component implements OnInit {
   onEdit() {
     this.storeService.editInvoice(this.selectedID, this.editStatusForm.value).subscribe(() => {
       this.selectedProduct = this.editStatusForm.value;
+      this.ngOnInit();
     });
   }
 }

@@ -255,7 +255,7 @@
       "billToAcct": 16804770,
       "paymentDueDate": "2022-11-06",
       "amountDue": 6567,
-      "status": "Unpaid",
+      "status": "Past Due",
       "id": 44
     },
     {
@@ -279,7 +279,7 @@
       "billToAcct": 16804770,
       "paymentDueDate": "2022-11-04",
       "amountDue": 43,
-      "status": "Past Due",
+      "status": "Paid",
       "id": 46
     },
     {
@@ -303,7 +303,7 @@
       "billToAcct": 16804770,
       "paymentDueDate": "2022-11-12",
       "amountDue": "90.91",
-      "status": "Unpaid",
+      "status": "Past Due",
       "id": 48
     },
     {
