@@ -3,10 +3,9 @@ import { SortEvent } from 'primeng/api';
 import { NgbDateStruct, NgbDate, NgbCalendar, NgbDateParserFormatter } from '@ng-bootstrap/ng-bootstrap';
 import { FilterService } from 'primeng/api';
 import { Table } from 'primeng/table';
-
-import { TransactionsService } from '@app/services/transactions.service';
-import { Detail } from '@app/transactions/detail/Detail';
 import { ActivatedRoute } from '@angular/router';
+
+import { Detail } from '@app/transactions/detail/Detail';
 import { Transaction } from '@app/transactions/Transaction';
 
 
@@ -16,6 +15,7 @@ import { Transaction } from '@app/transactions/Transaction';
 })
 export class DetailComponent implements OnInit {
   @ViewChild('dt', { static: true }) dt: Table;
+  transactions: Transaction[] = [];
   transactionsDetail: Detail[];
   cols: any[];
   id: string;
@@ -32,16 +32,17 @@ export class DetailComponent implements OnInit {
   selectedDateFrom: string;
   selectedDateTo: string;
 
-  constructor(private transactionsService: TransactionsService, private route: ActivatedRoute, private filterService: FilterService, private calendar: NgbCalendar, public formatter: NgbDateParserFormatter) {
-    this.route.params.subscribe((param) => {
+  constructor(private activatedRoute: ActivatedRoute, private filterService: FilterService, private calendar: NgbCalendar, public formatter: NgbDateParserFormatter) {
+    this.activatedRoute.params.subscribe((param) => {
       this.id = param.id;
       this.fromDate = calendar.getToday();
       this.toDate = calendar.getNext(calendar.getToday(), 'd', 10);
     });
   }
   ngOnInit() {
-    this.transactionsService.getTransactions().subscribe((transactions: Transaction[]) => {
-      this.transactionsDetail = transactions.find((item: Transaction) => item.id === parseInt(this.id, 10))?.detail;
+    this.activatedRoute.data.subscribe(value => {
+      this.transactions = value.transactions;
+      this.transactionsDetail = this.transactions.find((item: Transaction) => item.id === parseInt(this.id, 10))?.detail;
       this.totalFee = this.transactionsDetail.map(item => item.fee).reduce((acc, amount) => +acc + +amount, 0);
       this.totalPostage = this.transactionsDetail.map(item => item.postage).reduce((acc, amount) => +acc + +amount, 0);
       this.totalAdjFee = this.transactionsDetail.map(item => item.adjFee).reduce((acc, amount) => +acc + +amount, 0);
