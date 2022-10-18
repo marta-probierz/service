@@ -3,7 +3,6 @@
     <div class="row">
 
         <div class="col-sm">
-            <h2>Lorem ipsum:</h2>
             <app-products
                     [products]="invoices | async"
                     (onSelected)="onSelectedProduct($event)"
@@ -15,13 +14,14 @@
         <div class="col-sm">
 
             <div class="w-75 mt-7 d-flex justify-content-center">
-                <button (click)="toggleAddNew()" type="button" class="btn btn-primary mt-2" style="width: 200px">
+                <button #btn (click)="toggleAddNew()" type="button" class="mt-2" style="width: 200px">
                     {{ !showAddNew ? 'Add New Invoice' : 'Cancel' }}
                 </button>
             </div>
             <app-add-new *ngIf="showAddNew"></app-add-new>
 
-            <app-product-card [products]="invoices | async"></app-product-card>
+            <app-product-card title="{{ title }}" [products]="invoices | async"></app-product-card>
+            <app-product-card title="{{ title }}" [products]="invoices | async"></app-product-card>
 
             <div *ngIf="selectedProduct">
                 <div *ngIf="toDisplay" class="bg-light w-75 shadow p-3 mb-5 bg-white rounded mt-7">

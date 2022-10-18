@@ -8,6 +8,7 @@ import { ModalComponent } from '@app/item2/modal/modal.component';
   templateUrl: './products.component.html',
 })
 export class ProductsComponent implements OnInit {
+  @Input() title: string;
   @Input() products = [];
   @Output() onSelected = new EventEmitter<any>();
 
