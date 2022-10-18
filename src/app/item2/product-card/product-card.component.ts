@@ -11,6 +11,7 @@ import { InvoicesService } from '@app/services/invoices.service';
 })
 export class ProductCardComponent implements OnInit {
   @Input() products = [];
+  @Input() title: string;
   invoices: Invoice[] = [];
   totalAmountDue: number;
   isReadMore = true;

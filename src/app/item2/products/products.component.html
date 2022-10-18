@@ -1,6 +1,7 @@
 <div class="container-fluid">
     <div class="row">
         <div class="col">
+            <h2> {{ title }} </h2>
             <div style="width: 550px">
                     <ngb-accordion #acc="ngbAccordion" [closeOthers]="true" activeIds="static-0">
                         <ngb-panel *ngFor="let product of products; let index = index" title="{{ product.jobID }}" id="static-{{index}}">
