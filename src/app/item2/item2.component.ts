@@ -24,6 +24,8 @@ export class Item2Component implements OnInit, AfterViewInit {
   status: FormControl;
   selectedID: number;
   title: string;
+  date: Date;
+  toggle = true;
 
   constructor(private storeService: StoreService) { }
 
@@ -34,6 +36,8 @@ export class Item2Component implements OnInit, AfterViewInit {
     this.editStatusForm = new FormGroup({
       status: new FormControl(this.status),
     });
+
+    this.date = new Date();
   }
 
   ngAfterViewInit() {
@@ -61,5 +65,13 @@ export class Item2Component implements OnInit, AfterViewInit {
       this.selectedProduct = this.editStatusForm.value;
       this.ngOnInit();
     });
+  }
+
+  toggleFormat() {
+    this.toggle = !this.toggle;
+  }
+
+  format() {
+    return this.toggle ? 'd-M-yyyy' : 'fullDate';
   }
 }
