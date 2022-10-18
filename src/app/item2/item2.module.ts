@@ -9,10 +9,13 @@ import { ProductsComponent } from './products/products.component';
 import { ModalComponent } from './modal/modal.component';
 import { ProductCardComponent } from './product-card/product-card.component';
 import { AddNewComponent } from './add-new/add-new.component';
+import { TitleDirective } from './title.directive';
+import { InvoicePipe } from './invoice.pipe';
+
 
 @NgModule({
     imports: [Item2RoutingModule, SharedModule, NgbModule, CardModule],
-    declarations: [Item2Component, ProductsComponent, ModalComponent, ProductCardComponent, AddNewComponent],
+    declarations: [Item2Component, ProductsComponent, ModalComponent, ProductCardComponent, AddNewComponent, TitleDirective, InvoicePipe],
     exports: []
 })
 export class Item2Module {}

@@ -17,19 +17,19 @@
             </thead>
             <tbody>
             <tr>
-                <td>{{ products.invoiceDate}}</td>
-                <td>{{ products.invoice }}</td>
-                <td>{{ products.billToAcct }}</td>
-                <td>{{ products.paymentDueDate }}</td>
-                <td>{{ products.amountDue | currency }}</td>
+                <td> {{ products.invoiceDate }} </td>
+                <td> {{ products.invoice | invoice:3: 4 }} </td>
+                <td> {{ products.billToAcct }} </td>
+                <td> {{ products.paymentDueDate }} </td>
+                <td> {{ products.amountDue | currency }} </td>
             </tr>
             </tbody>
         </table>
 
         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Inventore sed consequuntur error repudiandae numquam deserunt quisquam repellat libero asperiores earum nam nobis, culpa ratione quam perferendis esse, cupiditate neque quas!</p>
 
-        <p><b>Account:</b> {{ products.account }}</p>
-        <p><b>Location:</b> {{ products.location }}</p>
+        <p><b>Account:</b> {{ products.account }} </p>
+        <p><b>Location:</b> {{ products.location }} </p>
         <p><b>Status: </b>
             <span class="pt-1 pb-1 pl-2 pr-2 text-white"
                   style="border-radius: 16.5px"
