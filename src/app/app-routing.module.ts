@@ -27,6 +27,10 @@ const routes: Routes = [
     loadChildren: () => import('./item2/item2.module').then((m) => m.Item2Module),
   },
   {
+    path: 'form',
+    loadChildren: () => import('./form/form.module').then((m) => m.FormModule),
+  },
+  {
     path: '',
     redirectTo: '/home',
     pathMatch: 'full',
