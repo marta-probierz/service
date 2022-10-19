@@ -1,0 +1,67 @@
+<pbds-page-title ttl="Add New User" layout="container-fluid"></pbds-page-title>
+<div class="container-fluid mt-7">
+    <form [formGroup]="form" (ngSubmit)="addUser()">
+        <ng-container formArrayName="newUser">
+            <ng-container *ngFor="let userForm of users.controls; let i = index">
+                <div [formGroup]="userForm" class="d-flex justify-content-center mb-3">
+
+                    <div class="form-group mr-4 w-25">
+                        <input formControlName="firstName"
+                               type="text"
+                               class="form-control"
+                               placeholder="Enter First Name"
+                               [ngClass]="{'border-danger' : userForm.get('firstName').invalid && (userForm.get('firstName').dirty || userForm.get('firstName').touched) }"
+                        >
+                        <div *ngIf="userForm.get('firstName').invalid && (userForm.get('firstName').dirty || userForm.get('firstName').touched)"
+                             class="text-danger">
+                            <div *ngIf="userForm.get('firstName').errors?.['required']">
+                                First Name is required
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="form-group mr-4 w-25">
+                        <input formControlName="lastName"
+                               type="text"
+                               class="form-control"
+                               placeholder="Enter Last Name"
+                               [ngClass]="{'border-danger' : userForm.get('lastName').invalid && (userForm.get('lastName').dirty || userForm.get('lastName').touched) }"
+                        >
+                        <div *ngIf="userForm.get('lastName').invalid && (userForm.get('lastName').dirty || userForm.get('lastName').touched)"
+                             class="text-danger">
+                            <div *ngIf="userForm.get('lastName').errors?.['required']">
+                                Last Name is required
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group w-25">
+                        <input formControlName="email"
+                               type="text"
+                               class="form-control"
+                               placeholder="Enter email"
+                               [ngClass]="{'border-danger' : userForm.get('email').invalid && (userForm.get('email').dirty || userForm.get('email').touched) }"
+                        >
+                        <div *ngIf="userForm.get('email').invalid && (userForm.get('email').dirty || userForm.get('email').touched)"
+                             class="text-danger">
+                            <div *ngIf="userForm.get('email').errors?.['required']">
+                                Email is required
+                            </div>
+                            <div *ngIf="userForm.get('email').errors?.['pattern']">
+                                Invalid email address
+                            </div>
+                        </div>
+                    </div>
+
+                    <i (click)="deleteUser(i)" type="button" class="ml-5 pbi-icon-outline pbi-trash" style="font-size: 35px"></i>
+
+                </div>
+            </ng-container>
+        </ng-container>
+
+        <div class="d-flex justify-content-center pt-5">
+            <button [disabled]="!form.valid" type="submit" class="btn btn-primary" style="width: 200px">Add</button>
+        </div>
+    </form>
+</div>
