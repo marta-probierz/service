@@ -14,7 +14,7 @@
           >
             <span class="navbar-toggler-icon"></span>
           </button>
-          <a class="navbar-brand" routerLink="/home"> Presort Services </a>
+          <a class="navbar-brand" routerLink="/home">Service</a>
 
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
@@ -31,9 +31,8 @@
                   >Financials</a
                 >
                 <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink" style="min-width: 300px">
-                  <a class="dropdown-item" routerLink="/item2">Invoices</a>
+                  <a class="dropdown-item" routerLink="/invoices">Invoices</a>
                   <a class="dropdown-item" routerLink="/financials/new-invoice">New Invoice</a>
-                  <a class="dropdown-item" routerLink="">Deposit Account Balances</a>
                   <a class="dropdown-item" routerLink="/transactions">Transactions and Invoices</a>
                   <a class="dropdown-item" routerLink="/financials/chart">Charts</a>
                 </div>
@@ -51,45 +50,6 @@
             </ul>
 
             <ul class="navbar-nav navbar-right" [ngClass]="{ 'search-active': searchActive }">
-
-              <!-- Shutterfly-->
-              <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle"
-                   href="#"
-                   role="button"
-                   data-toggle="dropdown"
-                   aria-haspopup="true"
-                   aria-expanded="false">
-                  <span class="d-lg-none" id="account-switcher">
-                    <i class="pbi-icon-mini pbi-account-switcher pr-0" aria-hidden="true"></i>&nbsp;
-                  </span>
-                  <i class="pbi-icon-outline pbi-account-switcher d-none d-lg-inline d-sm-block pr-2" aria-hidden="true"></i>
-                  Shutterfly
-                </a>
-                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                  <div class="section-head d-none d-sm-block pt-1 pb-2">Shutterfly</div>
-                  <a class="dropdown-item" routerLink="">Shutterfly Business Solutions</a>
-                  <a class="dropdown-item" routerLink="">Shutterfly Lifetouch</a>
-                  <a class="dropdown-item" routerLink="">Shutterfly Transactional</a>
-                </div>
-              </li>
-
-              <!-- Support menu -->
-              <li class="nav-item dropdown menu-help">
-                <a
-                  href=""
-                  class="nav-link dropdown-toggle"
-                  data-toggle="dropdown"
-                  aria-labelledby="help-offscreen"
-                  aria-expanded="false"
-                  aria-haspopup="true"
-                >
-                  <i class="pbi-icon-outline pbi-help-circle d-none d-lg-inline" aria-hidden="true"></i>
-                  <span class="d-lg-none" id="help-offscreen">
-                    <i class="pbi-icon-mini pbi-help-circle" aria-hidden="true"></i>&nbsp;Support
-                  </span>
-                </a>
-              </li>
 
               <!-- User menu -->
               <li class="nav-item dropdown menu-user">
@@ -110,7 +70,6 @@
                 </a>
 
                 <div class="dropdown-menu" role="menu">
-                  <a class="dropdown-item" href="">Profile Settings</a>
                   <a class="dropdown-item" href="">Sign Out</a>
                 </div>
               </li>

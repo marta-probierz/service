@@ -7,14 +7,6 @@ const routes: Routes = [
     loadChildren: () => import('./home/home.module').then((m) => m.HomeModule),
   },
   {
-    path: 'item1',
-    loadChildren: () => import('./item1/item1.module').then((m) => m.Item1Module),
-  },
-  {
-    path: 'accessibility',
-    loadChildren: () => import('./accessibility/accessibility.module').then((m) => m.AccessibilityModule),
-  },
-  {
     path: 'transactions',
     loadChildren: () => import('./transactions/transactions.module').then((m) => m.TransactionsModule),
   },
@@ -23,7 +15,7 @@ const routes: Routes = [
     loadChildren: () => import('./financials/financials.module').then((m) => m.FinancialsModule),
   },
   {
-    path: 'item2',
+    path: 'invoices',
     loadChildren: () => import('./item2/item2.module').then((m) => m.Item2Module),
   },
   {
