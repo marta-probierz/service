@@ -255,7 +255,7 @@
       "billToAcct": 16804770,
       "paymentDueDate": "2022-11-06",
       "amountDue": 567,
-      "status": "Past Due",
+      "status": "Unpaid",
       "id": 44
     },
     {
@@ -485,6 +485,18 @@
       "amountDue": "56.85",
       "status": "Paid",
       "id": 66
+    },
+    {
+      "invoiceDate": "2023-04-01",
+      "invoice": "5354",
+      "jobID": "98789 GTR",
+      "location": "AUS",
+      "account": "Awrt",
+      "billToAcct": "534",
+      "paymentDueDate": "2023-04-30",
+      "amountDue": "53",
+      "status": "Paid",
+      "id": 67
     }
   ]
 }

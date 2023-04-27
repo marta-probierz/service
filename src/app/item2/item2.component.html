@@ -34,9 +34,6 @@
             </div>
             <app-add-new *ngIf="showAddNew"></app-add-new>
 
-            <app-product-card title="{{ title }}" [products]="invoices | async"></app-product-card>
-            <app-product-card title="{{ title }}" [products]="invoices | async"></app-product-card>
-
             <div *ngIf="selectedProduct">
                 <div *ngIf="toDisplay" class="bg-light w-75 shadow p-3 mb-5 bg-white rounded mt-7">
                     <button (click)="toggleData()" type="button" class="close" aria-label="Close">x</button>
@@ -68,6 +65,9 @@
                     </p-card>
                 </div>
             </div>
+
+            <app-product-card title="{{ title }}" [products]="invoices | async"></app-product-card>
+            <app-product-card title="{{ title }}" [products]="invoices | async"></app-product-card>
 
         </div>
     </div>
