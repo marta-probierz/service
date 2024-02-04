@@ -14,9 +14,8 @@ Celem projektu było dostarczenie aplikacji finansowej „Service” pozwalając
 2. Bootstrap
 3. d3
 4. json-server
-5. pb-design-system
-6. PrimeNG
-7. RXJS
+5. PrimeNG
+6. RXJS
 
 ## Instalacja
 
